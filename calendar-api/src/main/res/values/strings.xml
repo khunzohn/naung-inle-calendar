@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">calendar-api</string>
+    <!--Holidays-->
+    <string name="myanmar_new_year_day">Myanmar New Year Day</string>
+    <string name="thingyan_atat">Thingyan Atat</string>
+    <string name="thingyan_akyat">Thingyan Akyat</string>
+    <string name="thingyan_akya">Thingyan Akya</string>
+    <string name="thingyan_akyo">Thingyan Akyo</string>
+    <string name="holiday">Holiday</string>
+    <string name="new_year_day">New Year Day</string>
+    <string name="independence_day">Independence Day</string>
+    <string name="union_day">Union Day</string>
+    <string name="pheasants_day">Peasants Day</string>
+    <string name="resistance_day">Resistance Day</string>
+    <string name="labour_day">Labour Day</string>
+    <string name="martyars_day">Martyrs Day</string>
+    <string name="christmas_day">Christmas Day</string>
+    <string name="buddha_day">Buddha Day</string>
+    <string name="start_of_buddha_lent">Start of Buddhist Lent</string>
+    <string name="end_of_buddha_lent">End of Buddhist Lent</string>
+    <string name="tazaungdaing">Tazaungdaing</string>
+    <string name="national_day">National Day</string>
+    <string name="karen_new_year_day">Karen New Year Day</string>
+    <string name="tabaung_bwe">Tabaung Pwe</string>
+    <string name="g_aungsan_birthday">G. Aung San BD</string>
+    <string name="valentines_day">Valentines Day</string>
+    <string name="earth_day">Earth Day</string>
+    <string name="april_fools_day">April Fools Day</string>
+    <string name="red_cross_day">Red Cross Day</string>
+    <string name="world_teachers_day">World Teachers Day</string>
+    <string name="united_nations_day">United Nations Day</string>
+    <string name="halloween">Halloween</string>
+    <string name="mon_national_day">Mon National Day</string>
+    <string name="shan_new_year_day">Shan New Year Day</string>
+    <string name="authors_day">Authors Day</string>
+    <string name="mahathamata_day">Mahathamaya Day</string>
+    <string name="garudhama_day">Garudhamma Day</string>
+    <string name="mothers_day">Mothers Day</string>
+    <string name="fathers_day">Fathers Day</string>
+    <string name="metta_day">Metta Day</string>
+    <string name="taungpyone_pwe">Taungpyone Pwe</string>
+    <string name="yadanagu_pwe">Yadanagu Pwe</string>
+    <string name="mon_women_day">Mon Women Day</string>
+    <string name="diwali">Diwali</string>
+    <string name="eid">Eid</string>
+
+</resources>

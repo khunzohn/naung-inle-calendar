@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.hilllander.calendar_api.kernel.CalendarKernel;
 import com.hilllander.naunginlecalendar.R;
 import com.hilllander.naunginlecalendar.util.listener.SimpleGestureFilter;
 import com.hilllander.naunginlecalendar.util.listener.SimpleGestureFilter.SimpleGestureListener;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
     private int currentMonth = 0;
     private int currentYear = 0;
     private int currentContext = SpinnerListener.DAY;
+    private CalendarKernel kernel = new CalendarKernel();
+    private boolean watat = kernel.isWatat(1377);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -203,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
 
     @Override
     public void onDoubleTap() {
-        Toast.makeText(this, "double tap", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "watat " + watat, Toast.LENGTH_SHORT).show();
     }
 
     private class SpinnerListener implements android.widget.AdapterView.OnItemSelectedListener {
