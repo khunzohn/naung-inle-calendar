@@ -1,6 +1,7 @@
 package com.hilllander.naunginlecalendar.view.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -22,7 +23,11 @@ import com.hilllander.naunginlecalendar.view.fragment.YearFragment;
 
 public class MainActivity extends AppCompatActivity implements SimpleGestureListener {
     private SimpleGestureFilter detecter;
-    private int current = 0;
+    private int currentDay = 0;
+    private int currentMonth = 0;
+    private int currentYear = 0;
+    private int currentContext = SpinnerListener.DAY;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,13 +74,13 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
 
     private void inflateYearFragment() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_content, YearFragment.getInstance())
+                .replace(R.id.main_content, YearFragment.getInstance(currentYear))
                 .commit();
     }
 
     private void inflateMonthFragment() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_content, MonthFragment.getInstance())
+                .replace(R.id.main_content, MonthFragment.getInstance(currentMonth))
                 .commit();
     }
 
@@ -110,34 +115,69 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
     }
 
     private void showPrev(int direction) {
-        current--;
-        int enter = 0, exit = 0;
-        switch (direction) {
-            case SimpleGestureFilter.SWIPE_RIGHT:
-                enter = R.anim.slide_in_left;
-                exit = R.anim.slide_out_right;
-                break;
-            case SimpleGestureFilter.SWIPE_LEFT:
-                enter = R.anim.slide_in_right;
-                exit = R.anim.slide_out_left;
-                break;
-            case SimpleGestureFilter.SWIPE_DOWN:
-                enter = R.anim.slide_in_top;
-                exit = R.anim.slide_out_bottom;
-                break;
-            case SimpleGestureFilter.SWIPE_UP:
-                enter = R.anim.slide_in_bottom;
-                exit = R.anim.slide_out_top;
-                break;
-        }
+        decreDate();
+        int[] directions = animDirections(direction);
+        Fragment currentFragment = getCurrentFragment();
         getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(enter, exit)
-                .replace(R.id.main_content, DayFragment.getInstance(current))
+                .setCustomAnimations(directions[0], directions[1])
+                .replace(R.id.main_content, currentFragment)
                 .commit();
     }
 
+    private void decreDate() {
+        switch (currentContext) {
+            case SpinnerListener.DAY:
+                currentDay--;
+                break;
+            case SpinnerListener.MONTH:
+                currentMonth--;
+                break;
+            case SpinnerListener.YEAR:
+                currentYear--;
+                break;
+        }
+    }
+
     private void showNext(int direction) {
-        current++;
+        increDate();
+        int[] directions = animDirections(direction);
+        Fragment currentFragment = getCurrentFragment();
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(directions[0], directions[1])
+                .replace(R.id.main_content, currentFragment)
+                .commit();
+    }
+
+    private void increDate() {
+        switch (currentContext) {
+            case SpinnerListener.DAY:
+                currentDay++;
+                break;
+            case SpinnerListener.MONTH:
+                currentMonth++;
+                break;
+            case SpinnerListener.YEAR:
+                currentYear++;
+                break;
+        }
+    }
+
+    private Fragment getCurrentFragment() {
+        switch (currentContext) {
+            case SpinnerListener.DAY:
+                return DayFragment.getInstance(currentDay);
+            case SpinnerListener.MONTH:
+                return MonthFragment.getInstance(currentMonth);
+            case SpinnerListener.YEAR:
+                return YearFragment.getInstance(currentYear);
+            case SpinnerListener.HOLIDAYS:
+                return HolidaysFragment.getInstance();
+            default:
+                return DayFragment.getInstance(currentDay);
+        }
+    }
+
+    private int[] animDirections(int direction) {
         int enter = 0, exit = 0;
         switch (direction) {
             case SimpleGestureFilter.SWIPE_RIGHT:
@@ -157,11 +197,9 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
                 exit = R.anim.slide_out_top;
                 break;
         }
-        getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(enter, exit)
-                .replace(R.id.main_content, DayFragment.getInstance(current))
-                .commit();
+        return new int[]{enter, exit};
     }
+
 
     @Override
     public void onDoubleTap() {
@@ -178,19 +216,23 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
             switch (i) {
                 case DAY:
-                    inflateDayFragment(current);
+                    currentContext = DAY;
+                    inflateDayFragment(currentDay);
                     break;
                 case MONTH:
+                    currentContext = MONTH;
                     inflateMonthFragment();
                     break;
                 case YEAR:
+                    currentContext = YEAR;
                     inflateYearFragment();
                     break;
                 case HOLIDAYS:
+                    currentContext = HOLIDAYS;
                     inflateHolidaysFragment();
                     break;
                 default:
-                    inflateDayFragment(current);
+                    inflateDayFragment(currentDay);
             }
         }
 

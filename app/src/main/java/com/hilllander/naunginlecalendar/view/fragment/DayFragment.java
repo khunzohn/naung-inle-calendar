@@ -14,7 +14,7 @@ import com.hilllander.naunginlecalendar.R;
  * Created by khunzohn on 11/3/15.
  */
 public class DayFragment extends Fragment {
-    private static final String CURRENT = "current";
+    private static final String CURRENT_DAY = "current";
 
     public DayFragment() {
     }
@@ -22,7 +22,7 @@ public class DayFragment extends Fragment {
     public static Fragment getInstance(int current) {
         Fragment fragment = new DayFragment();
         Bundle args = new Bundle();
-        args.putInt(CURRENT, current);
+        args.putInt(CURRENT_DAY, current);
         fragment.setArguments(args);
         return fragment;
     }
@@ -31,8 +31,8 @@ public class DayFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_day, container, false);
-        TextView current = (TextView) view.findViewById(R.id.current);
-        current.setText("day : " + getArguments().getInt(CURRENT));
+        TextView current = (TextView) view.findViewById(R.id.current_day);
+        current.setText("day : " + getArguments().getInt(CURRENT_DAY));
         return view;
     }
 }
