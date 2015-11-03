@@ -5,11 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.hilllander.naunginlecalendar.R;
-
+import com.hilllander.naunginlecalendar.view.fragment.DayFragment;
+import com.hilllander.naunginlecalendar.view.fragment.HolidaysFragment;
+import com.hilllander.naunginlecalendar.view.fragment.MonthFragment;
+import com.hilllander.naunginlecalendar.view.fragment.YearFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
                 .createFromResource(this, R.array.spinner_item, android.R.layout.simple_spinner_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
+        spinner.setOnItemSelectedListener(new SpinnerListener());
     }
 
     @Override
@@ -48,4 +54,62 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void inflateHolidaysFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_content, HolidaysFragment.getInstance())
+                .commit();
+    }
+
+    private void inflateYearFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_content, YearFragment.getInstance())
+                .commit();
+    }
+
+    private void inflateMonthFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_content, MonthFragment.getInstance())
+                .commit();
+    }
+
+    private void inflateDayFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_content, DayFragment.getInstance())
+                .commit();
+    }
+
+    private class SpinnerListener implements android.widget.AdapterView.OnItemSelectedListener {
+        private static final int DAY = 0;
+        private static final int MONTH = 1;
+        private static final int YEAR = 2;
+        private static final int HOLIDAYS = 3;
+
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            switch (i) {
+                case DAY:
+                    inflateDayFragment();
+                    break;
+                case MONTH:
+                    inflateMonthFragment();
+                    break;
+                case YEAR:
+                    inflateYearFragment();
+                    break;
+                case HOLIDAYS:
+                    inflateHolidaysFragment();
+                    break;
+                default:
+                    inflateDayFragment();
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+
+        }
+
+    }
+
 }
