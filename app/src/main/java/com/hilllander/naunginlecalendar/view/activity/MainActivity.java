@@ -22,6 +22,7 @@ import com.hilllander.naunginlecalendar.view.fragment.YearFragment;
 
 public class MainActivity extends AppCompatActivity implements SimpleGestureListener {
     private SimpleGestureFilter detecter;
+    private int current = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,9 +79,9 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
                 .commit();
     }
 
-    private void inflateDayFragment() {
+    private void inflateDayFragment(int current) {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_content, DayFragment.getInstance())
+                .replace(R.id.main_content, DayFragment.getInstance(current))
                 .commit();
     }
 
@@ -94,18 +95,72 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
     public void onSwipe(int direction) {
         switch (direction) {
             case SimpleGestureFilter.SWIPE_RIGHT:
-                Toast.makeText(this, "right", Toast.LENGTH_SHORT).show();
+                showPrev(direction);
                 break;
             case SimpleGestureFilter.SWIPE_LEFT:
-                Toast.makeText(this, "left", Toast.LENGTH_SHORT).show();
+                showNext(direction);
                 break;
             case SimpleGestureFilter.SWIPE_DOWN:
-                Toast.makeText(this, "down", Toast.LENGTH_SHORT).show();
+                showPrev(direction);
                 break;
             case SimpleGestureFilter.SWIPE_UP:
-                Toast.makeText(this, "up", Toast.LENGTH_SHORT).show();
+                showNext(direction);
                 break;
         }
+    }
+
+    private void showPrev(int direction) {
+        current--;
+        int enter = 0, exit = 0;
+        switch (direction) {
+            case SimpleGestureFilter.SWIPE_RIGHT:
+                enter = R.anim.slide_in_left;
+                exit = R.anim.slide_out_right;
+                break;
+            case SimpleGestureFilter.SWIPE_LEFT:
+                enter = R.anim.slide_in_right;
+                exit = R.anim.slide_out_left;
+                break;
+            case SimpleGestureFilter.SWIPE_DOWN:
+                enter = R.anim.slide_in_top;
+                exit = R.anim.slide_out_bottom;
+                break;
+            case SimpleGestureFilter.SWIPE_UP:
+                enter = R.anim.slide_in_bottom;
+                exit = R.anim.slide_out_top;
+                break;
+        }
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(enter, exit)
+                .replace(R.id.main_content, DayFragment.getInstance(current))
+                .commit();
+    }
+
+    private void showNext(int direction) {
+        current++;
+        int enter = 0, exit = 0;
+        switch (direction) {
+            case SimpleGestureFilter.SWIPE_RIGHT:
+                enter = R.anim.slide_in_left;
+                exit = R.anim.slide_out_right;
+                break;
+            case SimpleGestureFilter.SWIPE_LEFT:
+                enter = R.anim.slide_in_right;
+                exit = R.anim.slide_out_left;
+                break;
+            case SimpleGestureFilter.SWIPE_DOWN:
+                enter = R.anim.slide_in_top;
+                exit = R.anim.slide_out_bottom;
+                break;
+            case SimpleGestureFilter.SWIPE_UP:
+                enter = R.anim.slide_in_bottom;
+                exit = R.anim.slide_out_top;
+                break;
+        }
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(enter, exit)
+                .replace(R.id.main_content, DayFragment.getInstance(current))
+                .commit();
     }
 
     @Override
@@ -123,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
             switch (i) {
                 case DAY:
-                    inflateDayFragment();
+                    inflateDayFragment(current);
                     break;
                 case MONTH:
                     inflateMonthFragment();
@@ -135,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
                     inflateHolidaysFragment();
                     break;
                 default:
-                    inflateDayFragment();
+                    inflateDayFragment(current);
             }
         }
 
@@ -143,8 +198,5 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
         public void onNothingSelected(AdapterView<?> adapterView) {
 
         }
-
     }
-
-
 }
