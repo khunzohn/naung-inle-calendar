@@ -5,19 +5,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.hilllander.naunginlecalendar.R;
+import com.hilllander.naunginlecalendar.util.listener.SimpleGestureFilter;
+import com.hilllander.naunginlecalendar.util.listener.SimpleGestureFilter.SimpleGestureListener;
 import com.hilllander.naunginlecalendar.view.fragment.DayFragment;
 import com.hilllander.naunginlecalendar.view.fragment.HolidaysFragment;
 import com.hilllander.naunginlecalendar.view.fragment.MonthFragment;
 import com.hilllander.naunginlecalendar.view.fragment.YearFragment;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements SimpleGestureListener {
+    private SimpleGestureFilter detecter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
         spinner.setOnItemSelectedListener(new SpinnerListener());
+        detecter = new SimpleGestureFilter(this, this);
     }
 
     @Override
@@ -79,6 +84,35 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        this.detecter.onTouchEvent(ev);
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public void onSwipe(int direction) {
+        switch (direction) {
+            case SimpleGestureFilter.SWIPE_RIGHT:
+                Toast.makeText(this, "right", Toast.LENGTH_SHORT).show();
+                break;
+            case SimpleGestureFilter.SWIPE_LEFT:
+                Toast.makeText(this, "left", Toast.LENGTH_SHORT).show();
+                break;
+            case SimpleGestureFilter.SWIPE_DOWN:
+                Toast.makeText(this, "down", Toast.LENGTH_SHORT).show();
+                break;
+            case SimpleGestureFilter.SWIPE_UP:
+                Toast.makeText(this, "up", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
+    @Override
+    public void onDoubleTap() {
+        Toast.makeText(this, "double tap", Toast.LENGTH_SHORT).show();
+    }
+
     private class SpinnerListener implements android.widget.AdapterView.OnItemSelectedListener {
         private static final int DAY = 0;
         private static final int MONTH = 1;
@@ -111,5 +145,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
 
 }
