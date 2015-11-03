@@ -1,9 +1,11 @@
-package com.hilllander.naunginlecalendar;
+package com.hilllander.naunginlecalendar.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+
+import com.hilllander.naunginlecalendar.R;
 
 public class WelcomeActivity extends AppCompatActivity {
     private static final long delay = 3000; // 3 sec
