@@ -4,4 +4,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
+    <string-array name="spinner_item">
+        <item>day</item>
+        <item>month</item>
+        <item>year</item>
+        <item>holidays</item>
+    </string-array>
 </resources>
