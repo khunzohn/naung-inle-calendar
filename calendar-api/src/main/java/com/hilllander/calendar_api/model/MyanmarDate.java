@@ -13,7 +13,7 @@ public class MyanmarDate {
     private int year;
     private int month;
     private int day;
-    private int d;
+    private int wanWaxDay;
     private int yearType;
     private int yearLength;
     private int monthType;
@@ -103,17 +103,17 @@ public class MyanmarDate {
      * @return waning or waxing day
      */
     public int getWanWaxDay() {
-        return d;
+        return wanWaxDay;
     }
 
     /**
      * set waning or waxing day
      *
-     * @param d waning or waxing day [0-14||15]
+     * @param wanWaxDay waning or waxing day [0-14||15]
      * @return itself for method chaining
      */
-    public MyanmarDate setWanWaxDay(int d) {
-        this.d = d;
+    public MyanmarDate setWanWaxDay(int wanWaxDay) {
+        this.wanWaxDay = wanWaxDay;
         return this;
     }
 

@@ -256,16 +256,16 @@ public class CalendarKernel {
      * @param mMonth  myanmar month [sec_waso=0,tagu=1,...,tapaung=12]
      * @param mType   month type [1=hnaung, 0= Oo]
      * @param mStatus month status [0: waxing, 1: full moon, 2: waning, 3: new moon]
-     * @param day     day [1-14||15]
+     * @param wanWaxDay     wanWaxDay [1-14||15]
      * @return julian date
      */
-    public double M2J(int mYear, int mMonth, int mType, int mStatus, int day) {
+    public double M2J(int mYear, int mMonth, int mType, int mStatus, int wanWaxDay) {
         int monthLength = 30 - mMonth % 2;
         if (mMonth == 3)
             monthLength += (isWatatGyee(mYear) ? 1 : 0); // adjust if Nayon in big watat
         int m1 = mStatus % 2;
         int m2 = (int) Math.floor(mStatus / 2);
-        int md = m1 * (15 + m2 * (monthLength - 15)) + (1 - m1) * (day + 15 * m2);
+        int md = m1 * (15 + m2 * (monthLength - 15)) + (1 - m1) * (wanWaxDay + 15 * m2);
         mMonth += 4 * Math.floor((16 - mMonth) / 16) + 12 * Math.floor((15 - mMonth) / 12);
         int t = (int) Math.floor(mMonth / 13);
         double s = 29.5 + t * (isWatatGyee(mYear) ? 1 : 0) / 5;
@@ -273,7 +273,7 @@ public class CalendarKernel {
         int numOfDays = (int) (md + Math.floor(s * mMonth - c - 0.1));
         int yearLength = 354 + (isWatat(mYear) ? 1 : 0) * 30 + (isWatatGyee(mYear) ? 1 : 0);
         numOfDays += (1 - t) * (yearLength - 266) - 266 * t;
-        numOfDays += mType * yearLength;//adjust day count
+        numOfDays += mType * yearLength;//adjust wanWaxDay count
         return numOfDays + getFirstTagu(mYear) - 1;
     }
 
