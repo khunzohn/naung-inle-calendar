@@ -1,5 +1,7 @@
 package com.hilllander.calendar_api.calendar;
 
+import android.util.Log;
+
 import com.hilllander.calendar_api.kernel.CalendarKernel;
 import com.hilllander.calendar_api.model.MyanmarDate;
 
@@ -18,6 +20,7 @@ public class MyanmarCalendar {
             "တော်သလင်း", "သီတင်းကျွတ်", "တန်ဆောင်မုန်း", "နတ်တော်", "ပြာသို", "တပို့တွဲ", "တပေါင်း"};
     private static final String[] LONG_WEEKDAY = {"စနေ", "တနင်္ဂနွေ", "တနင်္လာ", "အင်္ဂါ", "ဗုဒ္ဓဟူး", "ကြာသပတေး", "သောကြာ"};
     private static final String[] SHORT_WEEKDAY = {"နေ", "နွေ", "လာ", "ဂါ", "ဟူး", "တေး", "ကြာ"};
+    private static final String TAG = MyanmarCalendar.class.getSimpleName();
     private static MyanmarCalendar mCalendar;
     private final int calType = 1; // Gregorian calendar
     private CalendarKernel calKernel;
@@ -25,14 +28,17 @@ public class MyanmarCalendar {
     private MyanmarDate mDate;
 
     private MyanmarCalendar(GregorianCalendar greCal) {
+        Log.d(TAG, "year : " + greCal.get(Calendar.YEAR) + "month : "
+                + greCal.get(Calendar.MONTH) + "day : " + greCal.get(Calendar.DAY_OF_MONTH));
         calKernel = new CalendarKernel();
         int
                 eYear = greCal.get(Calendar.YEAR),
-                eMonth = greCal.get(Calendar.MONTH),
+                eMonth = greCal.get(Calendar.MONTH) + 1,
                 eDay = greCal.get(Calendar.DAY_OF_MONTH);
 
         curJd = calKernel.W2J(eYear, eMonth, eDay, calType);
         mDate = calKernel.J2M(curJd);
+        Log.d(TAG, "mYear :" + mDate.getYear() + "mMonth : " + mDate.getMonth() + "mDay : " + mDate.getWanWaxDay());
     }
 
     private MyanmarCalendar(double jd) {
@@ -46,7 +52,7 @@ public class MyanmarCalendar {
         calKernel = new CalendarKernel();
         int
                 eYear = greCal.get(Calendar.YEAR),
-                eMonth = greCal.get(Calendar.MONTH),
+                eMonth = greCal.get(Calendar.MONTH) + 1,
                 eDay = greCal.get(Calendar.DAY_OF_MONTH);
 
         curJd = calKernel.W2J(eYear, eMonth, eDay, calType);
@@ -172,8 +178,8 @@ public class MyanmarCalendar {
         digitMap.put(9, "၉");
 
         String[] digits = String.valueOf(eDigit).split("");
-        for (String digit : digits) {
-            builder.append(digitMap.get(digit));
+        for (int i = 1; i < digits.length; i++) {
+            builder.append(digitMap.get(Integer.parseInt(digits[i])));
         }
         return builder.toString();
     }
@@ -193,5 +199,9 @@ public class MyanmarCalendar {
             default:
                 return LONG_WEEKDAY[mDate.getWeekday()];
         }
+    }
+
+    public String getMyanmarDate() {
+        return getYearInMyanmar() + " " + getMonthInMyanmar() + " " + getDayInMyanmnar();
     }
 }

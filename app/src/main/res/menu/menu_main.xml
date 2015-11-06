@@ -2,6 +2,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.hilllander.naunginlecalendar.view.activity.MainActivity">
+    <item
+        android:id="@+id/today"
+        android:orderInCategory="100"
+        android:title="@string/today"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/date_picker"
+        android:orderInCategory="100"
+        android:title="@string/date_picker"
+        app:showAsAction="ifRoom" />
 
 <item
         android:id="@+id/action_settings"

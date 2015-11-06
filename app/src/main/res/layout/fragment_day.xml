@@ -10,15 +10,43 @@
         android:orientation="vertical"
         android:weightSum="10">
 
-        <FrameLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="5"
             android:background="@color/primary"
             android:padding="@dimen/padding_16_dp">
 
+            <TextView
+                android:id="@+id/myaWeekDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true" />
 
-        </FrameLayout>
+            <TextView
+                android:id="@+id/myaDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true" />
+
+            <TextView
+                android:id="@+id/engDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="@dimen/large_text" />
+
+            <TextView
+                android:id="@+id/engDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/engDay"
+                android:layout_centerHorizontal="true" />
+
+
+        </RelativeLayout>
 
         <io.codetail.widget.RevealLinearLayout
             android:id="@+id/marketday_image"
