@@ -20,7 +20,10 @@
         <activity
             android:name=".view.activity.MainActivity"
             android:label="@string/title_activity_main"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.TestActivity"
+            android:label="@string/title_activity_test"></activity>
     </application>
 
 </manifest>

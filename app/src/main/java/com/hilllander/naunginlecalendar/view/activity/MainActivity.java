@@ -1,5 +1,6 @@
 package com.hilllander.naunginlecalendar.view.activity;
 
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
     private int currentContext = SpinnerListener.DAY;
     private CalendarKernel kernel = new CalendarKernel();
     private boolean watat = kernel.isWatat(1377);
+    private double currentDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

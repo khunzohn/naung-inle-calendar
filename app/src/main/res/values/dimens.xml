@@ -1,5 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="fab_day_right_margin">0dp</dimen>
+    <dimen name="fab_day_top_margin">256dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="cardview_margin">16dp</dimen>
 </resources>
