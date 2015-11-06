@@ -2,6 +2,7 @@ package com.hilllander.naunginlecalendar.view.fragment;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -31,29 +32,31 @@ public class DayFragment extends Fragment {
     private static final String M_DATE = "myanmar date";
     private static final String E_DAY = "english day";
     private static final String E_DATE = "english date";
+    private static final String M_YEAR = "myanmar year";
+    private static final String B_YEAR = "buddha year";
+    private static final String ASTRO_DETAIL = "astro detail list";
     private View myView;
     private FloatingActionButton fab;
     private SupportAnimator animator;
     private boolean omdShown = false;
-    private TextView myaWeekDay, myaDate, engDay, engDate;
+    private TextView myaWeekDay, myaDate, engDay, engDate, myaYear, bdhaYear, astroList, dragonHead;
 
     public DayFragment() {
     }
 
-    public static Fragment getInstance(GregorianCalendar greCal) {
+    public static Fragment getInstance(GregorianCalendar greCal, Context context) {
         Fragment fragment = new DayFragment();
         MyanmarCalendar mCal = MyanmarCalendar.getInstance(greCal);
         Bundle args = new Bundle();
+        args.putStringArray(ASTRO_DETAIL, mCal.getAstroDetialList(context));
         args.putString(M_WEEKDAY, mCal.getWeekDayInMyanmar(MyanmarCalendar.LONG_DAY));
         args.putString(M_DATE, mCal.getMyanmarDate());
         args.putString(E_DAY, String.valueOf(greCal.get(Calendar.DAY_OF_MONTH)));
         args.putString(E_DATE, greCal.get(Calendar.MONTH) + " " + greCal.get(Calendar.YEAR));
+        args.putString(M_YEAR, mCal.getYearInMyanmar());
+        args.putString(B_YEAR, mCal.getBuddhaYearInMyanmar());
         fragment.setArguments(args);
         return fragment;
-    }
-
-    static float hypo(int a, int b) {
-        return (float) Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
     }
 
     @Nullable
@@ -78,6 +81,23 @@ public class DayFragment extends Fragment {
         myaWeekDay = (TextView) view.findViewById(R.id.myaWeekDay);
         engDate = (TextView) view.findViewById(R.id.engDate);
         engDay = (TextView) view.findViewById(R.id.engDay);
+        myaYear = (TextView) view.findViewById(R.id.myaYear);
+        bdhaYear = (TextView) view.findViewById(R.id.bdhaYear);
+        astroList = (TextView) view.findViewById(R.id.astroList);
+        dragonHead = (TextView) view.findViewById(R.id.dragonHead);
+        astroList.setTypeface(mm3);
+        dragonHead.setTypeface(mm3);
+        String[] asList = args.getStringArray(ASTRO_DETAIL);
+        dragonHead.setText(asList[0]);
+        String asText = "";
+        for (int i = 1; i < asList.length; i++) {
+            asText += " - " + asList[i] + "\n";
+        }
+        astroList.setText(asText);
+        myaYear.setTypeface(mm3);
+        myaYear.setText("ျမန္မာနစ္ " + args.getString(M_YEAR) + " ။");
+        bdhaYear.setTypeface(mm3);
+        bdhaYear.setText("သာသနာနစ္ " + args.getString(B_YEAR) + " ။");
         myaDate.setTypeface(mm3);
         myaDate.setText(args.getString(M_DATE));
         myaWeekDay.setTypeface(mm3);

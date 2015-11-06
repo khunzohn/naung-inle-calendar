@@ -9,8 +9,8 @@ package com.hilllander.calendar_api.model;
  * <p/>
  * Created by khunzohn on 10/25/15.
  */
-public class AstroDate {
-    private static AstroDate date;
+public class AstroDetail {
+    private static AstroDetail date;
     private int sabbath = 0;
     private int sabbatheve = 0;
     private int yatyaza = 0;
@@ -27,7 +27,7 @@ public class AstroDate {
     private int shanyat = 0;
     private int nagahle;
 
-    private AstroDate() {
+    private AstroDetail() {
         //prevent initializing by constructor
     }
 
@@ -36,11 +36,11 @@ public class AstroDate {
      * astrological info by using its object's
      * methods' chains.
      *
-     * @return AstroDate's static object
+     * @return AstroDetail's static object
      */
-    public static AstroDate buildDate() {
+    public static AstroDetail buildDate() {
         if (date == null)
-            date = new AstroDate();
+            date = new AstroDetail();
         return date;
     }
 
@@ -59,7 +59,7 @@ public class AstroDate {
      * @param sabbath [0 : false, 1 : true]
      * @return itself for method chaining
      */
-    public AstroDate setSabbath(int sabbath) {
+    public AstroDetail setSabbath(int sabbath) {
         this.sabbath = sabbath;
         return this;
     }
@@ -79,7 +79,7 @@ public class AstroDate {
      * @param sabbatheve [0 : false, 1 : true]
      * @return itself for method chaining
      */
-    public AstroDate setSabbatheve(int sabbatheve) {
+    public AstroDetail setSabbatheve(int sabbatheve) {
         this.sabbatheve = sabbatheve;
         return this;
     }
@@ -99,7 +99,7 @@ public class AstroDate {
      * @param yatyaza [0 : false, 1 : true]
      * @return itself for method chaining
      */
-    public AstroDate setYatyaza(int yatyaza) {
+    public AstroDetail setYatyaza(int yatyaza) {
         this.yatyaza = yatyaza;
         return this;
     }
@@ -120,7 +120,7 @@ public class AstroDate {
      * @return itself for method chaining
      */
 
-    public AstroDate setPyathada(int pyathada) {
+    public AstroDetail setPyathada(int pyathada) {
         this.pyathada = pyathada;
         return this;
     }
@@ -140,7 +140,7 @@ public class AstroDate {
      * @param thamanyo [0 : false, 1 : true]
      * @return itself for method chaining
      */
-    public AstroDate setThamanyo(int thamanyo) {
+    public AstroDetail setThamanyo(int thamanyo) {
         this.thamanyo = thamanyo;
         return this;
     }
@@ -160,7 +160,7 @@ public class AstroDate {
      * @param amyeittasote [0 : false, 1 : true]
      * @return itself for method chaining
      */
-    public AstroDate setAmyeittasote(int amyeittasote) {
+    public AstroDetail setAmyeittasote(int amyeittasote) {
         this.amyeittasote = amyeittasote;
         return this;
     }
@@ -180,7 +180,7 @@ public class AstroDate {
      * @param warameittugyi [0 : false, 1 : true]
      * @return itself for method chaining
      */
-    public AstroDate setWarameittugyi(int warameittugyi) {
+    public AstroDetail setWarameittugyi(int warameittugyi) {
         this.warameittugyi = warameittugyi;
         return this;
     }
@@ -200,7 +200,7 @@ public class AstroDate {
      * @param warameittunge [0 : false, 1 : true]
      * @return itself for method chaining
      */
-    public AstroDate setWarameittunge(int warameittunge) {
+    public AstroDetail setWarameittunge(int warameittunge) {
         this.warameittunge = warameittunge;
         return this;
     }
@@ -220,7 +220,7 @@ public class AstroDate {
      * @param yatpote [0 : false, 1 : true]
      * @return itself for method chaining
      */
-    public AstroDate setYatpote(int yatpote) {
+    public AstroDetail setYatpote(int yatpote) {
         this.yatpote = yatpote;
         return this;
     }
@@ -240,7 +240,7 @@ public class AstroDate {
      * @param thamaphyu [0 : false, 1 : true]
      * @return itself for method chaining
      */
-    public AstroDate setThamaphyu(int thamaphyu) {
+    public AstroDetail setThamaphyu(int thamaphyu) {
         this.thamaphyu = thamaphyu;
         return this;
     }
@@ -260,7 +260,7 @@ public class AstroDate {
      * @param nagapor [0 : false, 1 : true]
      * @return itself for method chaining
      */
-    public AstroDate setNagapor(int nagapor) {
+    public AstroDetail setNagapor(int nagapor) {
         this.nagapor = nagapor;
         return this;
     }
@@ -280,7 +280,7 @@ public class AstroDate {
      * @param yatyotema [0 : false, 1 : true]
      * @return itself for method chaining
      */
-    public AstroDate setYatyotema(int yatyotema) {
+    public AstroDetail setYatyotema(int yatyotema) {
         this.yatyotema = yatyotema;
         return this;
     }
@@ -300,7 +300,7 @@ public class AstroDate {
      * @param mahayatkyan [0 : false, 1 : true]
      * @return itself for method chaining
      */
-    public AstroDate setMahayatkyan(int mahayatkyan) {
+    public AstroDetail setMahayatkyan(int mahayatkyan) {
         this.mahayatkyan = mahayatkyan;
         return this;
     }
@@ -320,7 +320,7 @@ public class AstroDate {
      * @param shanyat [0 : false, 1 : true]
      * @return itself for method chaining
      */
-    public AstroDate setShanyat(int shanyat) {
+    public AstroDetail setShanyat(int shanyat) {
         this.shanyat = shanyat;
         return this;
     }
@@ -340,7 +340,7 @@ public class AstroDate {
      * @param nagahle [0: west, 1: north, 2: east, 3: south]
      * @return itself for method chaining
      */
-    public AstroDate setNagahle(int nagahle) {
+    public AstroDetail setNagahle(int nagahle) {
         this.nagahle = nagahle;
         return this;
     }

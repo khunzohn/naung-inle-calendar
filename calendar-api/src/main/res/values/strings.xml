@@ -43,5 +43,26 @@
     <string name="mon_women_day">Mon Women Day</string>
     <string name="diwali">Diwali</string>
     <string name="eid">Eid</string>
+    <string name="yatyotema">ရက်ယုတ်မာ</string>
+    <string name="amyeittasote">အမြိတ္တစုတ်</string>
+    <string name="mahayatkyan">မဟာရက်ကြမ်း</string>
+    <string name="nagapor">နဂါးပေါ်</string>
+    <string name="afternoon_pyathada">မွန်းလွဲပြဿဒါး</string>
+    <string name="pyathada">ပြဿဒါး</string>
+    <string name="sabbath">ဥပုသ်</string>
+    <string name="sabbatheve">အဖိတ်</string>
+    <string name="shanyat">ရှမ်းရက်</string>
+    <string name="thamanyo">သမားညို</string>
+    <string name="thamaphyu">သမားဖြူ</string>
+    <string name="warameitthugyi">ဝါရမိတ္တုကြီး</string>
+    <string name="warameitthunge">ဝါရမိတ္တုငယ်</string>
+    <string name="yatpote">ရက်ပုပ်</string>
+    <string name="yatyaza">ရက်ရာဇာ</string>
+    <string name="nagakhaung">နဂါးေခါင္း</string>
+    <string name="west">အေနာက္</string>
+    <string name="north">ေျမာက္</string>
+    <string name="east">အေရှ့</string>
+    <string name="south">ေတာင္</string>
+    <string name="turns">သို့လှည့္၏</string>
 
 </resources>

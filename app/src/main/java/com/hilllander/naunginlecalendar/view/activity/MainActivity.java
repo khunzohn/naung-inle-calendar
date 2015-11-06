@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
 
     private void inflateDayFragment(GregorianCalendar currentDate) {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_content, DayFragment.getInstance(currentDate))
+                .replace(R.id.main_content, DayFragment.getInstance(currentDate, MainActivity.this))
                 .commit();
     }
 
@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
     private Fragment getCurrentFragment() {
         switch (currentContext) {
             case SpinnerListener.DAY:
-                return DayFragment.getInstance(currentDate);
+                return DayFragment.getInstance(currentDate, MainActivity.this);
             case SpinnerListener.MONTH:
                 return MonthFragment.getInstance(currentMonth);
             case SpinnerListener.YEAR:
@@ -231,7 +231,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
             case SpinnerListener.HOLIDAYS:
                 return HolidaysFragment.getInstance();
             default:
-                return DayFragment.getInstance(currentDate);
+                return DayFragment.getInstance(currentDate, MainActivity.this);
         }
     }
 

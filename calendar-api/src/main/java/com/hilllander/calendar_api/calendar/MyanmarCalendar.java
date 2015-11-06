@@ -1,9 +1,12 @@
 package com.hilllander.calendar_api.calendar;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.hilllander.calendar_api.kernel.CalendarKernel;
+import com.hilllander.calendar_api.model.AstroDetail;
 import com.hilllander.calendar_api.model.MyanmarDate;
+import com.hilllander.calendar_api.util.DateFormatter;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -130,7 +133,7 @@ public class MyanmarCalendar {
                 mStatus = "လဆုတ်";
                 break;
             case 3: // dark moon
-                mStatus = "လကွယ် ";
+                mStatus = "လကွယ်";
                 break;
         }
         if (monthType == 1) { // Naung
@@ -141,17 +144,15 @@ public class MyanmarCalendar {
         if (calKernel.isWatat(mDate.getYearType())
                 && mDate.getMonth() == 4) {    // waso becomes second waso in watat year
             String temp = month;
-            month = "";
             month = "ဒု" + temp;
         }
         if (mDate.getMonth() == 1 || mDate.getMonth() == 2) {
             if (monthType == 1) { // naung
                 String temp = month;
-                month = "";
                 month = mType + temp;
             }
         }
-        month += " " + mStatus;
+        month += mStatus;
         return month;
     }
 
@@ -202,6 +203,20 @@ public class MyanmarCalendar {
     }
 
     public String getMyanmarDate() {
-        return getYearInMyanmar() + " " + getMonthInMyanmar() + " " + getDayInMyanmnar();
+        return getMonthInMyanmar() + " " +
+                (getMonthStatus() == 1 || getMonthStatus() == 3 ?
+                        "" : getDayInMyanmnar() + " ရက္။");// no day expressed on full and dark moon day
+    }
+
+    public String getBuddhaYearInMyanmar() {
+        return eDigitToMDigit(calKernel.getBuddhaYear(getYear()));
+    }
+
+    public AstroDetail getAstroDetail() {
+        return calKernel.checkAstroDetail(mDate.getMonth(), mDate.getMonthLength(), mDate.getDay(), mDate.getWeekday());
+    }
+
+    public String[] getAstroDetialList(Context context) {
+        return DateFormatter.formatAstroDetail(getAstroDetail(), context);
     }
 }

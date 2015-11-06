@@ -4,7 +4,10 @@
 
 package com.hilllander.calendar_api.util;
 
-import com.hilllander.calendar_api.model.AstroDate;
+import android.content.Context;
+
+import com.hilllander.calendar_api.R;
+import com.hilllander.calendar_api.model.AstroDetail;
 import com.hilllander.calendar_api.model.WesternDate;
 
 /**
@@ -33,29 +36,29 @@ public class DateFormatter {
         return year + " " + month + " " + day;
     }
 
-    public static String formatAstroDate(AstroDate date) {
+    public static String[] formatAstroDetail(AstroDetail detail, Context context) {
         String astro = "";
-        astro += date.getYatyotema() == 1 ? "yatyotema " : "";
-        astro += date.getAmyeittasote() == 1 ? "amyeittasote " : "";
-        astro += date.getMahayatkyan() == 1 ? "mahayatkyan " : "";
-        astro += "nagahle " +
-                (date.getNagahle() == 0 ? "west " : date.getNagahle() == 1 ? "north " : date.getNagahle() == 2 ? "east " : "south ");
-        astro += date.getNagapor() == 1 ? "nagapor " : "";
-        astro += date.getPyathada() == 2 ? "afternoon pyathada " : date.getPyathada() == 1 ? "pyathada " : "";
-        astro += date.getSabbath() == 1 ? "sabbath " : "";
-        astro += date.getSabbatheve() == 1 ? "sabbatheve " : "";
-        astro += date.getShanyat() == 1 ? "shanyat " : "";
-        astro += date.getThamanyo() == 1 ? "thamanyo " : "";
-        astro += date.getThamaphyu() == 1 ? "thamaphyu " : "";
-        astro += date.getWarameittugyi() == 1 ? "warameittugyi " : "";
-        astro += date.getWarameittunge() == 1 ? "warameittunge " : "";
-        astro += date.getYatpote() == 1 ? "yatpote " : "";
-        astro += date.getYatyaza() == 1 ? "yatyaza " : "";
-        String[] astros = astro.split(" ");
-        astro = "";
-        for (String mastro : astros) {
-            astro += mastro + "\n";
-        }
-        return astro;
+        astro += context.getString(R.string.nagakhaung) +
+                (detail.getNagahle() == 0 ? context.getString(R.string.west) : detail.getNagahle() == 1 ?
+                        context.getString(R.string.north) : detail.getNagahle() == 2 ?
+                        context.getString(R.string.east) : context.getString(R.string.south))
+                + context.getString(R.string.turns) + " "; //at index 0 for easy handling
+        astro += detail.getYatyotema() == 1 ? context.getString(R.string.yatyotema) + " " : "";
+        astro += detail.getAmyeittasote() == 1 ? context.getString(R.string.amyeittasote) + " " : "";
+        astro += detail.getMahayatkyan() == 1 ? context.getString(R.string.mahayatkyan) + " " : "";
+        astro += detail.getNagapor() == 1 ? context.getString(R.string.nagapor) + " " : "";
+        astro += detail.getPyathada() == 2 ? context.getString(R.string.afternoon_pyathada) + " " :
+                detail.getPyathada() == 1 ? context.getString(R.string.pyathada) + " " : "";
+        astro += detail.getSabbath() == 1 ? context.getString(R.string.sabbath) + " " : "";
+        astro += detail.getSabbatheve() == 1 ? context.getString(R.string.sabbatheve) + " " : "";
+        astro += detail.getShanyat() == 1 ? context.getString(R.string.shanyat) + " " : "";
+        astro += detail.getThamanyo() == 1 ? context.getString(R.string.thamanyo) + " " : "";
+        astro += detail.getThamaphyu() == 1 ? context.getString(R.string.thamaphyu) + " " : "";
+        astro += detail.getWarameittugyi() == 1 ? context.getString(R.string.warameitthugyi) + " " : "";
+        astro += detail.getWarameittunge() == 1 ? context.getString(R.string.warameitthunge) + " " : "";
+        astro += detail.getYatpote() == 1 ? context.getString(R.string.yatpote) + " " : "";
+        astro += detail.getYatyaza() == 1 ? context.getString(R.string.yatyaza) + " " : "";
+
+        return astro.split(" ");
     }
 }

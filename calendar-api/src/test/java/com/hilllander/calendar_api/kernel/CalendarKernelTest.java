@@ -1,6 +1,6 @@
 package com.hilllander.calendar_api.kernel;
 
-import com.hilllander.calendar_api.model.AstroDate;
+import com.hilllander.calendar_api.model.AstroDetail;
 import com.hilllander.calendar_api.model.MyanmarDate;
 import com.hilllander.calendar_api.model.WesternDate;
 import com.hilllander.calendar_api.util.DateFormatter;
@@ -288,7 +288,7 @@ public class CalendarKernelTest {
                 yatyotema = 0,
                 yatyaza = 0;
 
-        AstroDate expectedAs = AstroDate.buildDate()
+        AstroDetail expectedAs = AstroDetail.buildDate()
                 .setAmyeittasote(amyeittasote)
                 .setMahayatkyan(mahayatkyan)
                 .setNagahle(nagahle)
@@ -304,8 +304,8 @@ public class CalendarKernelTest {
                 .setYatpote(yatpote)
                 .setYatyotema(yatyotema)
                 .setYatyaza(yatyaza);
-        String expected = DateFormatter.formatAstroDate(expectedAs);
-        String actual = DateFormatter.formatAstroDate(cal.checkAstroDay(month, monthLength, dayOfMonth, weekday));
+        String expected = DateFormatter.formatAstroDetail(expectedAs);
+        String actual = DateFormatter.formatAstroDetail(cal.checkAstroDetail(month, monthLength, dayOfMonth, weekday));
         assertEquals(expected, actual);
     }
 

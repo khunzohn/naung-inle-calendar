@@ -23,13 +23,26 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true" />
+            <TextView
+                android:id="@+id/bdhaYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true" />
+
+            <TextView
+                android:id="@+id/myaYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/bdhaYear" />
 
             <TextView
                 android:id="@+id/myaDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true" />
+                android:layout_below="@id/myaYear" />
 
             <TextView
                 android:id="@+id/engDay"
@@ -48,12 +61,34 @@
 
         </RelativeLayout>
 
-        <io.codetail.widget.RevealLinearLayout
+        <io.codetail.widget.RevealFrameLayout
             android:id="@+id/marketday_image"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="5"
             android:background="@color/accent">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/padding_16_dp"
+                android:layout_marginRight="@dimen/padding_16_dp"
+                android:layout_marginTop="56dp"
+                android:padding="@dimen/padding_16_dp">
+
+                <TextView
+                    android:id="@+id/astroList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:id="@+id/dragonHead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|bottom" />
 
             <LinearLayout
                 android:id="@+id/ll_reveal"
@@ -72,7 +107,7 @@
 
             </LinearLayout>
 
-        </io.codetail.widget.RevealLinearLayout>
+        </io.codetail.widget.RevealFrameLayout>
 
     </LinearLayout>
 

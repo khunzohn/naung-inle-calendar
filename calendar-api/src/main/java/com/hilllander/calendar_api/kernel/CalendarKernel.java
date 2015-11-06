@@ -7,7 +7,7 @@
 
 package com.hilllander.calendar_api.kernel;
 
-import com.hilllander.calendar_api.model.AstroDate;
+import com.hilllander.calendar_api.model.AstroDetail;
 import com.hilllander.calendar_api.model.MyanmarDate;
 import com.hilllander.calendar_api.model.WesternDate;
 import com.hilllander.calendar_api.util.Constant;
@@ -370,9 +370,9 @@ public class CalendarKernel {
      * @param monthLength month length
      * @param dayOfMonth  day of month [0-30]
      * @param weekday     weekday[sun=1,....,fri=6,sat=0]
-     * @return {@link AstroDate} that bundles all astrological info
+     * @return {@link AstroDetail} that bundles all astrological info
      */
-    public AstroDate checkAstroDay(int month, int monthLength, int dayOfMonth, int weekday) {
+    public AstroDetail checkAstroDetail(int month, int monthLength, int dayOfMonth, int weekday) {
         int d, sabbath, sabbatheve, yatyaza, pyathada, thamanyo, amyeittasote;
         int warameittugyi, warameittunge, yatpote, thamaphyu, nagapor, yatyotema;
         int mahayatkyan, shanyat, nagahle, m1, wd1, wd2;
@@ -437,7 +437,7 @@ public class CalendarKernel {
         if (d == sya[month - 1]) shanyat = 1;
         nagahle = (int) Math.floor((month % 12) / 3);
 
-        return AstroDate.buildDate()
+        return AstroDetail.buildDate()
                 .setSabbath(sabbath)
                 .setSabbatheve(sabbatheve)
                 .setYatyaza(yatyaza)
