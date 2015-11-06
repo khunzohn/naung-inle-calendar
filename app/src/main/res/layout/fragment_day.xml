@@ -68,27 +68,25 @@
             android:layout_weight="5"
             android:background="@color/accent">
 
-            <android.support.v7.widget.CardView
+            <TextView
+                android:id="@+id/astroList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/padding_16_dp"
-                android:layout_marginRight="@dimen/padding_16_dp"
-                android:layout_marginTop="56dp"
-                android:padding="@dimen/padding_16_dp">
+                android:layout_gravity="center_vertical"
+                android:padding="@dimen/tv_padding"
+                android:textColor="@color/white"
+                android:textSize="@dimen/normal_text" />
 
-                <TextView
-                    android:id="@+id/astroList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </android.support.v7.widget.CardView>
 
             <TextView
                 android:id="@+id/dragonHead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center|bottom" />
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="@dimen/padding_16_dp"
+                android:padding="@dimen/tv_padding"
+                android:textColor="@color/white"
+                android:textSize="@dimen/normal_text" />
 
             <LinearLayout
                 android:id="@+id/ll_reveal"
