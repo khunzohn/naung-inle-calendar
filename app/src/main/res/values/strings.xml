@@ -16,4 +16,5 @@
     <string name="title_activity_test">TestActivity</string>
     <string name="date_picker">dp</string>
     <string name="today">today</string>
+    <string name="other_market_days_title">အျခားေစ်းမ်ား</string>
 </resources>

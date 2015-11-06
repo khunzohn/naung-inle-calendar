@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.hilllander.calendar_api.kernel.CalendarKernel;
+import com.hilllander.calendar_api.kernel.MarketDayKernel;
 import com.hilllander.calendar_api.model.AstroDetail;
 import com.hilllander.calendar_api.model.MyanmarDate;
 import com.hilllander.calendar_api.util.DateFormatter;
@@ -29,11 +30,13 @@ public class MyanmarCalendar {
     private CalendarKernel calKernel;
     private double curJd;
     private MyanmarDate mDate;
+    private MarketDayKernel marKernel;
 
     private MyanmarCalendar(GregorianCalendar greCal) {
         Log.d(TAG, "year : " + greCal.get(Calendar.YEAR) + "month : "
                 + greCal.get(Calendar.MONTH) + "day : " + greCal.get(Calendar.DAY_OF_MONTH));
         calKernel = new CalendarKernel();
+        marKernel = new MarketDayKernel();
         int
                 eYear = greCal.get(Calendar.YEAR),
                 eMonth = greCal.get(Calendar.MONTH) + 1,
@@ -47,12 +50,14 @@ public class MyanmarCalendar {
     private MyanmarCalendar(double jd) {
         curJd = jd;
         calKernel = new CalendarKernel();
+        marKernel = new MarketDayKernel();
         mDate = calKernel.J2M(curJd);
     }
 
     private MyanmarCalendar() {
         GregorianCalendar greCal = new GregorianCalendar();
         calKernel = new CalendarKernel();
+        marKernel = new MarketDayKernel();
         int
                 eYear = greCal.get(Calendar.YEAR),
                 eMonth = greCal.get(Calendar.MONTH) + 1,
@@ -218,5 +223,9 @@ public class MyanmarCalendar {
 
     public String[] getAstroDetialList(Context context) {
         return DateFormatter.formatAstroDetail(getAstroDetail(), context);
+    }
+
+    public String[] getMarketDayList(Context context) {
+        return marKernel.getMarketDayList(curJd, context);
     }
 }

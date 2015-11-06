@@ -35,11 +35,13 @@ public class DayFragment extends Fragment {
     private static final String M_YEAR = "myanmar year";
     private static final String B_YEAR = "buddha year";
     private static final String ASTRO_DETAIL = "astro detail list";
+    private static final String MARKETDAYS = "market day list";
     private View myView;
     private FloatingActionButton fab;
     private SupportAnimator animator;
     private boolean omdShown = false;
-    private TextView myaWeekDay, myaDate, engDay, engDate, myaYear, bdhaYear, astroList, dragonHead;
+    private TextView myaWeekDay, myaDate, engDay, engDate,
+            myaYear, bdhaYear, astroList, dragonHead, otherMarketDays, mainMarketday;
 
     public DayFragment() {
     }
@@ -55,6 +57,7 @@ public class DayFragment extends Fragment {
         args.putString(E_DATE, greCal.get(Calendar.MONTH) + " " + greCal.get(Calendar.YEAR));
         args.putString(M_YEAR, mCal.getYearInMyanmar());
         args.putString(B_YEAR, mCal.getBuddhaYearInMyanmar());
+        args.putStringArray(MARKETDAYS, mCal.getMarketDayList(context));
         fragment.setArguments(args);
         return fragment;
     }
@@ -85,13 +88,24 @@ public class DayFragment extends Fragment {
         bdhaYear = (TextView) view.findViewById(R.id.bdhaYear);
         astroList = (TextView) view.findViewById(R.id.astroList);
         dragonHead = (TextView) view.findViewById(R.id.dragonHead);
+        otherMarketDays = (TextView) view.findViewById(R.id.otherMarketDays);
+        mainMarketday = (TextView) view.findViewById(R.id.mainMarketday);
+        mainMarketday.setTypeface(mm3);
+        otherMarketDays.setTypeface(mm3);
         astroList.setTypeface(mm3);
         dragonHead.setTypeface(mm3);
+        String[] marList = args.getStringArray(MARKETDAYS);
+        String marText = "";
+        mainMarketday.setText(marList[0]);
+        for (int i = 1; i < marList.length; i++) {
+            marText += " " + marList[i] + "\n";
+        }
+        otherMarketDays.setText(marText);
         String[] asList = args.getStringArray(ASTRO_DETAIL);
         dragonHead.setText(asList[0]);
         String asText = "";
         for (int i = 1; i < asList.length; i++) {
-            asText += " - " + asList[i] + "\n";
+            asText += " " + asList[i] + "\n";
         }
         astroList.setText(asText);
         myaYear.setTypeface(mm3);

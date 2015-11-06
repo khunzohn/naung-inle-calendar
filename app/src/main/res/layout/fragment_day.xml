@@ -58,6 +58,14 @@
                 android:layout_below="@id/engDay"
                 android:layout_centerHorizontal="true" />
 
+            <TextView
+                android:id="@+id/mainMarketday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:padding="@dimen/tv_padding"
+                android:textSize="@dimen/normal_text" />
 
         </RelativeLayout>
 
@@ -93,14 +101,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/pinky"
-                android:orientation="horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_16_dp"
                 android:visibility="invisible">
 
-                <Button
-                    android:id="@+id/reverse"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ok" />
+                    android:padding="@dimen/tv_padding"
+                    android:text="@string/other_market_days_title"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/normal_text" />
+
+                <TextView
+                    android:id="@+id/otherMarketDays"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/tv_padding"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/normal_text" />
 
 
             </LinearLayout>
