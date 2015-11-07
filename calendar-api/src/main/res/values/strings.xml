@@ -1,68 +1,112 @@
 <resources>
     <string name="app_name">calendar-api</string>
     <!--Holidays-->
-    <string name="myanmar_new_year_day">Myanmar New Year Day</string>
-    <string name="thingyan_atat">Thingyan Atat</string>
-    <string name="thingyan_akyat">Thingyan Akyat</string>
-    <string name="thingyan_akya">Thingyan Akya</string>
-    <string name="thingyan_akyo">Thingyan Akyo</string>
-    <string name="holiday">Holiday</string>
-    <string name="new_year_day">New Year Day</string>
-    <string name="independence_day">Independence Day</string>
-    <string name="union_day">Union Day</string>
-    <string name="pheasants_day">Peasants Day</string>
-    <string name="resistance_day">Resistance Day</string>
-    <string name="labour_day">Labour Day</string>
-    <string name="martyars_day">Martyrs Day</string>
-    <string name="christmas_day">Christmas Day</string>
-    <string name="buddha_day">Buddha Day</string>
-    <string name="start_of_buddha_lent">Start of Buddhist Lent</string>
-    <string name="end_of_buddha_lent">End of Buddhist Lent</string>
-    <string name="tazaungdaing">Tazaungdaing</string>
-    <string name="national_day">National Day</string>
-    <string name="karen_new_year_day">Karen New Year Day</string>
-    <string name="tabaung_bwe">Tabaung Pwe</string>
-    <string name="g_aungsan_birthday">G. Aung San BD</string>
-    <string name="valentines_day">Valentines Day</string>
-    <string name="earth_day">Earth Day</string>
-    <string name="april_fools_day">April Fools Day</string>
-    <string name="red_cross_day">Red Cross Day</string>
-    <string name="world_teachers_day">World Teachers Day</string>
+    <string name="myanmar_new_year_day">ႏွစ္ဆန္းတစ္ရက္ေန႔</string>
+    <string name="thingyan_atat">သၾကၤန္အတက္ေန႔ </string>
+    <string name="thingyan_akyat">သၾကၤန္အၾကတ္ေန႔</string>
+    <string name="thingyan_akya">သၾကၤန္အက်ေန႔</string>
+    <string name="thingyan_akyo">သၾကၤန္အၾကိဳေန႔ </string>
+    <string name="holiday">အားလပ္ရက္</string>
+    <string name="new_year_day">ႏွစ္သစ္ကူး</string>
+    <string name="independence_day">လြတ္လပ္ေရးေန႔</string>
+    <string name="union_day">ျပည္ေထာင္စုေန႔</string>
+    <string name="pheasants_day">ေတာင္သူလယ္သမားေန႔</string>
+    <string name="resistance_day">ေတာ္လွန္ေရးေန႔</string>
+    <string name="labour_day">အလုပ္သမားေန႔ </string>
+    <string name="martyars_day">အာဇာနည္ေန႔</string>
+    <string name="christmas_day">ခရစ္စမတ္ေန႔</string>
+    <string name="buddha_day">ဗုဒၶေန႔</string>
+    <string name="start_of_buddha_lent">၀ါ၀င္</string>
+    <string name="end_of_buddha_lent">၀ါထြက္</string>
+    <string name="tazaungdaing">တန္ေဆာင္တိုင္</string>
+    <string name="national_day">အမ်ဳိးသားေန႔</string>
+    <string name="karen_new_year_day">ကရင္ႏွစ္သစ္ကူး</string>
+    <string name="tabaung_bwe">တေပါင္းပဲြ</string>
+    <string name="g_aungsan_birthday">ဗိုလ္ခ်ဴပ္ေမြးေန႔</string>
+    <string name="valentines_day">ခ်စ္သူမ်ားေန႔</string>
+    <string name="earth_day">ကမာၻေျမေန႔</string>
+    <string name="april_fools_day">ဧျပီအရူးေန႔</string>
+    <string name="red_cross_day">ၾကက္ေျခနီေန႔</string>
+    <string name="world_teachers_day">ကမာၻ႔ဆရာမ်ားေန႔</string>
     <string name="united_nations_day">United Nations Day</string>
-    <string name="halloween">Halloween</string>
-    <string name="mon_national_day">Mon National Day</string>
-    <string name="shan_new_year_day">Shan New Year Day</string>
-    <string name="authors_day">Authors Day</string>
-    <string name="mahathamata_day">Mahathamaya Day</string>
-    <string name="garudhama_day">Garudhamma Day</string>
-    <string name="mothers_day">Mothers Day</string>
-    <string name="fathers_day">Fathers Day</string>
-    <string name="metta_day">Metta Day</string>
-    <string name="taungpyone_pwe">Taungpyone Pwe</string>
-    <string name="yadanagu_pwe">Yadanagu Pwe</string>
-    <string name="mon_women_day">Mon Women Day</string>
-    <string name="diwali">Diwali</string>
-    <string name="eid">Eid</string>
-    <string name="yatyotema">ရက်ယုတ်မာ</string>
-    <string name="amyeittasote">အမြိတ္တစုတ်</string>
-    <string name="mahayatkyan">မဟာရက်ကြမ်း</string>
-    <string name="nagapor">နဂါးပေါ်</string>
-    <string name="afternoon_pyathada">မွန်းလွဲပြဿဒါး</string>
-    <string name="pyathada">ပြဿဒါး</string>
-    <string name="sabbath">ဥပုသ်</string>
-    <string name="sabbatheve">အဖိတ်</string>
-    <string name="shanyat">ရှမ်းရက်</string>
-    <string name="thamanyo">သမားညို</string>
-    <string name="thamaphyu">သမားဖြူ</string>
-    <string name="warameitthugyi">ဝါရမိတ္တုကြီး</string>
-    <string name="warameitthunge">ဝါရမိတ္တုငယ်</string>
-    <string name="yatpote">ရက်ပုပ်</string>
-    <string name="yatyaza">ရက်ရာဇာ</string>
+    <string name="halloween">ေဟာလိုး၀င္း</string>
+    <string name="mon_national_day">မြန္အမ်ဳိးသားေန႔</string>
+    <string name="shan_new_year_day">ရွမ္းႏွစ္သစ္ကူး</string>
+    <string name="authors_day">စာေရးဆရာမ်ားေန႔</string>
+    <string name="mahathamata_day">မဟာသမၼတေန႔</string>
+    <string name="garudhama_day">ဂရုဓမၼေန႔</string>
+    <string name="mothers_day">အေမမ်ားေန႔</string>
+    <string name="fathers_day">အေဖမ်ားေန႔</string>
+    <string name="metta_day">ေမတၱာေန႔</string>
+    <string name="taungpyone_pwe">ေတာင္ျပဳန္းပဲြ</string>
+    <string name="yadanagu_pwe">ရတနာဂူပဲြ</string>
+    <string name="mon_women_day">မြန္အမ်ဳိးသမီးမ်ားေန႔</string>
+    <string name="diwali">ေဒ၀ါလီေန႔</string>
+    <string name="eid">အစ္(ဒ)ေန႔</string>
+    <string name="yatyotema">ရက္ယုတ္မာ</string>
+    <string name="amyeittasote">အမိတၱစုတ္</string>
+    <string name="mahayatkyan">မဟာရက္ၾကမ္း</string>
+    <string name="nagapor">နဂါးေပၚ</string>
+    <string name="afternoon_pyathada">မြန္းလဲႊဲျပႆဒါး</string>
+    <string name="pyathada">ျပႆဒါး</string>
+    <string name="sabbath">ဥပုသ္ေန႔</string>
+    <string name="sabbatheve">အဖိတ္ေန႔</string>
+    <string name="shanyat">ရွမ္းရက္</string>
+    <string name="thamanyo">သမားညိဳ</string>
+    <string name="thamaphyu">သမားျဖဴ</string>
+    <string name="warameitthugyi">၀ါရမိတၱဳၾကီး</string>
+    <string name="warameitthunge">၀ါရမိတၱဳငယ္</string>
+    <string name="yatpote">ရက္ပုပ္</string>
+    <string name="yatyaza">ရက္ရာဇာ</string>
     <string name="nagakhaung">နဂါးေခါင္း</string>
     <string name="west">အေနာက္</string>
     <string name="north">ေျမာက္</string>
-    <string name="east">အေရှ့</string>
+    <string name="east">အေရွ႕</string>
     <string name="south">ေတာင္</string>
-    <string name="turns">သို့လှည့္၏</string>
+    <string name="turns">လွည့္၏။</string>
+    <string name="lasan">လဆန္း</string>
+    <string name="lapyae">လျပည့္</string>
+    <string name="lasote">လဆုတ္</string>
+    <string name="lakwae">လကြယ္</string>
+    <string name="naung">ေႏွာင္း</string>
+    <string name="du">ဒု</string>
+    <string name="yat">ရက္</string>
 
+    <!-- myanmar months array -->
+    <array name="myan_months">
+        <item>ပ၀ါဆို</item>
+        <item>တန္ခူး</item>
+        <item>ကဆုန္</item>
+        <item>နယုန္</item>
+        <item>ဝါဆို</item>
+        <item>၀ါေခါင္</item>
+        <item>ေတာ္သလင္း</item>
+        <item>သီတင္းကၽႊတ္</item>
+        <item>တန္ေဆာင္မုန္း</item>
+        <item>နတ္ေတာ္</item>
+        <item>ျပာသို</item>
+        <item>တပို႔တဲြ</item>
+        <item>တေပါင္း</item>
+    </array>
+
+    <!-- long week days -->
+    <array name="long_week_day">
+        <item>စေန</item>
+        <item>တနဂၤေႏြ</item>
+        <item>တနလၤာ</item>
+        <item>အဂၤါ</item>
+        <item>ဗုဒၶဟူး</item>
+        <item>ၾကာသပေတး</item>
+        <item>ေသာၾကာ</item>
+    </array>
+    <!-- short week day -->
+    <array name="short_week_day">
+        <item>ေန</item>
+        <item>ေႏြ</item>
+        <item>လာ</item>
+        <item>ဂါ</item>
+        <item>ဟူး</item>
+        <item>ေတး</item>
+        <item>ၾကာ</item>
+    </array>
 </resources>

@@ -11,8 +11,8 @@ import org.json.JSONObject;
  * Created by khunzohn on 11/6/15.
  */
 public class FontHelper {
-    public static Typeface getMm3(Context context) {
-        return Typeface.createFromAsset(context.getAssets(), "fonts/mm3.ttf");
+    public static Typeface getZawgyi(Context context) {
+        return Typeface.createFromAsset(context.getAssets(), "fonts/zawgyi.ttf");
     }
 
     /**

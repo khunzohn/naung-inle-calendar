@@ -4,15 +4,13 @@
 
 package com.hilllander.calendar_api.kernel;
 
-import android.content.Context;
-
 /**
  * kernel to calculate market days
  * Created by khunzohn on 10/26/15.
  */
 public class MarketDayKernel {
     public static String[][] MARKET_DAYS = {
-            new String[]{"ေတာင္ျကီးေစ်း", "ေအာင္ပန္းေစ်း", "ေက်ာက္တလံုးေစ်း", "နမ့္ခုတ္ေစ်း", "ရြာမေရေပါေစ်း",
+            new String[]{"ေတာင္ၾကီးေစ်း", "ေအာင္ပန္းေစ်း", "ေက်ာက္တလံုးေစ်း", "နမ့္ခုတ္ေစ်း", "ရြာမေရေပၚေစ်း",
                     "မိုင္းပ်ိးေစ်း", "ပင္ခြန္ေစ်း", "လံုပိုးေစ်း", "ျမိုင္ေစ်း", "ဆတ္ေသေစ်း"},
 
             new String[]{"မိုင္းေသာက္ေစ်း", "ပင္ေလာင္းေစ်း", "နန္းတိုင္းေစ်း", "ေတာင္နီေစ်း", "ေဖာင္ေတာ္ဦးေစ်း",
@@ -32,7 +30,7 @@ public class MarketDayKernel {
 
     };
 
-    public String[] getMarketDayList(double curJd, Context context) {
+    public String[] getMarketDayList(double curJd) {
         int marketDayIndex = (int) curJd % 5;
         return MARKET_DAYS[marketDayIndex];
     }

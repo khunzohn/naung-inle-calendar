@@ -3,6 +3,7 @@ package com.hilllander.calendar_api.calendar;
 import android.content.Context;
 import android.util.Log;
 
+import com.hilllander.calendar_api.R;
 import com.hilllander.calendar_api.kernel.CalendarKernel;
 import com.hilllander.calendar_api.kernel.MarketDayKernel;
 import com.hilllander.calendar_api.model.AstroDetail;
@@ -20,10 +21,6 @@ import java.util.Map;
 public class MyanmarCalendar {
     public static final int LONG_DAY = 100;
     public static final int SHORT_DAY = 50;
-    private static final String[] MONTHS = {"ပဝါဆို", "တန်ခူး", "ကဆုန်", "နယုန်", "ဝါဆို", "ဝါခေါင်",
-            "တော်သလင်း", "သီတင်းကျွတ်", "တန်ဆောင်မုန်း", "နတ်တော်", "ပြာသို", "တပို့တွဲ", "တပေါင်း"};
-    private static final String[] LONG_WEEKDAY = {"စနေ", "တနင်္ဂနွေ", "တနင်္လာ", "အင်္ဂါ", "ဗုဒ္ဓဟူး", "ကြာသပတေး", "သောကြာ"};
-    private static final String[] SHORT_WEEKDAY = {"နေ", "နွေ", "လာ", "ဂါ", "ဟူး", "တေး", "ကြာ"};
     private static final String TAG = MyanmarCalendar.class.getSimpleName();
     private static MyanmarCalendar mCalendar;
     private final int calType = 1; // Gregorian calendar
@@ -122,34 +119,33 @@ public class MyanmarCalendar {
         return mDate.getWanWaxDay();
     }
 
-    public String getMonthInMyanmar() {
-        int day = mDate.getWanWaxDay();
+    public String getMonthInMyanmar(Context context) {
         int monthType = mDate.getMonthType();
         String mStatus = "";
         String mType = "";
         switch (mDate.getMonthStatus()) {
             case 0: // waxing
-                mStatus = "လဆန်း";
+                mStatus = context.getString(R.string.lasan);
                 break;
             case 1: // full moon
-                mStatus = "လပြည့်";
+                mStatus = context.getString(R.string.lapyae);
                 break;
             case 2: // waning
-                mStatus = "လဆုတ်";
+                mStatus = context.getString(R.string.lasote);
                 break;
             case 3: // dark moon
-                mStatus = "လကွယ်";
+                mStatus = context.getString(R.string.lakwae);
                 break;
         }
         if (monthType == 1) { // Naung
-            mType = "နှောင်း";
+            mType = context.getString(R.string.naung);
         }
-
-        String month = MONTHS[mDate.getMonth()];
+        String[] mMonths = context.getResources().getStringArray(R.array.myan_months);
+        String month = mMonths[mDate.getMonth()];
         if (calKernel.isWatat(mDate.getYearType())
                 && mDate.getMonth() == 4) {    // waso becomes second waso in watat year
             String temp = month;
-            month = "ဒု" + temp;
+            month = context.getString(R.string.du) + temp;
         }
         if (mDate.getMonth() == 1 || mDate.getMonth() == 2) {
             if (monthType == 1) { // naung
@@ -196,21 +192,23 @@ public class MyanmarCalendar {
      * @param type MyanmarCalendar.LONG_DAY or MyanmarCalendar.SHORT_DAY
      * @return weekday short or long in myanmar
      */
-    public String getWeekDayInMyanmar(final int type) {
+    public String getWeekDayInMyanmar(final int type, Context context) {
+        String[] longWeekDay = context.getResources().getStringArray(R.array.long_week_day);
+        String[] shortWeekDay = context.getResources().getStringArray(R.array.short_week_day);
         switch (type) {
             case MyanmarCalendar.LONG_DAY:
-                return LONG_WEEKDAY[mDate.getWeekday()];
+                return longWeekDay[mDate.getWeekday()];
             case MyanmarCalendar.SHORT_DAY:
-                return SHORT_WEEKDAY[mDate.getWeekday()];
+                return shortWeekDay[mDate.getWeekday()];
             default:
-                return LONG_WEEKDAY[mDate.getWeekday()];
+                return longWeekDay[mDate.getWeekday()];
         }
     }
 
-    public String getMyanmarDate() {
-        return getMonthInMyanmar() + " " +
+    public String getMyanmarDate(Context context) {
+        return getMonthInMyanmar(context) + " " +
                 (getMonthStatus() == 1 || getMonthStatus() == 3 ?
-                        "" : getDayInMyanmnar() + " ရက္။");// no day expressed on full and dark moon day
+                        "" : getDayInMyanmnar() + " " + context.getString(R.string.yat));// no day expressed on full and dark moon day
     }
 
     public String getBuddhaYearInMyanmar() {
@@ -225,7 +223,7 @@ public class MyanmarCalendar {
         return DateFormatter.formatAstroDetail(getAstroDetail(), context);
     }
 
-    public String[] getMarketDayList(Context context) {
-        return marKernel.getMarketDayList(curJd, context);
+    public String[] getMarketDayList() {
+        return marKernel.getMarketDayList(curJd);
     }
 }
