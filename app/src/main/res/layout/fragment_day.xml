@@ -13,17 +13,17 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5"
-            android:background="@color/primary"
-            android:padding="@dimen/padding_16_dp">
+            android:layout_weight="5">
 
             <TextView
                 android:id="@+id/myaWeekDay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true" />
-            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="@dimen/padding_16_dp"
+                android:layout_marginTop="@dimen/padding_16_dp" />
+            <!--<TextView
                 android:id="@+id/bdhaYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -42,30 +42,62 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@id/myaYear" />
+                android:layout_below="@id/myaYear" />-->
+            <TextView
+                android:id="@+id/astroList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="@dimen/padding_16_dp"
+                android:layout_marginTop="@dimen/padding_16_dp"
+                android:padding="@dimen/tv_padding"
+                android:textSize="@dimen/abc_text_size_small_material" />
 
             <TextView
                 android:id="@+id/engDay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:textSize="@dimen/large_text" />
+                android:layout_below="@+id/myaWeekDay"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/extra_large_text" />
 
             <TextView
                 android:id="@+id/engDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/engDay"
-                android:layout_centerHorizontal="true" />
-
-            <TextView
-                android:id="@+id/mainMarketday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:padding="@dimen/tv_padding"
+                android:layout_centerHorizontal="true"
                 android:textSize="@dimen/normal_text" />
+            <!-- <android.support.v7.widget.CardView
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:layout_below="@id/engDate">
+
+             </android.support.v7.widget.CardView>-->
+            <View xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/shadow"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_elevation_height"
+                android:layout_below="@+id/engDate"
+                android:background="@drawable/shadow" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/shadow"
+                android:background="@drawable/market_0">
+
+                <TextView
+                    android:id="@+id/mainMarketday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|start"
+                    android:paddingLeft="@dimen/padding_16_dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/normal_text" />
+            </FrameLayout>
+
 
         </RelativeLayout>
 
@@ -77,14 +109,13 @@
             android:background="@color/accent">
 
             <TextView
-                android:id="@+id/astroList"
+                android:id="@+id/myaDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:padding="@dimen/tv_padding"
-                android:textColor="@color/white"
-                android:textSize="@dimen/normal_text" />
-
+                android:layout_gravity="top"
+                android:background="@color/primary"
+                android:gravity="center"
+                android:paddingTop="@dimen/padding_16_dp" />
 
             <TextView
                 android:id="@+id/dragonHead"

@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        View tbShadow = findViewById(R.id.toolbar_shadow);
+        hideToolBarShadowForLollipop(toolbar, tbShadow);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
@@ -262,6 +264,14 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
     @Override
     public void onDoubleTap() {
 
+    }
+
+    protected void hideToolBarShadowForLollipop(Toolbar mToolbar, View shadowView) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            // only for lollipop and newer versions
+            shadowView.setVisibility(View.GONE);
+            mToolbar.setElevation(getResources().getDimension(R.dimen.toolbar_elevation_height));
+        }
     }
 
     private class SpinnerListener implements android.widget.AdapterView.OnItemSelectedListener {

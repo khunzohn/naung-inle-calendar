@@ -82,8 +82,8 @@ public class DayFragment extends Fragment {
         TextView myaWeekDay = (TextView) view.findViewById(R.id.myaWeekDay);
         TextView engDate = (TextView) view.findViewById(R.id.engDate);
         TextView engDay = (TextView) view.findViewById(R.id.engDay);
-        TextView myaYear = (TextView) view.findViewById(R.id.myaYear);
-        TextView bdhaYear = (TextView) view.findViewById(R.id.bdhaYear);
+        /*TextView myaYear = (TextView) view.findViewById(R.id.myaYear);
+        TextView bdhaYear = (TextView) view.findViewById(R.id.bdhaYear);*/
         TextView astroList = (TextView) view.findViewById(R.id.astroList);
         TextView dragonHead = (TextView) view.findViewById(R.id.dragonHead);
         TextView otherMarketDays = (TextView) view.findViewById(R.id.otherMarketDays);
@@ -106,10 +106,10 @@ public class DayFragment extends Fragment {
             asText += " " + asList[i] + "\n";
         }
         astroList.setText(asText);
-        myaYear.setTypeface(zaw);
+        /*myaYear.setTypeface(zaw);
         myaYear.setText("ျမန္မာနစ္ " + args.getString(M_YEAR) + " ။");
         bdhaYear.setTypeface(zaw);
-        bdhaYear.setText("သာသနာနစ္ " + args.getString(B_YEAR) + " ။");
+        bdhaYear.setText("သာသနာနစ္ " + args.getString(B_YEAR) + " ။");*/
         myaDate.setTypeface(zaw);
         myaDate.setText(args.getString(M_DATE));
         myaWeekDay.setTypeface(zaw);

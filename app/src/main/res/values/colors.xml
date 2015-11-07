@@ -6,4 +6,5 @@
     <color name="pink">#ff34699d</color>
     <color name="pinky">#ff1b8763</color>
     <color name="white">#fff</color>
+    <color name="alpha_black">#60000002</color>
 </resources>
