@@ -28,8 +28,8 @@ public class DateFormatter {
             return null;
     }
 
-    private static String getMonthAsString(final double month) {
-        return MONTHS[(int) month - 1];
+    public static String getMonthAsString(final int month) {
+        return MONTHS[month - 1];
     }
 
     public static String formatMDate(int year, int month, int day) {

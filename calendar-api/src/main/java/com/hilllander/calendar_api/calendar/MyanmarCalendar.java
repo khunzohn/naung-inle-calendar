@@ -206,7 +206,7 @@ public class MyanmarCalendar {
     }
 
     public String getMyanmarDate(Context context) {
-        return getMonthInMyanmar(context) + " " +
+        return getYearInMyanmar() + " " + getMonthInMyanmar(context) + " " +
                 (getMonthStatus() == 1 || getMonthStatus() == 3 ?
                         "" : getDayInMyanmnar() + " " + context.getString(R.string.yat));// no day expressed on full and dark moon day
     }

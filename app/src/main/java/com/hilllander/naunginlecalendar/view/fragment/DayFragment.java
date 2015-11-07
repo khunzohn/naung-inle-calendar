@@ -15,6 +15,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.TextView;
 
 import com.hilllander.calendar_api.calendar.MyanmarCalendar;
+import com.hilllander.calendar_api.util.DateFormatter;
 import com.hilllander.naunginlecalendar.R;
 import com.hilllander.naunginlecalendar.util.FontHelper;
 
@@ -52,7 +53,7 @@ public class DayFragment extends Fragment {
         args.putString(M_WEEKDAY, mCal.getWeekDayInMyanmar(MyanmarCalendar.LONG_DAY, context));
         args.putString(M_DATE, mCal.getMyanmarDate(context));
         args.putString(E_DAY, String.valueOf(greCal.get(Calendar.DAY_OF_MONTH)));
-        args.putString(E_DATE, greCal.get(Calendar.MONTH) + " " + greCal.get(Calendar.YEAR));
+        args.putString(E_DATE, DateFormatter.getMonthAsString(greCal.get(Calendar.MONTH) + 1) + " " + greCal.get(Calendar.YEAR));
         args.putString(M_YEAR, mCal.getYearInMyanmar());
         args.putString(B_YEAR, mCal.getBuddhaYearInMyanmar());
         args.putStringArray(MARKETDAYS, mCal.getMarketDayList());
@@ -82,8 +83,7 @@ public class DayFragment extends Fragment {
         TextView myaWeekDay = (TextView) view.findViewById(R.id.myaWeekDay);
         TextView engDate = (TextView) view.findViewById(R.id.engDate);
         TextView engDay = (TextView) view.findViewById(R.id.engDay);
-        /*TextView myaYear = (TextView) view.findViewById(R.id.myaYear);
-        TextView bdhaYear = (TextView) view.findViewById(R.id.bdhaYear);*/
+        TextView bdhaYear = (TextView) view.findViewById(R.id.bdhaYear);
         TextView astroList = (TextView) view.findViewById(R.id.astroList);
         TextView dragonHead = (TextView) view.findViewById(R.id.dragonHead);
         TextView otherMarketDays = (TextView) view.findViewById(R.id.otherMarketDays);
@@ -106,10 +106,8 @@ public class DayFragment extends Fragment {
             asText += " " + asList[i] + "\n";
         }
         astroList.setText(asText);
-        /*myaYear.setTypeface(zaw);
-        myaYear.setText("ျမန္မာနစ္ " + args.getString(M_YEAR) + " ။");
         bdhaYear.setTypeface(zaw);
-        bdhaYear.setText("သာသနာနစ္ " + args.getString(B_YEAR) + " ။");*/
+        bdhaYear.setText("သာသနာနစ္ " + args.getString(B_YEAR) + " ။");
         myaDate.setTypeface(zaw);
         myaDate.setText(args.getString(M_DATE));
         myaWeekDay.setTypeface(zaw);
