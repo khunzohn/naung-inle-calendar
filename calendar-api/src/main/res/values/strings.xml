@@ -1,112 +1,112 @@
 <resources>
     <string name="app_name">calendar-api</string>
     <!--Holidays-->
-    <string name="myanmar_new_year_day">ႏွစ္ဆန္းတစ္ရက္ေန႔</string>
-    <string name="thingyan_atat">သၾကၤန္အတက္ေန႔ </string>
-    <string name="thingyan_akyat">သၾကၤန္အၾကတ္ေန႔</string>
-    <string name="thingyan_akya">သၾကၤန္အက်ေန႔</string>
-    <string name="thingyan_akyo">သၾကၤန္အၾကိဳေန႔ </string>
-    <string name="holiday">အားလပ္ရက္</string>
-    <string name="new_year_day">ႏွစ္သစ္ကူး</string>
-    <string name="independence_day">လြတ္လပ္ေရးေန႔</string>
-    <string name="union_day">ျပည္ေထာင္စုေန႔</string>
-    <string name="pheasants_day">ေတာင္သူလယ္သမားေန႔</string>
-    <string name="resistance_day">ေတာ္လွန္ေရးေန႔</string>
-    <string name="labour_day">အလုပ္သမားေန႔ </string>
-    <string name="martyars_day">အာဇာနည္ေန႔</string>
-    <string name="christmas_day">ခရစ္စမတ္ေန႔</string>
-    <string name="buddha_day">ဗုဒၶေန႔</string>
-    <string name="start_of_buddha_lent">၀ါ၀င္</string>
-    <string name="end_of_buddha_lent">၀ါထြက္</string>
-    <string name="tazaungdaing">တန္ေဆာင္တိုင္</string>
-    <string name="national_day">အမ်ဳိးသားေန႔</string>
-    <string name="karen_new_year_day">ကရင္ႏွစ္သစ္ကူး</string>
-    <string name="tabaung_bwe">တေပါင္းပဲြ</string>
-    <string name="g_aungsan_birthday">ဗိုလ္ခ်ဴပ္ေမြးေန႔</string>
-    <string name="valentines_day">ခ်စ္သူမ်ားေန႔</string>
-    <string name="earth_day">ကမာၻေျမေန႔</string>
-    <string name="april_fools_day">ဧျပီအရူးေန႔</string>
-    <string name="red_cross_day">ၾကက္ေျခနီေန႔</string>
-    <string name="world_teachers_day">ကမာၻ႔ဆရာမ်ားေန႔</string>
+    <string name="myanmar_new_year_day">နှစ်ဆန်းတစ်ရက်နေ့</string>
+    <string name="thingyan_atat">သင်္ကြန်အတက်</string>
+    <string name="thingyan_akyat">သင်္ကြန်အကြတ်</string>
+    <string name="thingyan_akya">သင်္ကြန်အကျ</string>
+    <string name="thingyan_akyo">သင်္ကြန်အကြို</string>
+    <string name="holiday">အားလပ်ရက်</string>
+    <string name="new_year_day">နှစ်သစ်ကူး</string>
+    <string name="independence_day">လွတ်လပ်ရေးနေ့</string>
+    <string name="union_day">ပြည်ထောင်စုနေ့</string>
+    <string name="pheasants_day">တောင်သူလယ်သမားနေ့</string>
+    <string name="resistance_day">တော်လှန်ရေးနေ့</string>
+    <string name="labour_day">အလုပ်သမားနေ့</string>
+    <string name="martyars_day">အာဇာနည်နေ့</string>
+    <string name="christmas_day">ခရဇ်စမတ်</string>
+    <string name="buddha_day">ဗုဒ္ဓနေ့</string>
+    <string name="start_of_buddha_lent">ဝါဝင်</string>
+    <string name="end_of_buddha_lent">ဝါထွက်</string>
+    <string name="tazaungdaing">တန်ဆောင်တိုင်</string>
+    <string name="national_day">အမျိုးသားနေ့</string>
+    <string name="karen_new_year_day">ကရင်နှစ်သစ်ကူး</string>
+    <string name="tabaung_bwe">တပေါင်းပွဲ</string>
+    <string name="g_aungsan_birthday">ဗိုလ်ချူပ်မွေးနေ့</string>
+    <string name="valentines_day">ချစ်သူများနေ့</string>
+    <string name="earth_day">ကမ္ဘာမြေနေ့</string>
+    <string name="april_fools_day">ဧပြီအရူးနေ့</string>
+    <string name="red_cross_day">ကြက်ခြေနီနေ့</string>
+    <string name="world_teachers_day">ကမ္ဘာ့ဆရာများနေ့</string>
     <string name="united_nations_day">United Nations Day</string>
-    <string name="halloween">ေဟာလိုး၀င္း</string>
-    <string name="mon_national_day">မြန္အမ်ဳိးသားေန႔</string>
-    <string name="shan_new_year_day">ရွမ္းႏွစ္သစ္ကူး</string>
-    <string name="authors_day">စာေရးဆရာမ်ားေန႔</string>
-    <string name="mahathamata_day">မဟာသမၼတေန႔</string>
-    <string name="garudhama_day">ဂရုဓမၼေန႔</string>
-    <string name="mothers_day">အေမမ်ားေန႔</string>
-    <string name="fathers_day">အေဖမ်ားေန႔</string>
-    <string name="metta_day">ေမတၱာေန႔</string>
-    <string name="taungpyone_pwe">ေတာင္ျပဳန္းပဲြ</string>
-    <string name="yadanagu_pwe">ရတနာဂူပဲြ</string>
-    <string name="mon_women_day">မြန္အမ်ဳိးသမီးမ်ားေန႔</string>
-    <string name="diwali">ေဒ၀ါလီေန႔</string>
-    <string name="eid">အစ္(ဒ)ေန႔</string>
-    <string name="yatyotema">ရက္ယုတ္မာ</string>
-    <string name="amyeittasote">အမိတၱစုတ္</string>
-    <string name="mahayatkyan">မဟာရက္ၾကမ္း</string>
-    <string name="nagapor">နဂါးေပၚ</string>
-    <string name="afternoon_pyathada">မြန္းလဲႊဲျပႆဒါး</string>
-    <string name="pyathada">ျပႆဒါး</string>
-    <string name="sabbath">ဥပုသ္ေန႔</string>
-    <string name="sabbatheve">အဖိတ္ေန႔</string>
-    <string name="shanyat">ရွမ္းရက္</string>
-    <string name="thamanyo">သမားညိဳ</string>
-    <string name="thamaphyu">သမားျဖဴ</string>
-    <string name="warameitthugyi">၀ါရမိတၱဳၾကီး</string>
-    <string name="warameitthunge">၀ါရမိတၱဳငယ္</string>
-    <string name="yatpote">ရက္ပုပ္</string>
-    <string name="yatyaza">ရက္ရာဇာ</string>
-    <string name="nagakhaung">နဂါးေခါင္း</string>
-    <string name="west">အေနာက္</string>
-    <string name="north">ေျမာက္</string>
-    <string name="east">အေရွ႕</string>
-    <string name="south">ေတာင္</string>
-    <string name="turns">လွည့္၏။</string>
-    <string name="lasan">လဆန္း</string>
-    <string name="lapyae">လျပည့္</string>
-    <string name="lasote">လဆုတ္</string>
-    <string name="lakwae">လကြယ္</string>
-    <string name="naung">ေႏွာင္း</string>
+    <string name="halloween">ဟောလိုးဝင်း</string>
+    <string name="mon_national_day">မွန်အမျိုးသားနေ့</string>
+    <string name="shan_new_year_day">ရှမ်းနှစ်သစ်ကူး</string>
+    <string name="authors_day">စာရေးဆရာများနေ့</string>
+    <string name="mahathamata_day">မဟာသမ္မတနေ့</string>
+    <string name="garudhama_day">ဂရုဓမ္မနေ့</string>
+    <string name="mothers_day">အမေများနေ့</string>
+    <string name="fathers_day">အဖေများနေ့</string>
+    <string name="metta_day">မေတ္တာနေ့</string>
+    <string name="taungpyone_pwe">တောင်ပြုန်းပွဲ</string>
+    <string name="yadanagu_pwe">ရာတနာဂူပွဲ</string>
+    <string name="mon_women_day">မွန်အမျိုးသမီးများနေ့</string>
+    <string name="diwali">ဒီဝါလီနေ့</string>
+    <string name="eid">အစ်နေ့</string>
+    <string name="yatyotema">ရက်ယုတ်မာ</string>
+    <string name="amyeittasote">အမိတ္တစုတ်</string>
+    <string name="mahayatkyan">မဟာရက်ကြမ်း</string>
+    <string name="nagapor">နဂါးပေါ်</string>
+    <string name="afternoon_pyathada">မွန်းလွဲပြဿဒါး</string>
+    <string name="pyathada">ပြဿဒါး</string>
+    <string name="sabbath">ဥပုသ်</string>
+    <string name="sabbatheve">အဖိတ်</string>
+    <string name="shanyat">ရှမ်းရက်</string>
+    <string name="thamanyo">သမားညို</string>
+    <string name="thamaphyu">သမားဖြူ</string>
+    <string name="warameitthugyi">ဝါရမိတ္တုကြီး</string>
+    <string name="warameitthunge">ဝါရမိတ္တုငယ်</string>
+    <string name="yatpote">ရက်ပုပ်</string>
+    <string name="yatyaza">ရက်ရာဇာ</string>
+    <string name="nagakhaung">နဂါးခေါင်း</string>
+    <string name="west">အနောက်</string>
+    <string name="north">မြောက်</string>
+    <string name="east">အရှေ့</string>
+    <string name="south">တောင်</string>
+    <string name="turns">သို့လှည့်၏</string>
+    <string name="lasan">လဆန်း</string>
+    <string name="lapyae">လပြည့်</string>
+    <string name="lasote">လဆုတ်</string>
+    <string name="lakwae">လကွယ်</string>
+    <string name="naung">နှောင်း</string>
     <string name="du">ဒု</string>
-    <string name="yat">ရက္</string>
+    <string name="yat">ရက်</string>
 
     <!-- myanmar months array -->
     <array name="myan_months">
-        <item>ပ၀ါဆို</item>
-        <item>တန္ခူး</item>
-        <item>ကဆုန္</item>
-        <item>နယုန္</item>
+        <item>ပဝါဆို</item>
+        <item>တန်ခူး</item>
+        <item>ကဆုန်</item>
+        <item>နယုန်</item>
         <item>ဝါဆို</item>
-        <item>၀ါေခါင္</item>
-        <item>ေတာ္သလင္း</item>
-        <item>သီတင္းကၽႊတ္</item>
-        <item>တန္ေဆာင္မုန္း</item>
-        <item>နတ္ေတာ္</item>
-        <item>ျပာသို</item>
-        <item>တပို႔တဲြ</item>
-        <item>တေပါင္း</item>
+        <item>ဝါခေါင်</item>
+        <item>တောင်သလင်း</item>
+        <item>သီတင်းကျွှတ်</item>
+        <item>တန်ဆောင်မုန်း</item>
+        <item>နတ်တော်</item>
+        <item>ပြာသို</item>
+        <item>တပို့တွဲ</item>
+        <item>တပေါင်း</item>
     </array>
 
     <!-- long week days -->
     <array name="long_week_day">
-        <item>စေန</item>
-        <item>တနဂၤေႏြ</item>
-        <item>တနလၤာ</item>
-        <item>အဂၤါ</item>
-        <item>ဗုဒၶဟူး</item>
-        <item>ၾကာသပေတး</item>
-        <item>ေသာၾကာ</item>
+        <item>စနေ</item>
+        <item>တနင်္ဂနွေ</item>
+        <item>တနင်္လာ</item>
+        <item>အင်္ဂါ</item>
+        <item>ဗုဒ္ဓဟူး</item>
+        <item>ကြာသပတေး</item>
+        <item>သောကြာ</item>
     </array>
     <!-- short week day -->
     <array name="short_week_day">
-        <item>ေန</item>
-        <item>ေႏြ</item>
+        <item>နေ</item>
+        <item>နွေ</item>
         <item>လာ</item>
         <item>ဂါ</item>
         <item>ဟူး</item>
-        <item>ေတး</item>
-        <item>ၾကာ</item>
+        <item>တေး</item>
+        <item>ကြာ</item>
     </array>
 </resources>

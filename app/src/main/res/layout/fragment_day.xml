@@ -15,7 +15,7 @@
             android:layout_height="0dp"
             android:layout_weight="5">
 
-            <TextView
+            <mm.technomation.mmtext.MMTextView
                 android:id="@+id/myaWeekDay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
                 android:layout_marginRight="@dimen/padding_16_dp"
                 android:layout_marginTop="@dimen/padding_16_dp" />
 
-            <TextView
+            <mm.technomation.mmtext.MMTextView
                 android:id="@+id/astroList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
                 android:layout_below="@+id/shadow"
                 android:background="@drawable/market_0">
 
-                <TextView
+                <mm.technomation.mmtext.MMTextView
                     android:id="@+id/mainMarketday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -90,20 +90,20 @@
                 android:background="@color/primary"
                 android:orientation="vertical">
 
-                <TextView
+                <mm.technomation.mmtext.MMTextView
                     android:id="@+id/bdhaYear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center" />
 
-                <TextView
+                <mm.technomation.mmtext.MMTextView
                     android:id="@+id/myaDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center" />
             </LinearLayout>
 
-            <TextView
+            <mm.technomation.mmtext.MMTextView
                 android:id="@+id/holidays"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
                 android:padding="@dimen/tv_padding"
                 android:textColor="@color/white" />
 
-            <TextView
+            <mm.technomation.mmtext.MMTextView
                 android:id="@+id/dragonHead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
                 android:padding="@dimen/padding_16_dp"
                 android:visibility="invisible">
 
-                <TextView
+                <mm.technomation.mmtext.MMTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/tv_padding"

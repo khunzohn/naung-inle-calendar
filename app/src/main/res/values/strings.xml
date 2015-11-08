@@ -16,7 +16,8 @@
     <string name="title_activity_test">TestActivity</string>
     <string name="date_picker">dp</string>
     <string name="today">today</string>
-    <string name="other_market_days_title">အျခားေစ်းမ်ား</string>
+    <string name="other_market_days_title">အခြားစျေးများ</string>
     <string name="naung_inle">Naung Inle</string>
     <string name="calendar">Calendar</string>
+    <string name="sasana_year">"သာသနာနှစ် "</string>
 </resources>

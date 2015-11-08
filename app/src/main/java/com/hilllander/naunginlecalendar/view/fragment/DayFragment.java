@@ -3,7 +3,6 @@ package com.hilllander.naunginlecalendar.view.fragment;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -19,7 +18,6 @@ import android.widget.TextView;
 import com.hilllander.calendar_api.calendar.MyanmarCalendar;
 import com.hilllander.calendar_api.util.DateFormatter;
 import com.hilllander.naunginlecalendar.R;
-import com.hilllander.naunginlecalendar.util.FontHelper;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,6 +25,7 @@ import java.util.GregorianCalendar;
 
 import io.codetail.animation.SupportAnimator;
 import io.codetail.animation.ViewAnimationUtils;
+import mm.technomation.mmtext.MMTextView;
 
 /**
  * Created by khunzohn on 11/3/15.
@@ -82,46 +81,39 @@ public class DayFragment extends Fragment {
                 }
             }
         });
-        Typeface zaw = FontHelper.getZawgyi(getContext());
         Bundle args = getArguments();
-        TextView myaDate = (TextView) view.findViewById(R.id.myaDate);
-        TextView myaWeekDay = (TextView) view.findViewById(R.id.myaWeekDay);
+        MMTextView myaDate = (MMTextView) view.findViewById(R.id.myaDate);
+        MMTextView myaWeekDay = (MMTextView) view.findViewById(R.id.myaWeekDay);
         TextView engDate = (TextView) view.findViewById(R.id.engDate);
         TextView engDay = (TextView) view.findViewById(R.id.engDay);
-        TextView bdhaYear = (TextView) view.findViewById(R.id.bdhaYear);
-        TextView astroList = (TextView) view.findViewById(R.id.astroList);
-        TextView dragonHead = (TextView) view.findViewById(R.id.dragonHead);
-        TextView mainMarketday = (TextView) view.findViewById(R.id.mainMarketday);
-        TextView holidays = (TextView) view.findViewById(R.id.holidays);
+        MMTextView bdhaYear = (MMTextView) view.findViewById(R.id.bdhaYear);
+        MMTextView astroList = (MMTextView) view.findViewById(R.id.astroList);
+        MMTextView dragonHead = (MMTextView) view.findViewById(R.id.dragonHead);
+        MMTextView mainMarketday = (MMTextView) view.findViewById(R.id.mainMarketday);
+        MMTextView holidays = (MMTextView) view.findViewById(R.id.holidays);
         ListView otherMarketDaysList = (ListView) view.findViewById(R.id.otherMarketDaysList);
-        mainMarketday.setTypeface(zaw);
-        astroList.setTypeface(zaw);
-        dragonHead.setTypeface(zaw);
-        holidays.setTypeface(zaw);
+
         String[] holList = args.getStringArray(HOLIDAYS);
         String holText = "";
         for (String hol : holList)
             holText += hol + "\n";
-        holidays.setText(holText);
+        holidays.setMyanmarText(holText);
         ArrayList<String> marList = args.getStringArrayList(MARKETDAYS);
 
-        mainMarketday.setText(marList.get(0));
+        mainMarketday.setMyanmarText(marList.get(0));
         marList.remove(0);
         otherMarketDaysList.setAdapter(new OMDListAdapter(marList));
 
         String[] asList = args.getStringArray(ASTRO_DETAIL);
-        dragonHead.setText(asList[0]);
+        dragonHead.setMyanmarText(asList[0]);
         String asText = "";
         for (int i = 1; i < asList.length; i++) {
             asText += " " + asList[i] + "\n";
         }
-        astroList.setText(asText);
-        bdhaYear.setTypeface(zaw);
-        bdhaYear.setText("သာသနာနစ္ " + args.getString(B_YEAR) + " ။");
-        myaDate.setTypeface(zaw);
-        myaDate.setText(args.getString(M_DATE));
-        myaWeekDay.setTypeface(zaw);
-        myaWeekDay.setText(args.getString(M_WEEKDAY));
+        astroList.setMyanmarText(asText);
+        bdhaYear.setMyanmarText(getContext().getString(R.string.sasana_year) + args.getString(B_YEAR) + " ။");
+        myaDate.setMyanmarText(args.getString(M_DATE));
+        myaWeekDay.setMyanmarText(args.getString(M_WEEKDAY));
         engDay.setText(args.getString(E_DAY));
         engDate.setText(args.getString(E_DATE));
         return view;
@@ -212,14 +204,14 @@ public class DayFragment extends Fragment {
     }
 
     public static class ViewHolder {
-        TextView marItem;
+        MMTextView marItem;
 
         public ViewHolder(View view) {
-            marItem = (TextView) view.findViewById(R.id.marketday_item);
+            marItem = (MMTextView) view.findViewById(R.id.marketday_item);
         }
 
         public void setMarItemText(String text) {
-            marItem.setText(text);
+            marItem.setMyanmarText(text);
         }
     }
 
