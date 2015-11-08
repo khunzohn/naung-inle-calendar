@@ -130,13 +130,12 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/normal_text" />
 
-                <TextView
-                    android:id="@+id/otherMarketDays"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/tv_padding"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/normal_text" />
+                <ListView
+                    android:id="@+id/otherMarketDaysList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </ListView>
 
 
             </LinearLayout>

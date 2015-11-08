@@ -10,6 +10,7 @@ import com.hilllander.calendar_api.model.AstroDetail;
 import com.hilllander.calendar_api.model.MyanmarDate;
 import com.hilllander.calendar_api.util.DateFormatter;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -223,7 +224,11 @@ public class MyanmarCalendar {
         return DateFormatter.formatAstroDetail(getAstroDetail(), context);
     }
 
-    public String[] getMarketDayList() {
-        return marKernel.getMarketDayList(curJd);
+    public ArrayList<String> getMarketDayList() {
+        ArrayList<String> mList = new ArrayList<>();
+        String[] marlist = marKernel.getMarketDayList(curJd);
+        for (String mar : marlist)
+            mList.add(mar);
+        return mList;
     }
 }

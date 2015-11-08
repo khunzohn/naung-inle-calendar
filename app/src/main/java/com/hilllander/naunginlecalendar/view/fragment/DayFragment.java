@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.hilllander.calendar_api.calendar.MyanmarCalendar;
@@ -19,6 +21,7 @@ import com.hilllander.calendar_api.util.DateFormatter;
 import com.hilllander.naunginlecalendar.R;
 import com.hilllander.naunginlecalendar.util.FontHelper;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -56,7 +59,7 @@ public class DayFragment extends Fragment {
         args.putString(E_DATE, DateFormatter.getMonthAsString(greCal.get(Calendar.MONTH) + 1) + " " + greCal.get(Calendar.YEAR));
         args.putString(M_YEAR, mCal.getYearInMyanmar());
         args.putString(B_YEAR, mCal.getBuddhaYearInMyanmar());
-        args.putStringArray(MARKETDAYS, mCal.getMarketDayList());
+        args.putStringArrayList(MARKETDAYS, mCal.getMarketDayList());
         fragment.setArguments(args);
         return fragment;
     }
@@ -86,19 +89,17 @@ public class DayFragment extends Fragment {
         TextView bdhaYear = (TextView) view.findViewById(R.id.bdhaYear);
         TextView astroList = (TextView) view.findViewById(R.id.astroList);
         TextView dragonHead = (TextView) view.findViewById(R.id.dragonHead);
-        TextView otherMarketDays = (TextView) view.findViewById(R.id.otherMarketDays);
         TextView mainMarketday = (TextView) view.findViewById(R.id.mainMarketday);
+        ListView otherMarketDaysList = (ListView) view.findViewById(R.id.otherMarketDaysList);
         mainMarketday.setTypeface(zaw);
-        otherMarketDays.setTypeface(zaw);
         astroList.setTypeface(zaw);
         dragonHead.setTypeface(zaw);
-        String[] marList = args.getStringArray(MARKETDAYS);
-        String marText = "";
-        mainMarketday.setText(marList[0]);
-        for (int i = 1; i < marList.length; i++) {
-            marText += " " + marList[i] + "\n";
-        }
-        otherMarketDays.setText(marText);
+        ArrayList<String> marList = args.getStringArrayList(MARKETDAYS);
+
+        mainMarketday.setText(marList.get(0));
+        marList.remove(0);
+        otherMarketDaysList.setAdapter(new OMDListAdapter(marList));
+
         String[] asList = args.getStringArray(ASTRO_DETAIL);
         dragonHead.setText(asList[0]);
         String asText = "";
@@ -201,4 +202,50 @@ public class DayFragment extends Fragment {
 
     }
 
+    public static class ViewHolder {
+        TextView marItem;
+
+        public ViewHolder(View view) {
+            marItem = (TextView) view.findViewById(R.id.marketday_item);
+        }
+
+        public void setMarItemText(String text) {
+            marItem.setText(text);
+        }
+    }
+
+    private class OMDListAdapter extends BaseAdapter {
+        ArrayList<String> marList;
+
+        public OMDListAdapter(ArrayList<String> marList) {
+            this.marList = marList;
+        }
+
+        @Override
+        public int getCount() {
+            return marList.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return marList.get(i);
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            if (view == null) {
+                view = inflater.inflate(R.layout.market_days_list_item, viewGroup, false);
+            }
+            ViewHolder holder = new ViewHolder(view);
+            holder.setMarItemText(marList.get(i));
+            return view;
+        }
+
+    }
 }
