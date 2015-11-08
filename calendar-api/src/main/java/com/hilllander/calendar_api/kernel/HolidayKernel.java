@@ -257,7 +257,7 @@ public class HolidayKernel {
             flag = 1;
             holidays[0] = context.getString(R.string.mon_women_day);
         }
-        if (flag == 1)
+        if (flag == 1 || flag == 2)
             return holidays;
         else
             return null;

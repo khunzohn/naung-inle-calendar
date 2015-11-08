@@ -6,8 +6,21 @@
     tools:context=".WelcomeActivity">
 
     <TextView
+        android:id="@+id/naung_inle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_centerInParent="true"
+        android:text="@string/naung_inle"
+        android:textColor="@color/pinky"
+        android:textSize="@dimen/large_text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/naung_inle"
+        android:layout_centerHorizontal="true"
+        android:text="@string/calendar"
+        android:textColor="@color/pinky"
+        android:textSize="@dimen/large_text" />
 
 </RelativeLayout>

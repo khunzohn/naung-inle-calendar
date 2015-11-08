@@ -5,9 +5,11 @@ import android.util.Log;
 
 import com.hilllander.calendar_api.R;
 import com.hilllander.calendar_api.kernel.CalendarKernel;
+import com.hilllander.calendar_api.kernel.HolidayKernel;
 import com.hilllander.calendar_api.kernel.MarketDayKernel;
 import com.hilllander.calendar_api.model.AstroDetail;
 import com.hilllander.calendar_api.model.MyanmarDate;
+import com.hilllander.calendar_api.model.WesternDate;
 import com.hilllander.calendar_api.util.DateFormatter;
 
 import java.util.ArrayList;
@@ -28,41 +30,44 @@ public class MyanmarCalendar {
     private CalendarKernel calKernel;
     private double curJd;
     private MyanmarDate mDate;
-    private MarketDayKernel marKernel;
+    private WesternDate wDate;
+    private int eYear, eMonth, eDay;
 
     private MyanmarCalendar(GregorianCalendar greCal) {
         Log.d(TAG, "year : " + greCal.get(Calendar.YEAR) + "month : "
                 + greCal.get(Calendar.MONTH) + "day : " + greCal.get(Calendar.DAY_OF_MONTH));
         calKernel = new CalendarKernel();
-        marKernel = new MarketDayKernel();
-        int
-                eYear = greCal.get(Calendar.YEAR),
-                eMonth = greCal.get(Calendar.MONTH) + 1,
+
+        eYear = greCal.get(Calendar.YEAR);
+        eMonth = greCal.get(Calendar.MONTH) + 1;
                 eDay = greCal.get(Calendar.DAY_OF_MONTH);
 
         curJd = calKernel.W2J(eYear, eMonth, eDay, calType);
         mDate = calKernel.J2M(curJd);
+        wDate = calKernel.J2W(curJd, calType);
         Log.d(TAG, "mYear :" + mDate.getYear() + "mMonth : " + mDate.getMonth() + "mDay : " + mDate.getWanWaxDay());
     }
 
     private MyanmarCalendar(double jd) {
         curJd = jd;
         calKernel = new CalendarKernel();
-        marKernel = new MarketDayKernel();
         mDate = calKernel.J2M(curJd);
+        wDate = calKernel.J2W(curJd, calType);
+        eYear = wDate.getYear();
+        eMonth = wDate.getMonth();
+        eDay = wDate.getDay();
     }
 
     private MyanmarCalendar() {
         GregorianCalendar greCal = new GregorianCalendar();
         calKernel = new CalendarKernel();
-        marKernel = new MarketDayKernel();
-        int
-                eYear = greCal.get(Calendar.YEAR),
-                eMonth = greCal.get(Calendar.MONTH) + 1,
+        eYear = greCal.get(Calendar.YEAR);
+        eMonth = greCal.get(Calendar.MONTH) + 1;
                 eDay = greCal.get(Calendar.DAY_OF_MONTH);
 
         curJd = calKernel.W2J(eYear, eMonth, eDay, calType);
         mDate = calKernel.J2M(curJd);
+        wDate = calKernel.J2W(curJd, calType);
     }
 
     public static MyanmarCalendar getInstance() {
@@ -226,9 +231,29 @@ public class MyanmarCalendar {
 
     public ArrayList<String> getMarketDayList() {
         ArrayList<String> mList = new ArrayList<>();
+        MarketDayKernel marKernel = new MarketDayKernel();
         String[] marlist = marKernel.getMarketDayList(curJd);
         for (String mar : marlist)
             mList.add(mar);
         return mList;
+    }
+
+    public String[] getHolidays(Context context) {
+        HolidayKernel holKernel = new HolidayKernel(context);
+        String thingyan = holKernel.thingyan(curJd, mDate.getYear(), mDate.getMonthType());
+        String engHoliday = holKernel.engHoliday(wDate.getYear(), wDate.getMonth(), wDate.getDay());
+        String myaHoliday = holKernel.myaHoliday(mDate.getYear(), mDate.getMonth(),
+                mDate.getDay(), mDate.getMonthStatus());
+        String ecd = holKernel.ecd(wDate.getYear(), wDate.getMonth(), wDate.getDay());
+        String[] mcd = holKernel.mcd(mDate.getYear(), mDate.getMonth(),
+                mDate.getDay(), mDate.getMonthStatus());
+        String otherHol = holKernel.otherHolidays(curJd);
+        String holidays = thingyan + "-" + engHoliday + "-" + myaHoliday + "-" + ecd + "-" + otherHol;
+        if (mcd != null && mcd.length > 0) {
+            for (String m : mcd) {
+                holidays += "-" + m;
+            }
+        }
+        return holidays.split("-");
     }
 }

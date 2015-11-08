@@ -40,6 +40,7 @@ public class DayFragment extends Fragment {
     private static final String B_YEAR = "buddha year";
     private static final String ASTRO_DETAIL = "astro detail list";
     private static final String MARKETDAYS = "market day list";
+    private static final String HOLIDAYS = "holidays";
     private View myView;
     private FloatingActionButton fab;
     private SupportAnimator animator;
@@ -60,6 +61,7 @@ public class DayFragment extends Fragment {
         args.putString(M_YEAR, mCal.getYearInMyanmar());
         args.putString(B_YEAR, mCal.getBuddhaYearInMyanmar());
         args.putStringArrayList(MARKETDAYS, mCal.getMarketDayList());
+        args.putStringArray(HOLIDAYS, mCal.getHolidays(context));
         fragment.setArguments(args);
         return fragment;
     }
@@ -90,10 +92,17 @@ public class DayFragment extends Fragment {
         TextView astroList = (TextView) view.findViewById(R.id.astroList);
         TextView dragonHead = (TextView) view.findViewById(R.id.dragonHead);
         TextView mainMarketday = (TextView) view.findViewById(R.id.mainMarketday);
+        TextView holidays = (TextView) view.findViewById(R.id.holidays);
         ListView otherMarketDaysList = (ListView) view.findViewById(R.id.otherMarketDaysList);
         mainMarketday.setTypeface(zaw);
         astroList.setTypeface(zaw);
         dragonHead.setTypeface(zaw);
+        holidays.setTypeface(zaw);
+        String[] holList = args.getStringArray(HOLIDAYS);
+        String holText = "";
+        for (String hol : holList)
+            holText += hol + "\n";
+        holidays.setText(holText);
         ArrayList<String> marList = args.getStringArrayList(MARKETDAYS);
 
         mainMarketday.setText(marList.get(0));

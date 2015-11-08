@@ -17,4 +17,6 @@
     <string name="date_picker">dp</string>
     <string name="today">today</string>
     <string name="other_market_days_title">အျခားေစ်းမ်ား</string>
+    <string name="naung_inle">Naung Inle</string>
+    <string name="calendar">Calendar</string>
 </resources>
