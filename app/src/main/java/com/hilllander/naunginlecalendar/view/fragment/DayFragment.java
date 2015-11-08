@@ -70,17 +70,7 @@ public class DayFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_day, container, false);
         myView = view.findViewById(R.id.ll_reveal);
-        fab = (FloatingActionButton) view.findViewById(R.id.fab_day);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!omdShown) {
-                    showOtherMarketDays();
-                } else {
-                    hideOtherMarketDays();
-                }
-            }
-        });
+
         Bundle args = getArguments();
         MMTextView myaDate = (MMTextView) view.findViewById(R.id.myaDate);
         MMTextView myaWeekDay = (MMTextView) view.findViewById(R.id.myaWeekDay);
@@ -91,7 +81,7 @@ public class DayFragment extends Fragment {
         MMTextView dragonHead = (MMTextView) view.findViewById(R.id.dragonHead);
         MMTextView mainMarketday = (MMTextView) view.findViewById(R.id.mainMarketday);
         MMTextView holidays = (MMTextView) view.findViewById(R.id.holidays);
-        ListView otherMarketDaysList = (ListView) view.findViewById(R.id.otherMarketDaysList);
+        final ListView otherMarketDaysList = (ListView) view.findViewById(R.id.otherMarketDaysList);
 
         String[] holList = args.getStringArray(HOLIDAYS);
         String holText = "";
@@ -103,6 +93,17 @@ public class DayFragment extends Fragment {
         mainMarketday.setMyanmarText(marList.get(0));
         marList.remove(0);
         otherMarketDaysList.setAdapter(new OMDListAdapter(marList));
+        fab = (FloatingActionButton) view.findViewById(R.id.fab_day);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!omdShown) {
+                    showOtherMarketDays(otherMarketDaysList);
+                } else {
+                    hideOtherMarketDays(otherMarketDaysList);
+                }
+            }
+        });
 
         String[] asList = args.getStringArray(ASTRO_DETAIL);
         dragonHead.setMyanmarText(asList[0]);
@@ -119,18 +120,18 @@ public class DayFragment extends Fragment {
         return view;
     }
 
-    private void hideOtherMarketDays() {
-        toggleOtherMarketDays(omdShown);
+    private void hideOtherMarketDays(ListView list) {
+        toggleOtherMarketDays(omdShown, list);
         omdShown = false;
 
     }
 
-    private void showOtherMarketDays() {
-        toggleOtherMarketDays(omdShown);
+    private void showOtherMarketDays(ListView list) {
+        toggleOtherMarketDays(omdShown, list);
         omdShown = true;
     }
 
-    private void toggleOtherMarketDays(final boolean omdShown) {
+    private void toggleOtherMarketDays(final boolean omdShown, final ListView listView) {
         int rotateValue = !omdShown ? 180 : -180;
         fab.animate()
                 .rotationXBy(rotateValue)
@@ -139,18 +140,19 @@ public class DayFragment extends Fragment {
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
 
-                animateReavel((int) fab.getX() + 56, 0, omdShown);
+                animateReavel((int) fab.getX() + 56, 0, omdShown, listView);
             }
         });
     }
 
-    private void animateReavel(int cx, int cy, boolean omdShown) {
+    private void animateReavel(int cx, int cy, boolean omdShown, final ListView listView) {
 
         if (omdShown) {
             animator = animator.reverse();
             animator.addListener(new SupportAnimator.AnimatorListener() {
                 @Override
                 public void onAnimationStart() {
+                    listView.animate().setDuration(50).alpha(0);
                     fab.setImageDrawable(getResources().getDrawable(R.drawable.list_other_market_days));
                 }
 
@@ -177,13 +179,14 @@ public class DayFragment extends Fragment {
             animator.addListener(new SupportAnimator.AnimatorListener() {
                 @Override
                 public void onAnimationStart() {
+                    listView.setAlpha(0);
                     fab.setImageDrawable(getResources().getDrawable(R.drawable.close));
                     myView.setVisibility(View.VISIBLE);
                 }
 
                 @Override
                 public void onAnimationEnd() {
-
+                    listView.animate().setDuration(200).alpha(1);
                 }
 
                 @Override
