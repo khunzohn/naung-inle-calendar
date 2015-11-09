@@ -179,7 +179,7 @@ public class DayFragment extends Fragment {
             animator.addListener(new SupportAnimator.AnimatorListener() {
                 @Override
                 public void onAnimationStart() {
-                    listView.setAlpha(0);
+                    listView.setAlpha(0); // initialise its alpha to 0
                     fab.setImageDrawable(getResources().getDrawable(R.drawable.close));
                     myView.setVisibility(View.VISIBLE);
                 }

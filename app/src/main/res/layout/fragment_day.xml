@@ -50,7 +50,8 @@
                 android:layout_below="@id/engDay"
                 android:layout_centerHorizontal="true"
                 android:textSize="@dimen/normal_text" />
-            <View xmlns:android="http://schemas.android.com/apk/res/android"
+
+            <View
                 android:id="@+id/shadow"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/toolbar_elevation_height"
@@ -94,13 +95,15 @@
                     android:id="@+id/bdhaYear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:textColor="@color/black" />
 
                 <mm.technomation.mmtext.MMTextView
                     android:id="@+id/myaDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <mm.technomation.mmtext.MMTextView
@@ -118,8 +121,7 @@
                 android:layout_gravity="center|bottom"
                 android:layout_marginBottom="@dimen/padding_16_dp"
                 android:padding="@dimen/tv_padding"
-                android:textColor="@color/white"
-                android:textSize="@dimen/normal_text" />
+                android:textColor="@color/white" />
 
             <LinearLayout
                 android:id="@+id/ll_reveal"
