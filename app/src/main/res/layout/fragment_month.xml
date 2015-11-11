@@ -29,54 +29,56 @@
             android:orientation="horizontal"
             android:weightSum="7">
 
-            <TextView
+            <mm.technomation.mmtext.MMTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="sun" />
+                android:text="@string/sun"
+                android:textColor="@color/red" />
 
-            <TextView
+            <mm.technomation.mmtext.MMTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="mon" />
+                android:text="@string/mon" />
 
-            <TextView
+            <mm.technomation.mmtext.MMTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="tue" />
+                android:text="@string/tue" />
 
-            <TextView
+            <mm.technomation.mmtext.MMTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="wed" />
+                android:text="@string/wed" />
 
-            <TextView
+            <mm.technomation.mmtext.MMTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="thu" />
+                android:text="@string/thu" />
 
-            <TextView
+            <mm.technomation.mmtext.MMTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="fri" />
+                android:text="@string/fri" />
 
-            <TextView
+            <mm.technomation.mmtext.MMTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="sat" />
+                android:text="@string/sat"
+                android:textColor="@color/red" />
         </LinearLayout>
     </RelativeLayout>
 

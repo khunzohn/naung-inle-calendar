@@ -20,4 +20,11 @@
     <string name="naung_inle">Naung Inle</string>
     <string name="calendar">Calendar</string>
     <string name="sasana_year">"သာသနာနှစ် "</string>
+    <string name="sun">နွေ</string>
+    <string name="mon">လာ</string>
+    <string name="tue">ဂါ</string>
+    <string name="wed">ဟူး</string>
+    <string name="thu">တေး</string>
+    <string name="fri">ကြာ</string>
+    <string name="sat">နေ</string>
 </resources>
