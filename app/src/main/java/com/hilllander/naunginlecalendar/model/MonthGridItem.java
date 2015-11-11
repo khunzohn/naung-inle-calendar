@@ -8,16 +8,15 @@ public class MonthGridItem {
     private String myaMonth;
     private String myaDay;
     private String engDay;
-    private String specialDay;
+    private String[] specialDay;
+
 
     private MonthGridItem() {
 
     }
 
-    public static MonthGridItem getInstance() {
-        if (item == null)
-            item = new MonthGridItem();
-        return item;
+    public static MonthGridItem newInstance() {
+        return new MonthGridItem();
     }
 
     public String getMyaMonth() {
@@ -47,11 +46,11 @@ public class MonthGridItem {
         return this;
     }
 
-    public String getSpecialDay() {
+    public String[] getSpecialDay() {
         return specialDay;
     }
 
-    public MonthGridItem setSpecialDay(String specialDay) {
+    public MonthGridItem setSpecialDay(String[] specialDay) {
         this.specialDay = specialDay;
         return this;
     }

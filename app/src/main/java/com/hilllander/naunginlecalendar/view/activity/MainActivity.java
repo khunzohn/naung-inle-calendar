@@ -56,7 +56,8 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
         spinner.setOnItemSelectedListener(new SpinnerListener());
-        currentDate = new GregorianCalendar();
+        GregorianCalendar today = new GregorianCalendar();
+        setCurrentDate(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH));
         curJd = kernel.W2J(currentDate.get(Calendar.YEAR),
                 currentDate.get(Calendar.MONTH) + 1, // MyanmarCalendar's month starts from 1
                 currentDate.get(Calendar.DAY_OF_MONTH), caltype);
@@ -64,6 +65,14 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
         detecter = new SimpleGestureFilter(this, this);
     }
 
+    private void setCurrentDate(int year, int month, int day) {
+        if (currentDate == null)
+            currentDate = new GregorianCalendar();
+        currentDate.set(year, month, day);
+        currentYear = year;
+        currentMonth = month;
+        currentDay = day;
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -85,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
             DatePickerDialog builder = new DatePickerDialog(MainActivity.this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                    currentDate.set(year, month, day);
+                    setCurrentDate(year, month, day);
                     curJd = kernel.W2J(year, month + 1, day, caltype); // MyanmarCalendar's month starts from 1
                     Log.d(TAG, "curJd : dp " + curJd);
                     int[] directions = animDirections(SimpleGestureFilter.SWIPE_UP);
@@ -106,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
                     year = cal.get(Calendar.YEAR),
                     month = cal.get(Calendar.MONTH),
                     day = cal.get(Calendar.DAY_OF_MONTH);
-            currentDate.set(year, month, day);
+            setCurrentDate(year, month, day);
             curJd = kernel.W2J(year, month + 1, day, caltype); // MyanmarCalendar's month starts from 1
             Log.d(TAG, "curJd : today " + curJd);
             int[] directions = animDirections(SimpleGestureFilter.SWIPE_UP);
@@ -132,9 +141,9 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
                 .commit();
     }
 
-    private void inflateMonthFragment() {
+    private void inflateMonthFragment(GregorianCalendar currentDate) {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_content, MonthFragment.getInstance(currentMonth))
+                .replace(R.id.main_content, MonthFragment.getInstance(currentDate))
                 .commit();
     }
 
@@ -184,13 +193,23 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
                 curJd -= 1;
                 Log.d(TAG, "curJd : decre " + curJd);
                 WesternDate wDate = kernel.J2W(curJd, caltype);
-                currentDate.set(wDate.getYear(), wDate.getMonth() - 1, wDate.getDay()); // WesternDate's month starts from 1
+                setCurrentDate(wDate.getYear(), wDate.getMonth() - 1, wDate.getDay()); // WesternDate's month starts from 1
                 break;
             case SpinnerListener.MONTH:
                 currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                currentDay = currentDay > numOfDayInCurMonth(currentMonth, currentYear) ?
+                        numOfDayInCurMonth(currentMonth, currentYear) : currentDay;
+                setCurrentDate(currentYear, currentMonth, currentDay);
                 break;
             case SpinnerListener.YEAR:
                 currentYear--;
+                currentDay = currentDay > numOfDayInCurMonth(currentMonth, currentYear) ?
+                        numOfDayInCurMonth(currentMonth, currentYear) : currentDay;
+                setCurrentDate(currentYear, currentMonth, currentDay);
                 break;
         }
     }
@@ -211,15 +230,33 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
                 curJd += 1;
                 Log.d(TAG, "curJd : incre" + curJd);
                 WesternDate wDate = kernel.J2W(curJd, caltype);
-                currentDate.set(wDate.getYear(), wDate.getMonth() - 1, wDate.getDay()); // WesternDate's month starts from 1
+                setCurrentDate(wDate.getYear(), wDate.getMonth() - 1, wDate.getDay()); // WesternDate's month starts from 1
                 break;
             case SpinnerListener.MONTH:
                 currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                currentDay = currentDay > numOfDayInCurMonth(currentMonth, currentYear) ?
+                        numOfDayInCurMonth(currentMonth, currentYear) : currentDay;
+                setCurrentDate(currentYear, currentMonth, currentDay);
                 break;
             case SpinnerListener.YEAR:
                 currentYear++;
+                currentDay = currentDay > numOfDayInCurMonth(currentMonth, currentYear) ?
+                        numOfDayInCurMonth(currentMonth, currentYear) : currentDay;
+                setCurrentDate(currentYear, currentMonth, currentDay);
                 break;
         }
+    }
+
+    private int numOfDayInCurMonth(final int curMonth, final int curYear) {
+        int[] daysOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        int days = daysOfMonth[curMonth];
+        if (new GregorianCalendar().isLeapYear(curYear) && curMonth == 1) //leap year's feb
+            days++;
+        return days;
     }
 
     private Fragment getCurrentFragment() {
@@ -227,7 +264,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
             case SpinnerListener.DAY:
                 return DayFragment.getInstance(currentDate, MainActivity.this);
             case SpinnerListener.MONTH:
-                return MonthFragment.getInstance(currentMonth);
+                return MonthFragment.getInstance(currentDate);
             case SpinnerListener.YEAR:
                 return YearFragment.getInstance(currentYear);
             case SpinnerListener.HOLIDAYS:
@@ -289,7 +326,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
                     break;
                 case MONTH:
                     currentContext = MONTH;
-                    inflateMonthFragment();
+                    inflateMonthFragment(currentDate);
                     break;
                 case YEAR:
                     currentContext = YEAR;

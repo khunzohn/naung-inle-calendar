@@ -7,7 +7,7 @@
     <mm.technomation.mmtext.MMTextView
         android:id="@+id/marketday_item"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="@dimen/tv_padding"
         android:textColor="@color/white" />
 

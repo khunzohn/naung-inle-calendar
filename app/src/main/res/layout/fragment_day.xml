@@ -159,6 +159,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|center"
+        android:layout_marginEnd="@dimen/fab_day_right_margin"
+        android:layout_marginRight="@dimen/fab_day_right_margin"
         android:src="@drawable/list_other_market_days"
         app:backgroundTint="@color/pinky" />
 

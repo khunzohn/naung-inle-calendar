@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="fab_day_right_margin">0dp</dimen>
-    <dimen name="fab_day_top_margin">256dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
@@ -12,5 +11,10 @@
     <dimen name="tv_padding">2dp</dimen>
     <dimen name="extra_large_text">56sp</dimen>
     <dimen name="toolbar_elevation_height">4dp</dimen>
+    <dimen name="item_offset">0.5dp</dimen>
+    <dimen name="extra_small_text">10sp</dimen>
+    <dimen name="month_grid_item_height">80dp</dimen>
+    <dimen name="month_grid_height">487dp</dimen>
+    <!-- (6 X item height) + 7 X margin[1dp] -->
 
 </resources>
