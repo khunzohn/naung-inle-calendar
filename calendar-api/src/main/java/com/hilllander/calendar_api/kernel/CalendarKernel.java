@@ -153,7 +153,7 @@ public class CalendarKernel {
             if (ed < Constant.TA2) {
                 ed = ed + Constant.LM;
             }
-            if ((ed >= Constant.TW && my != 1264))
+            if ((ed >= Constant.TW && my != 1264 && my != 1260)) //TODO replace quick fix here 1260
                 return true;
         } else if (my < Constant.S2E) { //First Myanmar Era
 
