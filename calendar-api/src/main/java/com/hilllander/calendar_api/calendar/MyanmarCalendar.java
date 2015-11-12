@@ -117,6 +117,21 @@ public class MyanmarCalendar {
         return mDate.getYearLength();
     }
 
+    /**
+     * check for type of myanmar year
+     *
+     * @param my myanmar year
+     * @return year type [0-normal ,1-small watat, 2-big watat]
+     */
+    public int checkYearType(int my) {
+        return calKernel.checkMYearType(my);
+    }
+
+    /**
+     * get type of myanmar year
+     *
+     * @return year type [0-normal ,1-small watat, 2-big watat]
+     */
     public int getYearType() {
         return mDate.getYearType();
     }
@@ -167,6 +182,10 @@ public class MyanmarCalendar {
         return eDigitToMDigit(mDate.getYear());
     }
 
+    /**
+     * get wan wax day in myanmar unicode
+     * @return wan wax day string in unicode
+     */
     public String getDayInMyanmnar() {
         return eDigitToMDigit(mDate.getWanWaxDay());
     }

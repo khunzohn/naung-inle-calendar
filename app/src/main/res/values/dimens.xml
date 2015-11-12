@@ -16,5 +16,6 @@
     <dimen name="month_grid_item_height">80dp</dimen>
     <dimen name="month_grid_height">487dp</dimen>
     <!-- (6 X item height) + 7 X margin[1dp] -->
+    <dimen name="special_day_image_size">16dp</dimen>
 
 </resources>

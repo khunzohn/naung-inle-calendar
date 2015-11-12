@@ -11,9 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hilllander.calendar_api.calendar.MyanmarCalendar;
 import com.hilllander.naunginlecalendar.R;
 import com.hilllander.naunginlecalendar.model.MonthGridItem;
 import com.hilllander.naunginlecalendar.util.RecyclerItemDecorater;
@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import mm.technomation.mmtext.MMTextView;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -30,7 +32,6 @@ public class MonthFragment extends Fragment {
     private static final String YEAR = "year";
     private static final String MONTH = "month";
     private static final String DAY = "day";
-    private static final String CURRENT_MONTH = "current month";
     private static final String TAG = MonthFragment.class.getSimpleName();
     private RecyclerView recyclerView;
 
@@ -51,34 +52,57 @@ public class MonthFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_month, container, false);
-        TextView current = (TextView) view.findViewById(R.id.current_month);
+        TextView engMonth = (TextView) view.findViewById(R.id.engMonth);
+        TextView engYear = (TextView) view.findViewById(R.id.engYear);
+        MMTextView myaYearRange = (MMTextView) view.findViewById(R.id.myaYearRange);
+        MMTextView myaMonthRange = (MMTextView) view.findViewById(R.id.myaMonthRange);
+        ImageView specialDayImage = (ImageView) view.findViewById(R.id.specialDayImage);
         Bundle args = getArguments();
         int year = args.getInt(YEAR);
         int month = args.getInt(MONTH);
         int day = args.getInt(DAY);
-        ArrayList<MonthGridItem> itemList = getGridItemList(year, month, day);
-        for (MonthGridItem item : itemList)
-            Log.d(TAG + " onCreateView", item.getEngDay());
+        engMonth.setText(getMonthAsString(month));
+        engYear.setText(String.valueOf(year));
+        ArrayList<MonthGridItem> itemList = createGridItemList(year, month, day);
+
+        myaMonthRange.setMyanmarText(getMRange(itemList.get(0), itemList.get(itemList.size() - 1)));
+        myaYearRange.setMyanmarText(getYRange(itemList.get(0), itemList.get(itemList.size() - 1)));
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_month);
         int itemOffset = getResources().getDimensionPixelOffset(R.dimen.item_offset);
-        Log.d(TAG, "itemOffset : " + itemOffset);
         recyclerView.addItemDecoration(new RecyclerItemDecorater(itemOffset));
-        int recH = recyclerView.getMeasuredHeight();
-        MonthRecyclerAdapter adapter = new MonthRecyclerAdapter(itemList, recH);
+        MonthRecyclerAdapter adapter = new MonthRecyclerAdapter(getContext(), itemList);
         recyclerView.setAdapter(adapter);
 
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 7, LinearLayoutManager.VERTICAL, false);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-        Log.d(TAG, "recH : " + recH);
-
-
-        current.setText("month : " + args.getInt(CURRENT_MONTH));
-
         return view;
     }
 
-    private ArrayList<MonthGridItem> getGridItemList(final int year, final int month, final int day) {
+    private String getYRange(MonthGridItem firstDayInGrid, MonthGridItem lastDayInGrid) {
+        String yearOfFirstDay = firstDayInGrid.getMyaYear();
+        Log.d("YearRange", "year of First day" + yearOfFirstDay);
+        String yearOfLastDay = lastDayInGrid.getMyaYear();
+        Log.d("YearRange", "year of last day" + yearOfLastDay);
+        return yearOfFirstDay.equals(yearOfLastDay) ? yearOfFirstDay : yearOfFirstDay + " - " + yearOfLastDay;
+    }
+
+    private String getMRange(MonthGridItem fristDayInGrid, MonthGridItem lastDayInGrid) {
+        String monthOfFirstDay = fristDayInGrid.getSimpleMonthName();
+        Log.d("Range", "month of first day" + monthOfFirstDay);
+        String monthOfLastDay = lastDayInGrid.getSimpleMonthName();
+        Log.d("Range", "month of last day" + monthOfLastDay);
+
+        return monthOfFirstDay.equals(monthOfLastDay) ? monthOfFirstDay : monthOfFirstDay + " - " + monthOfLastDay;
+    }
+
+    private String getMonthAsString(int month) {
+        String[] months = {"January", "February", "March", "April", "May", "June", "July",
+                "August", "September", "October", "November", "December"};
+        return months[month];
+    }
+
+    private ArrayList<MonthGridItem> createGridItemList(final int year, final int month, final int curDay) {
         final int firstDay = 1;
         GregorianCalendar cal = new GregorianCalendar();
         cal.set(year, month, firstDay);
@@ -92,13 +116,14 @@ public class MonthFragment extends Fragment {
         int DAY_OFF_SET = 1;
         int prevMBaseDay = daysOfPrevM - trialingDays + DAY_OFF_SET;
         int mYear, mMonth, mDay;
-
+        int dateStatus; // 0 = prevMonth 1= curMonth 2 = nextMonth
         //add trialing days to grid list
         for (int i = 0; i < trialingDays; i++) {
             mDay = prevMBaseDay++;
             mMonth = month == 0 ? 11 : month - 1; //if current month is jan then prevMonth will be Dec
             mYear = month == 0 ? year - 1 : year; // if current month is jan then preYear is decreased by 1
-            MonthGridItem gridItem = createMonthGridItem(mYear, mMonth, mDay);
+            dateStatus = 0;
+            MonthGridItem gridItem = createMonthGridItem(mYear, mMonth, mDay, dateStatus);
             Log.d(TAG, gridItem.getEngDay() + " " + gridItem.getMyaDay() + " " + gridItem.getMyaMonth());
             itemList.add(gridItem);
         }
@@ -107,7 +132,8 @@ public class MonthFragment extends Fragment {
             mDay = i;
             mMonth = month;
             mYear = year;
-            MonthGridItem item = createMonthGridItem(mYear, mMonth, mDay);
+            dateStatus = 1;
+            MonthGridItem item = createMonthGridItem(mYear, mMonth, mDay, dateStatus);
             Log.d(TAG, item.getEngDay() + " " + item.getMyaDay() + " " + item.getMyaMonth());
             itemList.add(item);
         }
@@ -117,12 +143,13 @@ public class MonthFragment extends Fragment {
             mDay = i++;
             mMonth = month == 11 ? 0 : month + 1; //if current month is Dec ,next month is jan
             mYear = month == 11 ? year + 1 : year; //if current month is Dec ,next year needs increment by 1
-            MonthGridItem item = createMonthGridItem(mYear, mMonth, mDay);
+            dateStatus = 2;
+            MonthGridItem item = createMonthGridItem(mYear, mMonth, mDay, dateStatus);
             Log.d(TAG, item.getEngDay() + " " + item.getMyaDay() + " " + item.getMyaMonth());
             itemList.add(item);
         }
         for (MonthGridItem item : itemList)
-            Log.d(TAG + " getGridItemList", item.getEngDay());
+            Log.d(TAG + " createGridItemList", item.getEngDay());
         return itemList;
     }
 
@@ -140,17 +167,11 @@ public class MonthFragment extends Fragment {
         return numOfDayInMonth(prevMonth, prevYear);
     }
 
-    private MonthGridItem createMonthGridItem(int mYear, int mMonth, int mDay) {
+    private MonthGridItem createMonthGridItem(int mYear, int mMonth, int mDay, int dateStatus) {
         GregorianCalendar cal = new GregorianCalendar();
         cal.set(mYear, mMonth, mDay);
         Log.d(TAG + "createMonthGridItem", cal.get(Calendar.YEAR) + " " + cal.get(Calendar.MONTH) + " " + cal.get(Calendar.DAY_OF_MONTH));
-        MyanmarCalendar mCal = MyanmarCalendar.getInstance(cal);
-        MonthGridItem item = MonthGridItem.newInstance(mCal)
-                .setEngDay(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)))
-                .setMyaDay(mCal.getDayInMyanmnar())
-                .setMyaMonth(mCal.getMonthInMyanmar(getContext()))
-                .setSpecialDay(mCal.getHolidays(getContext()));
 
-        return item;
+        return MonthGridItem.newInstance(getContext(), cal, dateStatus);
     }
 }

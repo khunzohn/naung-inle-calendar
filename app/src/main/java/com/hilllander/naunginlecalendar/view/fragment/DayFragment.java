@@ -173,7 +173,7 @@ public class DayFragment extends Fragment {
             });
             animator.start();
         } else {
-            // get the final radius for the clipping circle
+            // get the final radius for the clipping full_moon
             float finalRadius = (float) Math.hypot(myView.getWidth(), myView.getHeight());
             animator = ViewAnimationUtils.createCircularReveal(myView, cx, cy, 0, finalRadius);
             animator.addListener(new SupportAnimator.AnimatorListener() {

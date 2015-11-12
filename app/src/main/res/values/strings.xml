@@ -27,4 +27,10 @@
     <string name="thu">တေး</string>
     <string name="fri">ကြာ</string>
     <string name="sat">နေ</string>
+
+    <string name="san">ဆန်း</string>
+    <string name="pyae">ပြည့်</string>
+    <string name="sote">ဆုတ်</string>
+    <string name="kwae">ကွယ်</string>
+    <string name="special_day_image">image to highlight special day</string>
 </resources>

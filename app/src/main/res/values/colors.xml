@@ -3,10 +3,19 @@
 
     <color name="primary">#ffdbe4b7</color>
     <color name="accent">#ff53428b</color>
-    <color name="pink">#ff34699d</color>
+    <color name="dark_blue">#ff34699d</color>
     <color name="pinky">#ff1b8763</color>
     <color name="white">#fff</color>
     <color name="alpha_black">#60000002</color>
     <color name="black">#005</color>
-    <color name="red">#f22</color>
+    <color name="red">#ffb41c1c</color>
+    <color name="background_grid_item_prev_month">#aaa</color>
+    <color name="background_grid_item_next_month">#aaa</color>
+    <color name="background_grid_item_current_month">#eee</color>
+    <color name="full_moon">#ffffd59d</color>
+    <color name="new_moon">#222</color>
+    <color name="light_grey">#ffeaeaea</color>
+    <color name="grey">#ffb2aea2</color>
+    <color name="blue">#ff1d8cd1</color>
+    <color name="green">#ff217515</color>
 </resources>

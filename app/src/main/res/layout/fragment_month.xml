@@ -9,11 +9,54 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/month_grid">
 
-        <TextView
-            android:id="@+id/current_month"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/engMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/tv_padding"
+                android:textColor="@color/green" />
+
+            <TextView
+                android:id="@+id/engYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/tv_padding"
+                android:textColor="@color/blue"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+
+            <mm.technomation.mmtext.MMTextView
+                android:id="@+id/myaYearRange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/tv_padding"
+                android:textColor="@color/green"
+                android:textSize="@dimen/extra_small_text" />
+
+            <mm.technomation.mmtext.MMTextView
+                android:id="@+id/myaMonthRange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/tv_padding"
+                android:textColor="@color/green"
+                android:textSize="@dimen/extra_small_text" />
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
@@ -42,35 +85,40 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/mon" />
+                android:text="@string/mon"
+                android:textColor="@color/dark_blue" />
 
             <mm.technomation.mmtext.MMTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/tue" />
+                android:text="@string/tue"
+                android:textColor="@color/dark_blue" />
 
             <mm.technomation.mmtext.MMTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/wed" />
+                android:text="@string/wed"
+                android:textColor="@color/dark_blue" />
 
             <mm.technomation.mmtext.MMTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/thu" />
+                android:text="@string/thu"
+                android:textColor="@color/dark_blue" />
 
             <mm.technomation.mmtext.MMTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/fri" />
+                android:text="@string/fri"
+                android:textColor="@color/dark_blue" />
 
             <mm.technomation.mmtext.MMTextView
                 android:layout_width="0dp"
@@ -92,7 +140,7 @@
             android:id="@+id/recycler_month"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/pink"
+            android:background="@color/grey"
             android:clipToPadding="false"
             android:padding="@dimen/item_offset" />
     </FrameLayout>

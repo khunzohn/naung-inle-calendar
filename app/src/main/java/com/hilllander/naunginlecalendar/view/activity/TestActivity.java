@@ -25,7 +25,7 @@ public class TestActivity extends AppCompatActivity {
                 int cx = (myView.getLeft() + myView.getRight()) / 2;
                 int cy = (myView.getTop() + myView.getBottom()) / 2;
 
-                // get the final radius for the clipping circle
+                // get the final radius for the clipping full_moon
                 int dx = Math.max(cx, myView.getWidth() - cx);
                 int dy = Math.max(cy, myView.getHeight() - cy);
                 float finalRadius = (float) Math.hypot(dx, dy);
@@ -38,7 +38,7 @@ public class TestActivity extends AppCompatActivity {
             }
         });
 
-        // get the center for the clipping circle
+        // get the center for the clipping full_moon
 
     }
 
