@@ -26,6 +26,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
+        // unable back pressed to avoid shitty behaviour
     }
 }

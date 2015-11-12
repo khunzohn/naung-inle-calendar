@@ -12,10 +12,12 @@
     <dimen name="extra_large_text">56sp</dimen>
     <dimen name="toolbar_elevation_height">4dp</dimen>
     <dimen name="item_offset">0.5dp</dimen>
-    <dimen name="extra_small_text">10sp</dimen>
+    <dimen name="extra_small_text">8sp</dimen>
     <dimen name="month_grid_item_height">80dp</dimen>
     <dimen name="month_grid_height">487dp</dimen>
     <!-- (6 X item height) + 7 X margin[1dp] -->
     <dimen name="special_day_image_size">16dp</dimen>
+    <dimen name="super_small_text">6sp</dimen>
+    <dimen name="year_grid_item_padding">5dp</dimen>
 
 </resources>

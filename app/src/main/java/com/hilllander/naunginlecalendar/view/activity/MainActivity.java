@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
 
     private void inflateYearFragment() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_content, YearFragment.getInstance(currentYear))
+                .replace(R.id.main_content, YearFragment.getInstance(currentDate))
                 .commit();
     }
 
@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
             case SpinnerListener.MONTH:
                 return MonthFragment.getInstance(currentDate);
             case SpinnerListener.YEAR:
-                return YearFragment.getInstance(currentYear);
+                return YearFragment.getInstance(currentDate);
             case SpinnerListener.HOLIDAYS:
                 return HolidaysFragment.getInstance();
             default:

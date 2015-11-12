@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/year_grid_item_padding">
+
+    <TextView
+        android:id="@+id/year_item_month_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/tv_padding" />
+
+    <View
+        android:id="@+id/upper_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/year_item_month_header"
+        android:layout_margin="@dimen/tv_padding"
+        android:background="@drawable/line_shadow" />
+
+    <LinearLayout
+        android:id="@+id/year_item_weekday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/upper_line"
+        android:orientation="horizontal"
+        android:weightSum="7">
+
+        <mm.technomation.mmtext.MMTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/sun"
+            android:textColor="@color/red"
+            android:textSize="@dimen/super_small_text" />
+
+        <mm.technomation.mmtext.MMTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/mon"
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/super_small_text" />
+
+        <mm.technomation.mmtext.MMTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/tue"
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/super_small_text" />
+
+        <mm.technomation.mmtext.MMTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/wed"
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/super_small_text" />
+
+        <mm.technomation.mmtext.MMTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/thu"
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/super_small_text" />
+
+        <mm.technomation.mmtext.MMTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/fri"
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/super_small_text" />
+
+        <mm.technomation.mmtext.MMTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/sat"
+            android:textColor="@color/red"
+            android:textSize="@dimen/super_small_text" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/lower_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/year_item_weekday"
+        android:layout_margin="@dimen/tv_padding"
+        android:background="@drawable/line_shadow" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/year_inner_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/lower_line" />
+</RelativeLayout>
+
+
