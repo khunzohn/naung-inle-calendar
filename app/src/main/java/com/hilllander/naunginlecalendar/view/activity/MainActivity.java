@@ -58,10 +58,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
         spinner.setOnItemSelectedListener(new SpinnerListener());
         GregorianCalendar today = new GregorianCalendar();
         setCurrentDate(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH));
-        curJd = kernel.W2J(currentDate.get(Calendar.YEAR),
-                currentDate.get(Calendar.MONTH) + 1, // MyanmarCalendar's month starts from 1
-                currentDate.get(Calendar.DAY_OF_MONTH), caltype);
-        Log.d(TAG, "curJd : onCreate" + curJd);
+
         detecter = new SimpleGestureFilter(this, this);
     }
 
@@ -72,6 +69,9 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
         currentYear = year;
         currentMonth = month;
         currentDay = day;
+        curJd = kernel.W2J(currentDate.get(Calendar.YEAR),
+                currentDate.get(Calendar.MONTH) + 1, // MyanmarCalendar's month starts from 1
+                currentDate.get(Calendar.DAY_OF_MONTH), caltype);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
                 .commit();
     }
 
-    private void inflateDayFragment(GregorianCalendar currentDate) {
+    private void inflateDayFragment() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_content, DayFragment.getInstance(currentDate, MainActivity.this))
                 .commit();
@@ -322,7 +322,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
             switch (i) {
                 case DAY:
                     currentContext = DAY;
-                    inflateDayFragment(currentDate);
+                    inflateDayFragment();
                     break;
                 case MONTH:
                     currentContext = MONTH;
@@ -337,7 +337,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
                     inflateHolidaysFragment();
                     break;
                 default:
-                    inflateDayFragment(currentDate);
+                    inflateDayFragment();
             }
         }
 
