@@ -3,6 +3,8 @@ package com.hilllander.naunginlecalendar.view.activity;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.hilllander.calendar_api.kernel.CalendarKernel;
@@ -40,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
     private CalendarKernel kernel = new CalendarKernel();
     private GregorianCalendar currentDate;
     private double curJd;
+    private boolean firstBackPress = true;
+    private LinearLayout mainLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         View tbShadow = findViewById(R.id.toolbar_shadow);
         hideToolBarShadowForLollipop(toolbar, tbShadow);
+        mainLayout = (LinearLayout) findViewById(R.id.main_layout);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
@@ -73,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
                 currentDate.get(Calendar.MONTH) + 1, // MyanmarCalendar's month starts from 1
                 currentDate.get(Calendar.DAY_OF_MONTH), caltype);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -185,6 +192,34 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
                 .setCustomAnimations(directions[0], directions[1])
                 .replace(R.id.main_content, currentFragment)
                 .commit();
+    }
+
+    /**
+     * Take care of popping the fragment back stack or finishing the activity
+     * as appropriate.
+     */
+    @Override
+    public void onBackPressed() {
+
+        if (firstBackPress) {
+            firstBackPress = false;
+            Snackbar.make(mainLayout, "Press one more time to exit", Snackbar.LENGTH_SHORT)
+                    .setAction("OK", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            view.setVisibility(View.INVISIBLE);
+                        }
+                    }).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    firstBackPress = true;
+                }
+            }, 2000);
+
+        } else {
+            super.onBackPressed();
+        }
     }
 
     private void decreDate() {
