@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,12 +40,12 @@ public class YearMainAdapter extends RecyclerView.Adapter<YearMainAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         YearMainGridItem item = items.get(position);
-        Log.d(TAG, "Main size : " + items.size());
         holder.month.setText(item.getMonthHeader());
-        ArrayList<YearInnerGridItem> innerGridItems =
-                item.getInnerGridItems(item.getYear(), item.getMonth(), item.getcMonth(), item.getcDay());
-        Log.d(TAG, "inner size : " + innerGridItems.size());
-        YearInnerAdapter innerAdapter = new YearInnerAdapter(context, innerGridItems);
+        ArrayList<YearInnerGridItem> innerItems = item.getInnerGridItems();
+        YearInnerAdapter innerAdapter = new YearInnerAdapter(context, innerItems);
+        GridLayoutManager innerLayout = new GridLayoutManager(context, 7, LinearLayoutManager.VERTICAL, false);
+        holder.innerRecy.setHasFixedSize(true);
+        holder.innerRecy.setLayoutManager(innerLayout);
         holder.innerRecy.setAdapter(innerAdapter);
     }
 
@@ -68,9 +67,6 @@ public class YearMainAdapter extends RecyclerView.Adapter<YearMainAdapter.ViewHo
             super(view);
             month = (TextView) view.findViewById(R.id.year_item_month_header);
             innerRecy = (RecyclerView) view.findViewById(R.id.year_inner_recycler);
-            GridLayoutManager layoutManager = new GridLayoutManager(context, 7, LinearLayoutManager.VERTICAL, false);
-            innerRecy.setHasFixedSize(true);
-            innerRecy.setLayoutManager(layoutManager);
         }
     }
 }

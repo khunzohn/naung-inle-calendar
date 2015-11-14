@@ -13,13 +13,17 @@ public class YearInnerGridItem {
     private final int day;
     private int flag;
 
-    public YearInnerGridItem(int year, int month, int day, int cMonth, int cDay) {
+    private YearInnerGridItem(int year, int month, int day, int cMonth, int cDay) {
         this.year = year;
         this.month = month;
         this.day = day;
         this.cMonth = cMonth;
         this.cDay = cDay;
         flag = examineFlag();
+    }
+
+    public static YearInnerGridItem newInstance(int year, int month, int day, int cMonth, int cDay) {
+        return new YearInnerGridItem(year, month, day, cMonth, cDay);
     }
 
     private int examineFlag() {

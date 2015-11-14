@@ -39,16 +39,17 @@ public class YearInnerAdapter extends RecyclerView.Adapter<YearInnerAdapter.View
         YearInnerGridItem item = innerGridItems.get(position);
         int flag = item.getFlag();
         holder.innerGridDay.setText(item.getDay());
+
         if (isEqual(item.getDate(), new GregorianCalendar())) { // highlight today
             holder.innerGridDay.setBackgroundColor(context.getResources().getColor(R.color.dark_blue));
             holder.innerGridDay.setTextColor(context.getResources().getColor(R.color.white));
         } else if (flag == 1) {// highlight current day
             holder.innerGridDay.setBackgroundColor(context.getResources().getColor(R.color.dark_blue_alpha));
             holder.innerGridDay.setTextColor(context.getResources().getColor(R.color.white));
-        }
-        if (position % 7 == 0 || position % 7 == 6) {
+        } else if (position % 7 == 0 || position % 7 == 6) {
             holder.innerGridDay.setTextColor(context.getResources().getColor(R.color.red));
         }
+
     }
 
     private boolean isEqual(GregorianCalendar dateOne, GregorianCalendar dateTwo) {

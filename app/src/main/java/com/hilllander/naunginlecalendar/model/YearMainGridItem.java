@@ -17,18 +17,26 @@ public class YearMainGridItem {
     int[] daysOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     private int year;
     private int month;
-    private int firstDay;
     private int cMonth;
     private int cDay;
     private GregorianCalendar cal;
+    private ArrayList<YearInnerGridItem> innerGridItems;
 
-    public YearMainGridItem(final int year, final int month, final int firstDay, final int cMonth, final int cDay) {
+    private YearMainGridItem(final int year, final int month, final int firstDay, final int cMonth, final int cDay) {
         this.year = year;
         this.month = month;
-        this.firstDay = firstDay;
         this.cMonth = cMonth;
         this.cDay = cDay;
         cal = new GregorianCalendar(year, month, firstDay);
+        innerGridItems = createInnerGridItems(year, month, cMonth, cDay);
+    }
+
+    public static YearMainGridItem newInstance(int year, int month, int firstDay, int cMonth, int cDay) {
+        return new YearMainGridItem(year, month, firstDay, cMonth, cDay);
+    }
+
+    public ArrayList<YearInnerGridItem> getInnerGridItems() {
+        return innerGridItems;
     }
 
     public int getYear() {
@@ -51,18 +59,18 @@ public class YearMainGridItem {
         return months[month];
     }
 
-    public ArrayList<YearInnerGridItem> getInnerGridItems(final int year, final int month, final int cMonth, final int cDay) {
+    private ArrayList<YearInnerGridItem> createInnerGridItems(final int year, final int month, final int cMonth, final int cDay) {
         ArrayList<YearInnerGridItem> items = new ArrayList<>();
         int weekday = cal.get(Calendar.DAY_OF_WEEK); // 1 = sun...7 = sat
         int daysOfMonth = getDaysOfMonth();
         int trialingDays = weekday - 1;
         //add trialing days
         for (int i = 0; i < trialingDays; i++) {
-            items.add(new YearInnerGridItem(year, month, 0, cMonth, cDay));
+            items.add(YearInnerGridItem.newInstance(year, month, 0, cMonth, cDay));
         }
         // add current month's days
         for (int i = 1; i <= daysOfMonth; i++)
-            items.add(new YearInnerGridItem(year, month, i, cMonth, cDay));
+            items.add(YearInnerGridItem.newInstance(year, month, i, cMonth, cDay));
         Log.d(TAG, "inner size : " + items.size());
         return items;
     }

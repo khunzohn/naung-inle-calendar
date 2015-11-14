@@ -26,6 +26,7 @@ public class YearFragment extends Fragment {
     private static final String CURRENT_YEAR = "current year";
     private static final String CURRENT_MONTH = "current month";
     private static final String CURRENT_DAY = "curent day";
+    private RecyclerView mainRecy;
 
     public YearFragment() {
     }
@@ -51,7 +52,7 @@ public class YearFragment extends Fragment {
         int cDay = args.getInt(CURRENT_DAY);
         current.setText(String.valueOf(year));
 
-        RecyclerView mainRecy = (RecyclerView) view.findViewById(R.id.main_recycler_year);
+        mainRecy = (RecyclerView) view.findViewById(R.id.main_recycler_year);
         mainRecy.setHasFixedSize(true);
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 3, LinearLayoutManager.VERTICAL, false);
         mainRecy.setLayoutManager(layoutManager);
@@ -65,7 +66,7 @@ public class YearFragment extends Fragment {
         ArrayList<YearMainGridItem> items = new ArrayList<>();
         int firstDay = 1;
         for (int i = 0; i < 12; i++) {
-            items.add(new YearMainGridItem(year, i, firstDay, cMonth, cDay));
+            items.add(YearMainGridItem.newInstance(year, i, firstDay, cMonth, cDay));
         }
         return items;
     }
