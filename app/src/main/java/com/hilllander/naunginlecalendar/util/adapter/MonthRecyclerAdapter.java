@@ -81,7 +81,6 @@ public class MonthRecyclerAdapter extends RecyclerView.Adapter<MonthRecyclerAdap
             }
 
         });
-
         if (i % 7 == 0 || i % 7 == 6) { //highlight weekend days
             viewHolder.eDay.setTextColor(context.getResources().getColor(R.color.red));
             viewHolder.mDay.setTextColor(context.getResources().getColor(R.color.red));

@@ -336,7 +336,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
 
         switch (monthDayFlag) {
             case 0: //click on previous month days
-                showPrev(SimpleGestureFilter.SWIPE_DOWN);
+                showCur(SimpleGestureFilter.SWIPE_DOWN);
                 break;
             case 1: //click on current month days
                 if (firstClick) {
@@ -346,13 +346,22 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
 
                 break;
             case 2: //click on next month days
-                showNext(SimpleGestureFilter.SWIPE_UP);
+                showCur(SimpleGestureFilter.SWIPE_UP);
                 break;
             case 3: // click on selected day
                 spinner.setSelection(0, true);
                 break;
         }
 
+    }
+
+    private void showCur(int direction) {
+        int[] directions = animDirections(direction);
+        Fragment currentFragment = getCurrentFragment();
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(directions[0], directions[1])
+                .replace(R.id.main_content, currentFragment)
+                .commit();
     }
 
     private class SpinnerListener implements android.widget.AdapterView.OnItemSelectedListener {
