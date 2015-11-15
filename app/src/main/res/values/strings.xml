@@ -32,4 +32,6 @@
     <string name="sote">ဆုတ်</string>
     <string name="kwae">ကွယ်</string>
     <string name="special_day_image">image to highlight special day</string>
+    <string name="big_watat_year">ဝါကြီးထပ်နှစ်</string>
+    <string name="small_watat_year">ဝါငယ်ထပ်နှစ်</string>
 </resources>

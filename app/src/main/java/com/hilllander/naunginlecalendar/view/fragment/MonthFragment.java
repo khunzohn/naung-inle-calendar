@@ -32,7 +32,7 @@ public class MonthFragment extends Fragment {
     private static final String MONTH = "month";
     private static final String DAY = "day";
     private static final String TAG = MonthFragment.class.getSimpleName();
-    private RecyclerView recyclerView;
+    private MonthGridItem firstDayOfM, lastDayOfM;
 
     public MonthFragment() {
     }
@@ -63,9 +63,9 @@ public class MonthFragment extends Fragment {
         engYear.setText(String.valueOf(year));
         ArrayList<MonthGridItem> itemList = createGridItemList(year, month, day);
 
-        myaMonthRange.setMyanmarText(getMRange(itemList.get(0), itemList.get(itemList.size() - 1)));
-        myaYearRange.setMyanmarText(getYRange(itemList.get(0), itemList.get(itemList.size() - 1)));
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_month);
+        myaMonthRange.setMyanmarText(getMRange(firstDayOfM, lastDayOfM));
+        myaYearRange.setMyanmarText(getYRange(firstDayOfM, lastDayOfM));
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_month);
         int itemOffset = getResources().getDimensionPixelOffset(R.dimen.item_offset);
         recyclerView.addItemDecoration(new RecyclerItemDecorater(itemOffset));
         MonthRecyclerAdapter adapter = new MonthRecyclerAdapter(getContext(), itemList);
@@ -83,7 +83,13 @@ public class MonthFragment extends Fragment {
         Log.d("YearRange", "year of First day" + yearOfFirstDay);
         String yearOfLastDay = lastDayInGrid.getMyaYear();
         Log.d("YearRange", "year of last day" + yearOfLastDay);
-        return yearOfFirstDay.equals(yearOfLastDay) ? yearOfFirstDay : yearOfFirstDay + " - " + yearOfLastDay;
+        String formattedRange = yearOfFirstDay.equals(yearOfLastDay) ?
+                yearOfFirstDay : yearOfFirstDay + " - " + yearOfLastDay;
+        if (formattedRange.equals(yearOfFirstDay)) {
+            formattedRange = firstDayInGrid.getYearType() == 2 ? formattedRange + "-" + getContext().getString(R.string.big_watat_year) :
+                    firstDayInGrid.getYearType() == 1 ? formattedRange + "-" + getContext().getString(R.string.small_watat_year) : formattedRange;
+        }
+        return formattedRange;
     }
 
     private String getMRange(MonthGridItem fristDayInGrid, MonthGridItem lastDayInGrid) {
@@ -139,6 +145,12 @@ public class MonthFragment extends Fragment {
             MonthGridItem item = createMonthGridItem(mYear, mMonth, mDay, dateStatus, currentDay);
             Log.d(TAG, item.getEngDay() + " " + item.getMyaDay() + " " + item.getMyaMonth());
             itemList.add(item);
+            if (i == 1) {
+                firstDayOfM = item;
+            }
+            if (i == daysOfCurM) {
+                lastDayOfM = item;
+            }
         }
         int i = 1;
         //add next month days to grid list

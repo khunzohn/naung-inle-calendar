@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hilllander.naunginlecalendar.R;
 import com.hilllander.naunginlecalendar.model.MonthGridItem;
@@ -71,10 +70,8 @@ public class MonthRecyclerAdapter extends RecyclerView.Adapter<MonthRecyclerAdap
                     }
 
                 } else if (item.getDateStatus() == 0) {   // click on prev month's days
-                    Toast.makeText(context, "previous month's day", Toast.LENGTH_SHORT).show();
                     gridListener.onGridItemClick(0, item.getGreDate());
                 } else { // click on next month days
-                    Toast.makeText(context, "nextmonth's day", Toast.LENGTH_SHORT).show();
                     gridListener.onGridItemClick(2, item.getGreDate());
                 }
 

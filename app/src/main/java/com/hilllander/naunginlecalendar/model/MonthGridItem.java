@@ -28,6 +28,7 @@ public class MonthGridItem {
     private int dateStatus;
     private int specialDayFlag;
     private boolean currentDay;
+    private int yearType;
 
 
     private MonthGridItem(Context context, GregorianCalendar cal, int dateStatus, boolean currentDay) {
@@ -44,6 +45,7 @@ public class MonthGridItem {
         this.dateStatus = dateStatus;
         specialDayFlag = specialDay != null && specialDay.length > 0 ? 1 : 0;
         this.currentDay = currentDay;
+        this.yearType = mCal.getYearType();
 
     }
 
@@ -157,5 +159,9 @@ public class MonthGridItem {
      */
     public int getSpecialDayFlag() {
         return specialDayFlag;
+    }
+
+    public int getYearType() {
+        return yearType;
     }
 }
