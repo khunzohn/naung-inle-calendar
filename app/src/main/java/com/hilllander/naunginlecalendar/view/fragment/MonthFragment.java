@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hilllander.naunginlecalendar.R;
@@ -56,7 +55,6 @@ public class MonthFragment extends Fragment {
         TextView engYear = (TextView) view.findViewById(R.id.engYear);
         MMTextView myaYearRange = (MMTextView) view.findViewById(R.id.myaYearRange);
         MMTextView myaMonthRange = (MMTextView) view.findViewById(R.id.myaMonthRange);
-        ImageView specialDayImage = (ImageView) view.findViewById(R.id.specialDayImage);
         Bundle args = getArguments();
         int year = args.getInt(YEAR);
         int month = args.getInt(MONTH);
@@ -76,6 +74,7 @@ public class MonthFragment extends Fragment {
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 7, LinearLayoutManager.VERTICAL, false);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
+
         return view;
     }
 
@@ -117,13 +116,14 @@ public class MonthFragment extends Fragment {
         int prevMBaseDay = daysOfPrevM - trialingDays + DAY_OFF_SET;
         int mYear, mMonth, mDay;
         int dateStatus; // 0 = prevMonth 1= curMonth 2 = nextMonth
+
         //add trialing days to grid list
         for (int i = 0; i < trialingDays; i++) {
             mDay = prevMBaseDay++;
             mMonth = month == 0 ? 11 : month - 1; //if current month is jan then prevMonth will be Dec
             mYear = month == 0 ? year - 1 : year; // if current month is jan then preYear is decreased by 1
             dateStatus = 0;
-            MonthGridItem gridItem = createMonthGridItem(mYear, mMonth, mDay, dateStatus);
+            MonthGridItem gridItem = createMonthGridItem(mYear, mMonth, mDay, dateStatus, false);
             Log.d(TAG, gridItem.getEngDay() + " " + gridItem.getMyaDay() + " " + gridItem.getMyaMonth());
             itemList.add(gridItem);
         }
@@ -133,7 +133,10 @@ public class MonthFragment extends Fragment {
             mMonth = month;
             mYear = year;
             dateStatus = 1;
-            MonthGridItem item = createMonthGridItem(mYear, mMonth, mDay, dateStatus);
+            boolean currentDay = false;
+            if (mDay == curDay)
+                currentDay = true;
+            MonthGridItem item = createMonthGridItem(mYear, mMonth, mDay, dateStatus, currentDay);
             Log.d(TAG, item.getEngDay() + " " + item.getMyaDay() + " " + item.getMyaMonth());
             itemList.add(item);
         }
@@ -144,7 +147,7 @@ public class MonthFragment extends Fragment {
             mMonth = month == 11 ? 0 : month + 1; //if current month is Dec ,next month is jan
             mYear = month == 11 ? year + 1 : year; //if current month is Dec ,next year needs increment by 1
             dateStatus = 2;
-            MonthGridItem item = createMonthGridItem(mYear, mMonth, mDay, dateStatus);
+            MonthGridItem item = createMonthGridItem(mYear, mMonth, mDay, dateStatus, false);
             Log.d(TAG, item.getEngDay() + " " + item.getMyaDay() + " " + item.getMyaMonth());
             itemList.add(item);
         }
@@ -167,11 +170,11 @@ public class MonthFragment extends Fragment {
         return numOfDayInMonth(prevMonth, prevYear);
     }
 
-    private MonthGridItem createMonthGridItem(int mYear, int mMonth, int mDay, int dateStatus) {
+    private MonthGridItem createMonthGridItem(int mYear, int mMonth, int mDay, int dateStatus, boolean currentDay) {
         GregorianCalendar cal = new GregorianCalendar();
         cal.set(mYear, mMonth, mDay);
         Log.d(TAG + "createMonthGridItem", cal.get(Calendar.YEAR) + " " + cal.get(Calendar.MONTH) + " " + cal.get(Calendar.DAY_OF_MONTH));
 
-        return MonthGridItem.newInstance(getContext(), cal, dateStatus);
+        return MonthGridItem.newInstance(getContext(), cal, dateStatus, currentDay);
     }
 }

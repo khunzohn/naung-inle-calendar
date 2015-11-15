@@ -7,7 +7,6 @@
     <string-array name="spinner_item">
         <item>day</item>
         <item>month</item>
-        <item>year</item>
         <item>holidays</item>
     </string-array>
 

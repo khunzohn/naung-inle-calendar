@@ -18,23 +18,25 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.hilllander.calendar_api.kernel.CalendarKernel;
 import com.hilllander.calendar_api.model.WesternDate;
 import com.hilllander.naunginlecalendar.R;
+import com.hilllander.naunginlecalendar.util.listener.OnGridItemClickListener;
 import com.hilllander.naunginlecalendar.util.listener.SimpleGestureFilter;
 import com.hilllander.naunginlecalendar.util.listener.SimpleGestureFilter.SimpleGestureListener;
 import com.hilllander.naunginlecalendar.view.fragment.DayFragment;
 import com.hilllander.naunginlecalendar.view.fragment.HolidaysFragment;
 import com.hilllander.naunginlecalendar.view.fragment.MonthFragment;
-import com.hilllander.naunginlecalendar.view.fragment.YearFragment;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class MainActivity extends AppCompatActivity implements SimpleGestureListener {
+public class MainActivity extends AppCompatActivity implements SimpleGestureListener, OnGridItemClickListener {
     private static final String TAG = MainActivity.class.getSimpleName();
     private final int caltype = 1; //gregorian calendar
+    boolean firstClick = true; //TODO replace with fab funcitonality
     private SimpleGestureFilter detecter;
     private int currentDay = 0;
     private int currentMonth = 0;
@@ -45,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
     private double curJd;
     private boolean firstBackPress = true;
     private LinearLayout mainLayout;
+    private Spinner spinner;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
         mainLayout = (LinearLayout) findViewById(R.id.main_layout);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter
                 .createFromResource(this, R.array.spinner_item, android.R.layout.simple_spinner_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -139,12 +144,6 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
     private void inflateHolidaysFragment() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_content, HolidaysFragment.getInstance())
-                .commit();
-    }
-
-    private void inflateYearFragment() {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_content, YearFragment.getInstance(currentDate))
                 .commit();
     }
 
@@ -231,17 +230,12 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
                 setCurrentDate(wDate.getYear(), wDate.getMonth() - 1, wDate.getDay()); // WesternDate's month starts from 1
                 break;
             case SpinnerListener.MONTH:
+                firstClick = true; //TODO replace with fab functionality
                 currentMonth--;
                 if (currentMonth < 0) {
                     currentMonth = 11;
                     currentYear--;
                 }
-                currentDay = currentDay > numOfDayInCurMonth(currentMonth, currentYear) ?
-                        numOfDayInCurMonth(currentMonth, currentYear) : currentDay;
-                setCurrentDate(currentYear, currentMonth, currentDay);
-                break;
-            case SpinnerListener.YEAR:
-                currentYear--;
                 currentDay = currentDay > numOfDayInCurMonth(currentMonth, currentYear) ?
                         numOfDayInCurMonth(currentMonth, currentYear) : currentDay;
                 setCurrentDate(currentYear, currentMonth, currentDay);
@@ -268,17 +262,12 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
                 setCurrentDate(wDate.getYear(), wDate.getMonth() - 1, wDate.getDay()); // WesternDate's month starts from 1
                 break;
             case SpinnerListener.MONTH:
+                firstClick = true; //TODO replace with fab functionality
                 currentMonth++;
                 if (currentMonth > 11) {
                     currentMonth = 0;
                     currentYear++;
                 }
-                currentDay = currentDay > numOfDayInCurMonth(currentMonth, currentYear) ?
-                        numOfDayInCurMonth(currentMonth, currentYear) : currentDay;
-                setCurrentDate(currentYear, currentMonth, currentDay);
-                break;
-            case SpinnerListener.YEAR:
-                currentYear++;
                 currentDay = currentDay > numOfDayInCurMonth(currentMonth, currentYear) ?
                         numOfDayInCurMonth(currentMonth, currentYear) : currentDay;
                 setCurrentDate(currentYear, currentMonth, currentDay);
@@ -300,8 +289,6 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
                 return DayFragment.getInstance(currentDate, MainActivity.this);
             case SpinnerListener.MONTH:
                 return MonthFragment.getInstance(currentDate);
-            case SpinnerListener.YEAR:
-                return YearFragment.getInstance(currentDate);
             case SpinnerListener.HOLIDAYS:
                 return HolidaysFragment.getInstance();
             default:
@@ -346,11 +333,38 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
         }
     }
 
+    @Override
+    public void onGridItemClick(int monthDayFlag, GregorianCalendar date) {
+        int year = date.get(Calendar.YEAR);
+        int month = date.get(Calendar.MONTH);
+        int day = date.get(Calendar.DAY_OF_MONTH);
+        setCurrentDate(year, month, day);
+
+        switch (monthDayFlag) {
+            case 0: //click on previous month days
+                showPrev(SimpleGestureFilter.SWIPE_DOWN);
+                break;
+            case 1: //click on current month days
+                if (firstClick) {
+                    firstClick = false;
+                    Toast.makeText(this, "show fab", Toast.LENGTH_SHORT).show();
+                }
+
+                break;
+            case 2: //click on next month days
+                showNext(SimpleGestureFilter.SWIPE_UP);
+                break;
+            case 3: // click on selected day
+                spinner.setSelection(0, true);
+                break;
+        }
+
+    }
+
     private class SpinnerListener implements android.widget.AdapterView.OnItemSelectedListener {
         private static final int DAY = 0;
         private static final int MONTH = 1;
-        private static final int YEAR = 2;
-        private static final int HOLIDAYS = 3;
+        private static final int HOLIDAYS = 2;
 
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -362,10 +376,6 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
                 case MONTH:
                     currentContext = MONTH;
                     inflateMonthFragment(currentDate);
-                    break;
-                case YEAR:
-                    currentContext = YEAR;
-                    inflateYearFragment();
                     break;
                 case HOLIDAYS:
                     currentContext = HOLIDAYS;

@@ -8,9 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hilllander.naunginlecalendar.R;
 import com.hilllander.naunginlecalendar.model.MonthGridItem;
+import com.hilllander.naunginlecalendar.util.listener.OnGridItemClickListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,28 +27,60 @@ public class MonthRecyclerAdapter extends RecyclerView.Adapter<MonthRecyclerAdap
     private static final String TAG = MonthRecyclerAdapter.class.getSimpleName();
     private ArrayList<MonthGridItem> itemList;
     private Context context;
+    private OnGridItemClickListener gridListener;
+    private View selectedView;
+
 
     public MonthRecyclerAdapter(Context context, ArrayList<MonthGridItem> itemList) {
         this.context = context;
         this.itemList = itemList;
+        gridListener = (OnGridItemClickListener) context;
+
     }
 
     @Override
     public MonthRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.month_grid_item, viewGroup, false);
-
-//        view.setMinimumHeight(80);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(final ViewHolder viewHolder, int i) {
         final MonthGridItem item = itemList.get(i);
         Log.d(TAG + " onBind", item.getEngDay());
         viewHolder.eDay.setText(item.getEngDay());
         viewHolder.mMonth.setMyanmarText(item.getMyaMonth());
         viewHolder.mDay.setMyanmarText(item.getMyaDay());
+        viewHolder.rootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (item.getDateStatus() == 1) { // click current month's days
+                    if (selectedView != null) {    //not first click
+                        if (selectedView.equals(viewHolder.rootView)) {  // click on selected item
+                            gridListener.onGridItemClick(3, item.getGreDate());
+                        } else {    //click on different item
+                            selectedView.setBackgroundColor(context.getResources().getColor(R.color.white));
+                            selectedView = viewHolder.rootView;
+                            selectedView.setBackgroundColor(context.getResources().getColor(R.color.dark_blue_alpha));
+                            gridListener.onGridItemClick(1, item.getGreDate());
+                        }
+                    } else {    // first click on the grid items
+                        selectedView = viewHolder.rootView;
+                        selectedView.setBackgroundColor(context.getResources().getColor(R.color.dark_blue_alpha));
+                        gridListener.onGridItemClick(1, item.getGreDate());
+                    }
+
+                } else if (item.getDateStatus() == 0) {   // click on prev month's days
+                    Toast.makeText(context, "previous month's day", Toast.LENGTH_SHORT).show();
+                    gridListener.onGridItemClick(0, item.getGreDate());
+                } else { // click on next month days
+                    Toast.makeText(context, "nextmonth's day", Toast.LENGTH_SHORT).show();
+                    gridListener.onGridItemClick(2, item.getGreDate());
+                }
+
+            }
+
+        });
 
         if (i % 7 == 0 || i % 7 == 6) { //highlight weekend days
             viewHolder.eDay.setTextColor(context.getResources().getColor(R.color.red));
@@ -61,11 +95,12 @@ public class MonthRecyclerAdapter extends RecyclerView.Adapter<MonthRecyclerAdap
         } else if (item.getMonthStatus() == 3) { //highlight new moon
             viewHolder.specialDayImage.setImageDrawable(context.getResources().getDrawable(R.drawable.new_moon));
         }
+
         if (item.getDateStatus() == 0 || item.getDateStatus() == 2) { // highlight pre and next month's days
             viewHolder.rootView.setBackgroundColor(context.getResources().getColor(R.color.light_grey));
         }
         if (item.getSpecialDayFlag() == 1 &&    // highlight special day ,omit full and new moon day
-                (item.getDateStatus() != 0 || item.getDateStatus() != 2)) {
+                item.getDateStatus() != 1 && item.getDateStatus() != 3) {
             viewHolder.specialDayImage.setImageDrawable(context.getResources().getDrawable(R.drawable.special_day_image));
         }
     }

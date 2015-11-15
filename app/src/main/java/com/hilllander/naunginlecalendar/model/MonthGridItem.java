@@ -27,9 +27,10 @@ public class MonthGridItem {
     private String myaYear;
     private int dateStatus;
     private int specialDayFlag;
+    private boolean currentDay;
 
 
-    private MonthGridItem(Context context, GregorianCalendar cal, int dateStatus) {
+    private MonthGridItem(Context context, GregorianCalendar cal, int dateStatus, boolean currentDay) {
         this.context = context;
         this.wCal = cal;
         this.mCal = MyanmarCalendar.getInstance(wCal);
@@ -42,10 +43,16 @@ public class MonthGridItem {
         myaYear = mCal.getYearInMyanmar();
         this.dateStatus = dateStatus;
         specialDayFlag = specialDay != null && specialDay.length > 0 ? 1 : 0;
+        this.currentDay = currentDay;
+
     }
 
-    public static MonthGridItem newInstance(Context context, GregorianCalendar mCal, int dateStatus) {
-        return new MonthGridItem(context, mCal, dateStatus);
+    public static MonthGridItem newInstance(Context context, GregorianCalendar mCal, int dateStatus, boolean currentDay) {
+        return new MonthGridItem(context, mCal, dateStatus, currentDay);
+    }
+
+    public boolean isCurrentDay() {
+        return currentDay;
     }
 
     private String getMDay() {
