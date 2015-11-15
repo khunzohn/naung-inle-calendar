@@ -174,12 +174,6 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
             case SimpleGestureFilter.SWIPE_LEFT:
                 showNext(direction);
                 break;
-            case SimpleGestureFilter.SWIPE_DOWN:
-                showPrev(direction);
-                break;
-            case SimpleGestureFilter.SWIPE_UP:
-                showNext(direction);
-                break;
         }
     }
 
