@@ -100,7 +100,7 @@ public class MonthRecyclerAdapter extends RecyclerView.Adapter<MonthRecyclerAdap
             viewHolder.rootView.setBackgroundColor(context.getResources().getColor(R.color.light_grey));
         }
         if (item.getSpecialDayFlag() == 1 &&    // highlight special day ,omit full and new moon day
-                item.getDateStatus() != 1 && item.getDateStatus() != 3) {
+                item.getMonthStatus() != 1 && item.getMonthStatus() != 3) {
             viewHolder.specialDayImage.setImageDrawable(context.getResources().getDrawable(R.drawable.special_day_image));
         }
     }
