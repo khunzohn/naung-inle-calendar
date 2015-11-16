@@ -1,7 +1,6 @@
 package com.hilllander.naunginlecalendar.view.activity;
 
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
@@ -15,7 +14,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -30,12 +28,14 @@ import com.hilllander.naunginlecalendar.util.listener.SimpleGestureFilter.Simple
 import com.hilllander.naunginlecalendar.view.fragment.DayFragment;
 import com.hilllander.naunginlecalendar.view.fragment.HolidaysFragment;
 import com.hilllander.naunginlecalendar.view.fragment.MonthFragment;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity implements
-        SimpleGestureListener, OnGridItemClickListener, OnListItemClickListener {
+        SimpleGestureListener, OnGridItemClickListener,
+        OnListItemClickListener, com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
     private static final String TAG = MainActivity.class.getSimpleName();
     private final int caltype = 1; //gregorian calendar
     boolean firstClick = true; //TODO replace with fab funcitonality
@@ -105,24 +105,9 @@ public class MainActivity extends AppCompatActivity implements
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.date_picker) {
-            DatePickerDialog builder = new DatePickerDialog(MainActivity.this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                    setCurrentDate(year, month, day);
-                    curJd = kernel.W2J(year, month + 1, day, caltype); // MyanmarCalendar's month starts from 1
-                    Log.d(TAG, "curJd : dp " + curJd);
-                    int[] directions = animDirections(SimpleGestureFilter.SWIPE_UP);
-                    Fragment currentFragment = getCurrentFragment();
-                    getSupportFragmentManager().beginTransaction()
-                            .setCustomAnimations(directions[0], directions[1])
-                            .replace(R.id.main_content, currentFragment)
-                            .commit();
-                }
-            },
-                    currentDate.get(Calendar.YEAR),
-                    currentDate.get(Calendar.MONTH),
-                    currentDate.get(Calendar.DAY_OF_MONTH));
-            builder.show();
+
+            DatePickerDialog datePicker = DatePickerDialog.newInstance(this, currentYear, currentMonth, currentDay);
+            datePicker.show(getFragmentManager(), "Datepicker dialog");
         } else if (id == R.id.today) {
             GregorianCalendar cal = new GregorianCalendar();
             int
@@ -390,6 +375,19 @@ public class MainActivity extends AppCompatActivity implements
     public void onClickEngHolListItem(int year, int month, int day) {
         setCurrentDate(year, month - 1, day);
         spinner.setSelection(0);
+    }
+
+    @Override
+    public void onDateSet(DatePickerDialog datePickerDialog, int year, int month, int day) {
+        setCurrentDate(year, month, day);
+        curJd = kernel.W2J(year, month + 1, day, caltype); // MyanmarCalendar's month starts from 1
+        Log.d(TAG, "curJd : dp " + curJd);
+        int[] directions = animDirections(SimpleGestureFilter.SWIPE_UP);
+        Fragment currentFragment = getCurrentFragment();
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(directions[0], directions[1])
+                .replace(R.id.main_content, currentFragment)
+                .commit();
     }
 
     private class SpinnerListener implements android.widget.AdapterView.OnItemSelectedListener {
