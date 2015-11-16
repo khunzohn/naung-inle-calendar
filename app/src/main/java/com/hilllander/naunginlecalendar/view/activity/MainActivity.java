@@ -24,16 +24,21 @@ import com.hilllander.calendar_api.kernel.CalendarKernel;
 import com.hilllander.calendar_api.model.WesternDate;
 import com.hilllander.naunginlecalendar.R;
 import com.hilllander.naunginlecalendar.util.listener.OnGridItemClickListener;
+import com.hilllander.naunginlecalendar.util.listener.OnListItemClickListener;
 import com.hilllander.naunginlecalendar.util.listener.SimpleGestureFilter;
 import com.hilllander.naunginlecalendar.util.listener.SimpleGestureFilter.SimpleGestureListener;
 import com.hilllander.naunginlecalendar.view.fragment.DayFragment;
 import com.hilllander.naunginlecalendar.view.fragment.HolidaysFragment;
 import com.hilllander.naunginlecalendar.view.fragment.MonthFragment;
 
+import mm.technomation.mmtext.MMTextView;
+import mm.technomation.mmtext.mmtext;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class MainActivity extends AppCompatActivity implements SimpleGestureListener, OnGridItemClickListener {
+public class MainActivity extends AppCompatActivity implements
+        SimpleGestureListener, OnGridItemClickListener, OnListItemClickListener {
     private static final String TAG = MainActivity.class.getSimpleName();
     private final int caltype = 1; //gregorian calendar
     boolean firstClick = true; //TODO replace with fab funcitonality
@@ -48,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
     private boolean firstBackPress = true;
     private LinearLayout mainLayout;
     private Spinner spinner;
+
 
 
 
@@ -69,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
         spinner.setOnItemSelectedListener(new SpinnerListener());
         GregorianCalendar today = new GregorianCalendar();
         setCurrentDate(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH));
-
         detecter = new SimpleGestureFilter(this, this);
     }
 
@@ -362,6 +367,20 @@ public class MainActivity extends AppCompatActivity implements SimpleGestureList
                 .setCustomAnimations(directions[0], directions[1])
                 .replace(R.id.main_content, currentFragment)
                 .commit();
+    }
+
+    @Override
+    public void onClickMyaHolListItem(int mYear, int mMonth, int mType, int mStatus, int wanWaxDay) {
+        double jd = kernel.M2J(mYear, mMonth, mType, mStatus, wanWaxDay);
+        WesternDate wDate = kernel.J2W(jd, 1);
+        setCurrentDate(wDate.getYear(), wDate.getMonth() - 1, wDate.getDay());
+        spinner.setSelection(0, true);
+    }
+
+    @Override
+    public void onClickEngHolListItem(int year, int month, int day) {
+        setCurrentDate(year, month - 1, day);
+        spinner.setSelection(0);
     }
 
     private class SpinnerListener implements android.widget.AdapterView.OnItemSelectedListener {

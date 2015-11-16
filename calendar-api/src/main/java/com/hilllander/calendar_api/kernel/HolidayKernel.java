@@ -7,6 +7,10 @@ package com.hilllander.calendar_api.kernel;
 import android.content.Context;
 
 import com.hilllander.calendar_api.R;
+import com.hilllander.calendar_api.model.EngSDaysBundle;
+import com.hilllander.calendar_api.model.MyaSDaysBundle;
+
+import java.util.ArrayList;
 
 /**
  * Kernel that calculates holidays based on the open sourced
@@ -122,33 +126,33 @@ public class HolidayKernel {
      * @return name of myanmar holiday if exist
      */
     public String myaHoliday(int my, int mm, int md, int ms) {
-        int h = 0;
+        int flag = 0;
         String hs = "";
         if ((mm == 2) && (ms == 1)) {
-            h = 1;
+            flag = 1;
             hs = context.getString(R.string.buddha_day);
         }//Vesak day
         else if ((mm == 4) && (ms == 1)) {
-            h = 1;
+            flag = 1;
             hs = context.getString(R.string.start_of_buddha_lent);
         }//waso day
         else if ((mm == 7) && (ms == 1)) {
-            h = 1;
+            flag = 1;
             hs = context.getString(R.string.end_of_buddha_lent);
         } else if ((mm == 8) && (ms == 1)) {
-            h = 1;
+            flag = 1;
             hs = context.getString(R.string.tazaungdaing);
         } else if ((my >= 1282) && (mm == 8) && (md == 25)) {
-            h = 1;
+            flag = 1;
             hs = context.getString(R.string.national_day);
         } else if ((mm == 10) && (md == 1)) {
-            h = 1;
+            flag = 1;
             hs = context.getString(R.string.karen_new_year_day);
         } else if ((mm == 12) && (ms == 1)) {
-            h = 1;
+            flag = 1;
             hs = context.getString(R.string.tabaung_bwe);
         }
-        if (h == 1)
+        if (flag == 1)
             return hs;
         else
             return "";
@@ -194,6 +198,71 @@ public class HolidayKernel {
             return holiday;
         else
             return "";
+    }
+
+    public ArrayList<EngSDaysBundle> getEngspecialDayBundle(final int year) {
+        ArrayList<EngSDaysBundle> specialDays = new ArrayList<>();
+        if (year >= 1915) {
+            specialDays.add(new EngSDaysBundle(context.getString(R.string.g_aungsan_birthday)
+                    , year, 2, 13));
+        }
+        if (year >= 1969) {
+            specialDays.add(new EngSDaysBundle(context.getString(R.string.valentines_day),
+                    year, 2, 14));
+        }
+        if (year >= 1970) {
+            specialDays.add(new EngSDaysBundle(context.getString(R.string.earth_day),
+                    year, 4, 22));
+        }
+        if (year >= 1392) {
+            specialDays.add(new EngSDaysBundle(context.getString(R.string.april_fools_day),
+                    year, 4, 1));
+        }
+        if (year >= 1948) {
+            specialDays.add(new EngSDaysBundle(context.getString(R.string.red_cross_day),
+                    year, 5, 8));
+        }
+        if (year >= 1994) {
+            specialDays.add(new EngSDaysBundle(context.getString(R.string.world_teachers_day),
+                    year, 10, 5));
+        }
+        if (year >= 1947) {
+            specialDays.add(new EngSDaysBundle(context.getString(R.string.united_nations_day),
+                    year, 10, 24));
+        }
+        specialDays.add(new EngSDaysBundle(context.getString(R.string.halloween),
+                year, 10, 31));
+        specialDays.add(new EngSDaysBundle(context.getString(R.string.new_year_day),
+                year, 1, 1));
+
+        if (year >= 1948) {
+            specialDays.add(new EngSDaysBundle(context.getString(R.string.independence_day),
+                    year, 1, 4));
+        }
+        if (year >= 1947) {
+            specialDays.add(new EngSDaysBundle(context.getString(R.string.union_day),
+                    year, 2, 12));
+        }
+        if (year >= 1958) {
+            specialDays.add(new EngSDaysBundle(context.getString(R.string.pheasants_day),
+                    year, 3, 2));
+        }
+        if (year >= 1945) {
+            specialDays.add(new EngSDaysBundle(context.getString(R.string.resistance_day),
+                    year, 3, 27));
+        }
+        if (year >= 1923) {
+            specialDays.add(new EngSDaysBundle(context.getString(R.string.labour_day),
+                    year, 5, 1));
+        }
+        if (year >= 1947) {
+            specialDays.add(new EngSDaysBundle(context.getString(R.string.martyars_day),
+                    year, 7, 19));
+        }
+        specialDays.add(new EngSDaysBundle(context.getString(R.string.christmas_day),
+                year, 12, 25));
+
+        return specialDays;
     }
 
     /**
@@ -303,4 +372,19 @@ public class HolidayKernel {
         }
         return -1;
     }
+
+    /**
+     * get all myanmar date special days of specified year
+     *
+     * @param my myanmar year
+     * @return array of special days
+     * public double M2J(int mYear, int mMonth, int mType, int mStatus, int wanWaxDay) {
+     */
+    public ArrayList<MyaSDaysBundle> getMyaSpecialDayBundle(final int my) {
+        //TODO add more myanmar holidays
+        ArrayList<MyaSDaysBundle> specialDays = new ArrayList<>();
+        specialDays.add(new MyaSDaysBundle(context.getString(R.string.buddha_day), my, 2, 0, 1, 15));
+        return specialDays;
+    }
+
 }

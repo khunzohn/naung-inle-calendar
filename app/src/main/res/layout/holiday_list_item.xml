@@ -4,9 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.nhaarman.listviewanimations.itemmanipulation.DynamicListView
-        android:id="@+id/holidaylistview"
+    <mm.technomation.mmtext.MMTextView
+        android:id="@+id/holidayItem"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="30dp" />
 
 </LinearLayout>
