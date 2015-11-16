@@ -31,9 +31,6 @@ import com.hilllander.naunginlecalendar.view.fragment.DayFragment;
 import com.hilllander.naunginlecalendar.view.fragment.HolidaysFragment;
 import com.hilllander.naunginlecalendar.view.fragment.MonthFragment;
 
-import mm.technomation.mmtext.MMTextView;
-import mm.technomation.mmtext.mmtext;
-
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -148,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private void inflateHolidaysFragment() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_content, HolidaysFragment.getInstance())
+                .replace(R.id.main_content, HolidaysFragment.getInstance(currentDate))
                 .commit();
     }
 
@@ -239,6 +236,12 @@ public class MainActivity extends AppCompatActivity implements
                         numOfDayInCurMonth(currentMonth, currentYear) : currentDay;
                 setCurrentDate(currentYear, currentMonth, currentDay);
                 break;
+            case SpinnerListener.HOLIDAYS:
+                currentYear--;
+                currentDay = currentDay > numOfDayInCurMonth(currentMonth, currentYear) ?
+                        numOfDayInCurMonth(currentMonth, currentYear) : currentDay;
+                setCurrentDate(currentYear, currentMonth, currentDay);
+                break;
         }
     }
 
@@ -271,6 +274,12 @@ public class MainActivity extends AppCompatActivity implements
                         numOfDayInCurMonth(currentMonth, currentYear) : currentDay;
                 setCurrentDate(currentYear, currentMonth, currentDay);
                 break;
+            case SpinnerListener.HOLIDAYS:
+                currentYear++;
+                currentDay = currentDay > numOfDayInCurMonth(currentMonth, currentYear) ?
+                        numOfDayInCurMonth(currentMonth, currentYear) : currentDay;
+                setCurrentDate(currentYear, currentMonth, currentDay);
+                break;
         }
     }
 
@@ -289,7 +298,7 @@ public class MainActivity extends AppCompatActivity implements
             case SpinnerListener.MONTH:
                 return MonthFragment.getInstance(currentDate);
             case SpinnerListener.HOLIDAYS:
-                return HolidaysFragment.getInstance();
+                return HolidaysFragment.getInstance(currentDate);
             default:
                 return DayFragment.getInstance(currentDate, MainActivity.this);
         }

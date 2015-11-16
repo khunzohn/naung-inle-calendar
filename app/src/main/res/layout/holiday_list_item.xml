@@ -7,6 +7,8 @@
     <mm.technomation.mmtext.MMTextView
         android:id="@+id/holidayItem"
         android:layout_width="match_parent"
-        android:layout_height="30dp" />
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_4dp"
+        android:textColor="@color/accent" />
 
 </LinearLayout>

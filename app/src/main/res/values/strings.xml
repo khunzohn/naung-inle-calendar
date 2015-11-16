@@ -10,6 +10,11 @@
         <item>holidays</item>
     </string-array>
 
+    <string-array name="holiday_spinner_item">
+        <item>English</item>
+        <item>Myanmar</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_test">TestActivity</string>
@@ -34,4 +39,7 @@
     <string name="special_day_image">image to highlight special day</string>
     <string name="big_watat_year">ဝါကြီးထပ်နှစ်</string>
     <string name="small_watat_year">ဝါငယ်ထပ်နှစ်</string>
+    <string name="eng_era">ခရဇ်သက္ကရာဇ်</string>
+    <string name="holidays">၏ထူးခြားရက်များ</string>
+    <string name="mya_era">မြန်မာသက္ကရာဇ်</string>
 </resources>
