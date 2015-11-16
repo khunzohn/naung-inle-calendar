@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements
         GregorianCalendar today = new GregorianCalendar();
         setCurrentDate(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH));
         detecter = new SimpleGestureFilter(this, this);
+
     }
 
     private void setCurrentDate(int year, int month, int day) {
@@ -91,6 +92,9 @@ public class MainActivity extends AppCompatActivity implements
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        if (menu != null) {
+            menu.getItem(0).setTitle(String.valueOf(new GregorianCalendar().get(Calendar.DAY_OF_MONTH)));
+        }
         return true;
     }
 
