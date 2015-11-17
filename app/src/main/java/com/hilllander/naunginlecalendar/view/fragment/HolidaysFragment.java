@@ -38,7 +38,7 @@ public class HolidaysFragment extends Fragment {
     private DynamicListView holidaylistview;
     private HolidayKernel holKernel;
     private OnListItemClickListener onListClickListener;
-    private int holidayContext = 0; //0 = English, 1 = myanmar
+    private int holidayContext = 1; //0 = English, 1 = myanmar
     private int eYear, mYear;
     public HolidaysFragment() {
     }
@@ -102,6 +102,7 @@ public class HolidaysFragment extends Fragment {
                         R.array.holiday_spinner_item, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         holidaySpinner.setAdapter(spinnerAdapter);
+        holidaySpinner.setSelection(holidayContext);
         holidaySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -137,8 +138,10 @@ public class HolidaysFragment extends Fragment {
         public MyAdapter(int holContext) {
             this.holContext = holContext;
             if (holContext == 0) { //English
+                mHolidays = null;
                 eHolidays = holKernel.getEngspecialDayBundle(eYear);
             } else {
+                eHolidays = null;
                 mHolidays = holKernel.getMyaSpecialDayBundle(mYear);
             }
         }

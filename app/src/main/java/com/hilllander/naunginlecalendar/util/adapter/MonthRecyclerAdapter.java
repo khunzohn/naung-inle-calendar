@@ -86,7 +86,7 @@ public class MonthRecyclerAdapter extends RecyclerView.Adapter<MonthRecyclerAdap
             viewHolder.eDay.setBackgroundColor(context.getResources().getColor(R.color.dark_blue));
             viewHolder.eDay.setTextColor(context.getResources().getColor(R.color.white));
         }
-        if (item.getMonthStatus() == 1) { // highlight full
+        if (item.getMonthStatus() == 1) { // highlight full moon
             viewHolder.specialDayImage.setImageDrawable(context.getResources().getDrawable(R.drawable.full_moon));
         } else if (item.getMonthStatus() == 3) { //highlight new moon
             viewHolder.specialDayImage.setImageDrawable(context.getResources().getDrawable(R.drawable.new_moon));

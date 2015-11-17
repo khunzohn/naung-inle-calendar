@@ -6,7 +6,7 @@
     <string name="thingyan_akyat">သင်္ကြန်အကြတ်</string>
     <string name="thingyan_akya">သင်္ကြန်အကျ</string>
     <string name="thingyan_akyo">သင်္ကြန်အကြို</string>
-    <string name="holiday">အားလပ်ရက်</string>
+    <string name="official_day_off">ရုံးပိတ်ရက်</string>
     <string name="new_year_day">နှစ်သစ်ကူး</string>
     <string name="independence_day">လွတ်လပ်ရေးနေ့</string>
     <string name="union_day">ပြည်ထောင်စုနေ့</string>
@@ -15,7 +15,7 @@
     <string name="labour_day">အလုပ်သမားနေ့</string>
     <string name="martyars_day">အာဇာနည်နေ့</string>
     <string name="christmas_day">ခရဇ်စမတ်</string>
-    <string name="buddha_day">ဗုဒ္ဓနေ့</string>
+    <string name="buddha_day">ညောင်ရေသွန်းပွဲ</string>
     <string name="start_of_buddha_lent">ဝါဝင်</string>
     <string name="end_of_buddha_lent">ဝါထွက်</string>
     <string name="tazaungdaing">တန်ဆောင်တိုင်</string>
@@ -41,7 +41,7 @@
     <string name="taungpyone_pwe">တောင်ပြုန်းပွဲ</string>
     <string name="yadanagu_pwe">ရာတနာဂူပွဲ</string>
     <string name="mon_women_day">မွန်အမျိုးသမီးများနေ့</string>
-    <string name="diwali">ဒီဝါလီနေ့</string>
+    <string name="diwali">ဒီပါဝါလီနေ့</string>
     <string name="eid">အစ်နေ့</string>
     <string name="yatyotema">ရက်ယုတ်မာ</string>
     <string name="amyeittasote">အမိတ္တစုတ်</string>

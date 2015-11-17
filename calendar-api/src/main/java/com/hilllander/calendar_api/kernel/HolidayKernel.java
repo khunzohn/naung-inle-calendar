@@ -9,6 +9,7 @@ import android.content.Context;
 import com.hilllander.calendar_api.R;
 import com.hilllander.calendar_api.model.EngSDaysBundle;
 import com.hilllander.calendar_api.model.MyaSDaysBundle;
+import com.hilllander.calendar_api.util.Constant;
 
 import java.util.ArrayList;
 
@@ -33,14 +34,13 @@ public class HolidayKernel {
      * @return thingyan day if exist
      */
     public String thingyan(double jdn, int my, int mmt) {
-        double SY = 1577917828 / 4320000; //solar year (365.2587565)
         double MO = 1954168.050623; //beginning of 0 ME
         int BGNTG = 1100;//start of Thingyan
         int flag = 0;
         String holiday = "";
         double akn, atn;
         int SE3 = 1312; //start of third era
-        double ja = SY * (my + mmt) + MO;
+        double ja = (Constant.SY * (my + mmt)) + MO;
         double jk;
         if (my >= SE3) jk = ja - 2.169918982;
         else jk = ja - 2.1675;
@@ -66,7 +66,7 @@ public class HolidayKernel {
             } else if (((my + mmt) >= 1362) && ((jdn == (akn - 2)) ||
                     ((jdn >= (atn + 2)) && (jdn <= (akn + 7))))) {
                 flag = 1;
-                holiday = context.getString(R.string.holiday);
+                holiday = context.getString(R.string.official_day_off);
             }
         }
         if (flag == 1)
@@ -378,12 +378,51 @@ public class HolidayKernel {
      *
      * @param my myanmar year
      * @return array of special days
-     * public double M2J(int mYear, int mMonth, int mType, int mStatus, int wanWaxDay) {
+     *
      */
     public ArrayList<MyaSDaysBundle> getMyaSpecialDayBundle(final int my) {
         //TODO add more myanmar holidays
         ArrayList<MyaSDaysBundle> specialDays = new ArrayList<>();
         specialDays.add(new MyaSDaysBundle(context.getString(R.string.buddha_day), my, 2, 0, 1, 15));
+        if (my >= 1309) {
+            specialDays.add(new MyaSDaysBundle(context.getString(R.string.mon_national_day), my, 11, 0, 2, 16));
+        }
+        //the ancient founding of Hanthawady
+        specialDays.add(new MyaSDaysBundle(context.getString(R.string.shan_new_year_day), my, 9, 0, 0, 1));
+        if (my >= 1306) {
+            specialDays.add(new MyaSDaysBundle(context.getString(R.string.authors_day), my, 9, 0, 0, 1));
+
+        }//Nadaw waxing moon 1
+
+        specialDays.add(new MyaSDaysBundle(context.getString(R.string.mahathamata_day), my, 3, 0, 1, 15));
+        //Nayon full moon
+
+        specialDays.add(new MyaSDaysBundle(context.getString(R.string.garudhama_day), my, 6, 0, 1, 15));
+        //Tawthalin full moon
+        if (my >= 1356) {
+            specialDays.add(new MyaSDaysBundle(context.getString(R.string.mothers_day), my, 10, 0, 1, 15));
+        }//Pyatho full moon
+        if (my >= 1370) {
+            specialDays.add(new MyaSDaysBundle(context.getString(R.string.fathers_day), my, 12, 0, 1, 15));
+        }
+        //Tabaung full moon
+
+        specialDays.add(new MyaSDaysBundle(context.getString(R.string.metta_day), my, 5, 0, 1, 15));
+        //if(my>=1324)  {flag=2; holidays[1]="Mon Revolution Day";}//Mon Revolution day
+        //Waguang full moon
+
+        specialDays.add(new MyaSDaysBundle(context.getString(R.string.taungpyone_pwe), my, 5, 0, 0, 10));
+        //Taung Pyone Pwe
+
+        specialDays.add(new MyaSDaysBundle(context.getString(R.string.yadanagu_pwe), my, 5, 0, 3, 23));
+        //Yadanagu Pwe
+        /*else if ((my >= 1119) && (mm == 2) && (md == 23)) {
+            flag = 1;
+            holidays[0] = "Mon Fallen Day";
+        } */
+
+        specialDays.add(new MyaSDaysBundle(context.getString(R.string.mon_women_day), my, 12, 0, 0, 12));
+
         return specialDays;
     }
 
