@@ -8,7 +8,6 @@ import com.hilllander.calendar_api.kernel.CalendarKernel;
 import com.hilllander.calendar_api.kernel.HolidayKernel;
 import com.hilllander.calendar_api.kernel.MarketDayKernel;
 import com.hilllander.calendar_api.model.AstroDetail;
-import com.hilllander.calendar_api.model.MyaSDaysBundle;
 import com.hilllander.calendar_api.model.MyanmarDate;
 import com.hilllander.calendar_api.model.WesternDate;
 import com.hilllander.calendar_api.util.DateFormatter;
@@ -271,6 +270,7 @@ public class MyanmarCalendar {
         String holidays = thingyan + "-" + engHoliday + "-" + myaHoliday + "-" + ecd + "-" + otherHol;
         if (mcd != null && mcd.length > 0) {
             for (String m : mcd) {
+                if (m != null)
                 holidays += "-" + m;
             }
         }

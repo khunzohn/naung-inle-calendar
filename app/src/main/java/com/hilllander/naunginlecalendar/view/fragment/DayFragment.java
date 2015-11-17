@@ -85,8 +85,10 @@ public class DayFragment extends Fragment {
 
         String[] holList = args.getStringArray(HOLIDAYS);
         String holText = "";
-        for (String hol : holList)
-            holText += hol + "\n";
+        for (String hol : holList) {
+            if (hol != null && !hol.isEmpty())
+                holText += hol + "\n";
+        }
         holidays.setMyanmarText(holText);
         ArrayList<String> marList = args.getStringArrayList(MARKETDAYS);
 
