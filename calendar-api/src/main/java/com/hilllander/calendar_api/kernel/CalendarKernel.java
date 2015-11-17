@@ -267,7 +267,7 @@ public class CalendarKernel {
         int m2 = (int) Math.floor(mStatus / 2);
         int md = m1 * (15 + m2 * (monthLength - 15)) + (1 - m1) * (wanWaxDay + 15 * m2);
         mMonth += 4 * Math.floor((16 - mMonth) / 16) + 12 * Math.floor((15 - mMonth) / 12);
-        int t = (int) Math.floor(mMonth / 13);
+        double t = Math.floor(mMonth / 13);
         double s = 29.5 + t * (isWatatGyee(mYear) ? 1 : 0) / 5;
         double c = 117 + t * (isWatatGyee(mYear) ? 1 : 0) * 14 / 5;
         int numOfDays = (int) (md + Math.floor(s * mMonth - c - 0.1));
@@ -288,7 +288,7 @@ public class CalendarKernel {
      */
     public double W2J(int year, int month, int day, int calType) {
         calType = calType > 0 ? calType : 0;
-        long SG = 2361222; //Gregorian start in English calendar (1752/Sep/14)
+        double SG = 2361222; //Gregorian start in English calendar (1752/Sep/14)
         int a = (int) Math.floor((14 - month) / 12);
         year = year + 4800 - a;
         month = month + (12 * a) - 3;

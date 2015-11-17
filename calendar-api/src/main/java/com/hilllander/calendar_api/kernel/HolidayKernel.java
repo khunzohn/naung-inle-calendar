@@ -385,7 +385,7 @@ public class HolidayKernel {
         ArrayList<MyaSDaysBundle> specialDays = new ArrayList<>();
         specialDays.add(new MyaSDaysBundle(context.getString(R.string.buddha_day), my, 2, 0, 1, 15));
         if (my >= 1309) {
-            specialDays.add(new MyaSDaysBundle(context.getString(R.string.mon_national_day), my, 11, 0, 2, 16));
+            specialDays.add(new MyaSDaysBundle(context.getString(R.string.mon_national_day), my, 11, 0, 2, 1));
         }
         //the ancient founding of Hanthawady
         specialDays.add(new MyaSDaysBundle(context.getString(R.string.shan_new_year_day), my, 9, 0, 0, 1));
@@ -414,7 +414,7 @@ public class HolidayKernel {
         specialDays.add(new MyaSDaysBundle(context.getString(R.string.taungpyone_pwe), my, 5, 0, 0, 10));
         //Taung Pyone Pwe
 
-        specialDays.add(new MyaSDaysBundle(context.getString(R.string.yadanagu_pwe), my, 5, 0, 3, 23));
+        specialDays.add(new MyaSDaysBundle(context.getString(R.string.yadanagu_pwe), my, 5, 0, 2, 8));
         //Yadanagu Pwe
         /*else if ((my >= 1119) && (mm == 2) && (md == 23)) {
             flag = 1;
