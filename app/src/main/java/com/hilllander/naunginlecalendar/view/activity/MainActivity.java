@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements
     private boolean firstBackPress = true;
     private LinearLayout mainLayout;
     private Spinner spinner;
+    private int holContext = 0;
 
 
 
@@ -134,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private void inflateHolidaysFragment() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_content, HolidaysFragment.getInstance(currentDate))
+                .replace(R.id.main_content, HolidaysFragment.getInstance(currentDate, holContext))
                 .commit();
     }
 
@@ -287,7 +288,7 @@ public class MainActivity extends AppCompatActivity implements
             case SpinnerListener.MONTH:
                 return MonthFragment.getInstance(currentDate);
             case SpinnerListener.HOLIDAYS:
-                return HolidaysFragment.getInstance(currentDate);
+                return HolidaysFragment.getInstance(currentDate, holContext);
             default:
                 return DayFragment.getInstance(currentDate, MainActivity.this);
         }
@@ -379,6 +380,11 @@ public class MainActivity extends AppCompatActivity implements
     public void onClickEngHolListItem(int year, int month, int day) {
         setCurrentDate(year, month - 1, day);
         spinner.setSelection(0);
+    }
+
+    @Override
+    public void onHolidayListContextChange(int holContext) {
+        this.holContext = holContext;
     }
 
     @Override

@@ -35,16 +35,17 @@ public class HolidaysFragment extends Fragment {
     private static final String ENG_YEAR = "english year";
     private static final String MYA_YEAR_STRING = "myanmar year string";
     private static final String MYA_YEAR = "myanmar year";
+    private static final String HOL_CONTEXT = "holiday context";
     String mYearString;
     private DynamicListView holidaylistview;
     private OnListItemClickListener onListClickListener;
-    private int holidayContext = 1; //0 = English, 1 = myanmar
+    private int holidayContext; //0 = English, 1 = myanmar
     private int eYear, mYear;
 
     public HolidaysFragment() {
     }
 
-    public static Fragment getInstance(GregorianCalendar curDate) {
+    public static Fragment getInstance(GregorianCalendar curDate, int holContext) {
         int eYear = curDate.get(Calendar.YEAR);
         MyanmarCalendar mCal = MyanmarCalendar.getInstance(curDate);
         String mYearString = mCal.getYearInMyanmar();
@@ -54,6 +55,7 @@ public class HolidaysFragment extends Fragment {
         args.putInt(ENG_YEAR, eYear);
         args.putString(MYA_YEAR_STRING, mYearString);
         args.putInt(MYA_YEAR, mYear);
+        args.putInt(HOL_CONTEXT, holContext);
         fragment.setArguments(args);
         return fragment;
     }
@@ -97,6 +99,7 @@ public class HolidaysFragment extends Fragment {
         eYear = args.getInt(ENG_YEAR);
         mYearString = args.getString(MYA_YEAR_STRING);
         mYear = args.getInt(MYA_YEAR);
+        holidayContext = args.getInt(HOL_CONTEXT);
         ArrayAdapter<CharSequence> spinnerAdapter =
                 ArrayAdapter.createFromResource(getContext(),
                         R.array.holiday_spinner_item, android.R.layout.simple_spinner_item);
@@ -107,6 +110,7 @@ public class HolidaysFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 holidayContext = i;
+                onListClickListener.onHolidayListContextChange(holidayContext);
                 if (holidayContext == 0) { //English
                     tvYear.setMyanmarText(getContext().getString(R.string.eng_era) + " " + eYear + " " +
                             getContext().getString(R.string.holidays));
