@@ -16,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.hilllander.calendar_api.kernel.CalendarKernel;
 import com.hilllander.calendar_api.model.WesternDate;
@@ -38,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements
         OnListItemClickListener, com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
     private static final String TAG = MainActivity.class.getSimpleName();
     private final int caltype = 1; //gregorian calendar
-    boolean firstClick = true; //TODO replace with fab funcitonality
     private SimpleGestureFilter detecter;
     private int currentDay = 0;
     private int currentMonth = 0;
@@ -216,7 +214,6 @@ public class MainActivity extends AppCompatActivity implements
                 setCurrentDate(wDate.getYear(), wDate.getMonth() - 1, wDate.getDay()); // WesternDate's month starts from 1
                 break;
             case SpinnerListener.MONTH:
-                firstClick = true; //TODO replace with fab functionality
                 currentMonth--;
                 if (currentMonth < 0) {
                     currentMonth = 11;
@@ -254,7 +251,6 @@ public class MainActivity extends AppCompatActivity implements
                 setCurrentDate(wDate.getYear(), wDate.getMonth() - 1, wDate.getDay()); // WesternDate's month starts from 1
                 break;
             case SpinnerListener.MONTH:
-                firstClick = true; //TODO replace with fab functionality
                 currentMonth++;
                 if (currentMonth > 11) {
                     currentMonth = 0;
@@ -343,11 +339,6 @@ public class MainActivity extends AppCompatActivity implements
                 showCur(SimpleGestureFilter.SWIPE_DOWN);
                 break;
             case 1: //click on current month days
-                if (firstClick) {
-                    firstClick = false;
-                    Toast.makeText(this, "show fab", Toast.LENGTH_SHORT).show();
-                }
-
                 break;
             case 2: //click on next month days
                 showCur(SimpleGestureFilter.SWIPE_UP);
