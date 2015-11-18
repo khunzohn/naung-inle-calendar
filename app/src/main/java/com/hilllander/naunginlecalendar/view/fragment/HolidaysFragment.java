@@ -130,6 +130,20 @@ public class HolidaysFragment extends Fragment {
         return view;
     }
 
+    private ViewHolder getViewHolder(View view) {
+        return new ViewHolder(view);
+    }
+
+    static class ViewHolder {
+        MMTextView holidayItem;
+        View view;
+
+        public ViewHolder(View view) {
+            this.view = view;
+            holidayItem = (MMTextView) view.findViewById(R.id.holidayItem);
+        }
+    }
+
     private class MyAdapter extends BaseAdapter {
         private ArrayList<MyaSDaysBundle> mHolidays;
         private ArrayList<EngSDaysBundle> eHolidays;
@@ -180,10 +194,10 @@ public class HolidaysFragment extends Fragment {
             if (view == null) {
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.holiday_list_item, viewGroup, false);
             }
-            MMTextView holidayItem = (MMTextView) view.findViewById(R.id.holidayItem);
+            ViewHolder holder = getViewHolder(view);
             if (holContext == 0) {//English
                 final EngSDaysBundle eBundle = eHolidays.get(i);
-                holidayItem.setMyanmarText(eBundle.getName());
+                holder.holidayItem.setMyanmarText(eBundle.getName());
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -192,7 +206,7 @@ public class HolidaysFragment extends Fragment {
                 });
             } else { // Myanmar
                 final MyaSDaysBundle mBundle = mHolidays.get(i);
-                holidayItem.setMyanmarText(mBundle.getName());
+                holder.holidayItem.setMyanmarText(mBundle.getName());
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

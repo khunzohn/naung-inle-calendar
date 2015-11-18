@@ -32,7 +32,7 @@
     <string name="halloween">ဟောလိုးဝင်း</string>
     <string name="mon_national_day">မွန်အမျိုးသားနေ့</string>
     <string name="shan_new_year_day">ရှမ်းနှစ်သစ်ကူး</string>
-    <string name="authors_day">စာရေးဆရာများနေ့</string>
+    <string name="authors_day">စာဆိုတော်နေ့</string>
     <string name="mahathamata_day">မဟာသမ္မတနေ့</string>
     <string name="garudhama_day">ဂရုဓမ္မနေ့</string>
     <string name="mothers_day">အမေများနေ့</string>
@@ -71,6 +71,23 @@
     <string name="naung">နှောင်း</string>
     <string name="du">ဒု</string>
     <string name="yat">ရက်</string>
+    <string name="pdof_indein_jaypawkone_ns">(အင်းတိမ်ကျေးပေါခုံညကျိန်း)</string>
+    <string name="pdof_indein_heya_ns">(အင်းတိမ်နေ့ဆွမ်း)\n(ဟဲယာရွာမညကျိန်း)</string>
+    <string name="pdof_heya_ns">(ဟဲယာရွာမညကျိန်း)</string>
+    <string name="pdof_ngaphechaung_ns">(ငါးဖယ်ချောင်းညကျိန်း)</string>
+    <string name="pdof_jaysakhone_ns">(ကြေးစားကုန်းညကျိန်း)</string>
+    <string name="pdof_pwaesakhone_linkin_ns">(ပွဲစားကုန်းနေ့ဆွမ်း)\n(လင်းကင်းညကျိန်း)</string>
+    <string name="pdof_nyaungshwe_ns">(ညောင်ရွှေညကျိန်း)</string>
+    <string name="pdof_nangthe_maingthauk_ns">(နန်းသဲနေ့ဆွမ်း)\n(မိုင်းသောက်ညကျိန်း)</string>
+    <string name="pdof_thaleoo_ns">(သလဲဉီးညကျိန်း)</string>
+    <string name="pdof_kaylar_sayatkyi_ns">(ကေလာနေ့ဆွမ်း)\n(ဇရပ်ကြီးညကျိန်း)</string>
+    <string name="pdof_alodawpauk_nangpan_ns">(အလိုတော်ပေါက်ဘုရားနေ့ဆွမ်း)\n(နန်းပန်ညကျိန်း)</string>
+    <string name="pdof_makyiseik_kyaingkham_ns">(မန်ကျည်းဆိပ်နေ့ဆွမ်း)\n(ကျိုင်းခမ်းညကျိန်း)</string>
+    <string name="pdof_maingpyoe_ns">(မိုင်းပျိုးညကျိန်း)</string>
+    <string name="pdof_naungtaw_ns">(နောင်တောညကျိန်း)</string>
+    <string name="pdof_inpawkhone_yetha_ns">(အင်းပေါခုံနေ့ဆွမ်း)\n(ရေသာညကျိန်း)</string>
+    <string name="pdof_kyaungtawwin_ns">(နမ့်ဟူးစံကျောင်းတော်ကျောင်းတော်ဝင်ပွဲ)</string>
+    <string name="phaung_daw_oo">အင်းလေးဖောင်တော်ဉီးဘုရားပွဲ</string>
 
     <!-- myanmar months array -->
     <array name="myan_months">
@@ -80,7 +97,7 @@
         <item>နယုန်</item>
         <item>ဝါဆို</item>
         <item>ဝါခေါင်</item>
-        <item>တောင်သလင်း</item>
+        <item>တော်သလင်း</item>
         <item>သီတင်းကျွှတ်</item>
         <item>တန်ဆောင်မုန်း</item>
         <item>နတ်တော်</item>

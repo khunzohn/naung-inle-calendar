@@ -152,6 +152,59 @@ public class HolidayKernel {
             flag = 1;
             hs = context.getString(R.string.tabaung_bwe);
         }
+        // phaung daw oo pagoda festival
+        if (mm == 7) {
+            if ((ms == 0) && (md == 1)) {
+                flag = 1;
+                hs = context.getString(R.string.phaung_daw_oo) + "\n" + context.getString(R.string.pdof_indein_jaypawkone_ns);
+            } else if ((ms == 0) && (md == 2)) {
+                flag = 1;
+                hs = context.getString(R.string.phaung_daw_oo) + "\n" + context.getString(R.string.pdof_indein_heya_ns);
+            } else if ((ms == 0) && (md == 3)) {
+                flag = 1;
+                hs = context.getString(R.string.phaung_daw_oo) + "\n" + context.getString(R.string.pdof_heya_ns);
+            } else if ((ms == 0) && (md == 4)) {
+                flag = 1;
+                hs = context.getString(R.string.phaung_daw_oo) + "\n" + context.getString(R.string.pdof_ngaphechaung_ns);
+            } else if ((ms == 0) && (md == 5)) {
+                flag = 1;
+                hs = context.getString(R.string.phaung_daw_oo) + "\n" + context.getString(R.string.pdof_jaysakhone_ns);
+            } else if ((ms == 0) && (md == 6)) {
+                flag = 1;
+                hs = context.getString(R.string.phaung_daw_oo) + "\n" + context.getString(R.string.pdof_pwaesakhone_linkin_ns);
+            } else if ((ms == 0) && ((md == 7) || (md == 8) || (md == 9))) {
+                flag = 1;
+                hs = context.getString(R.string.phaung_daw_oo) + "\n" + context.getString(R.string.pdof_nyaungshwe_ns);
+            } else if ((ms == 0) && (md == 10)) {
+                flag = 1;
+                hs = context.getString(R.string.phaung_daw_oo) + "\n" + context.getString(R.string.pdof_nangthe_maingthauk_ns);
+            } else if ((ms == 0) && (md == 11)) {
+                flag = 1;
+                hs = context.getString(R.string.phaung_daw_oo) + "\n" + context.getString(R.string.pdof_thaleoo_ns);
+            } else if ((ms == 0) && (md == 12)) {
+                flag = 1;
+                hs = context.getString(R.string.phaung_daw_oo) + "\n" + context.getString(R.string.pdof_kaylar_sayatkyi_ns);
+            } else if ((ms == 0) && (md == 13)) {
+                flag = 1;
+                hs = context.getString(R.string.phaung_daw_oo) + "\n" + context.getString(R.string.pdof_alodawpauk_nangpan_ns);
+            } else if ((ms == 0) && (md == 14)) {
+                flag = 1;
+                hs = context.getString(R.string.phaung_daw_oo) + "\n" + context.getString(R.string.pdof_makyiseik_kyaingkham_ns);
+            } else if ((ms == 1) && (md == 15)) {
+                flag = 1;
+                hs += "\n" + context.getString(R.string.phaung_daw_oo) + "\n" + context.getString(R.string.pdof_maingpyoe_ns);
+            } else if ((ms == 2) && (md == 16)) {
+                flag = 1;
+                hs = context.getString(R.string.phaung_daw_oo) + "\n" + context.getString(R.string.pdof_naungtaw_ns);
+            } else if ((ms == 2) && (md == 17)) {
+                flag = 1;
+                hs = context.getString(R.string.phaung_daw_oo) + "\n" + context.getString(R.string.pdof_inpawkhone_yetha_ns);
+            } else if ((ms == 2) && (md == 18)) {
+                flag = 1;
+                hs = context.getString(R.string.phaung_daw_oo) + "\n" + context.getString(R.string.pdof_kyaungtawwin_ns);
+            }
+        }
+
         if (flag == 1)
             return hs;
         else
@@ -383,6 +436,7 @@ public class HolidayKernel {
     public ArrayList<MyaSDaysBundle> getMyaSpecialDayBundle(final int my) {
         //TODO add more myanmar holidays
         ArrayList<MyaSDaysBundle> specialDays = new ArrayList<>();
+        specialDays.add(new MyaSDaysBundle(context.getString(R.string.phaung_daw_oo), my, 7, 0, 0, 1));
         specialDays.add(new MyaSDaysBundle(context.getString(R.string.buddha_day), my, 2, 0, 1, 15));
         if (my >= 1309) {
             specialDays.add(new MyaSDaysBundle(context.getString(R.string.mon_national_day), my, 11, 0, 2, 1));
