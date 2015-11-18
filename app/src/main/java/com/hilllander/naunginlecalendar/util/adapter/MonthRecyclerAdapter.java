@@ -58,9 +58,9 @@ public class MonthRecyclerAdapter extends RecyclerView.Adapter<MonthRecyclerAdap
                         if (selectedView.equals(viewHolder.rootView)) {  // click on selected item
                             gridListener.onGridItemClick(3, item.getGreDate());
                         } else {    //click on different item
+                            viewHolder.rootView.setBackgroundColor(context.getResources().getColor(R.color.dark_blue_alpha));
                             selectedView.setBackgroundColor(context.getResources().getColor(R.color.white));
                             selectedView = viewHolder.rootView;
-                            selectedView.setBackgroundColor(context.getResources().getColor(R.color.dark_blue_alpha));
                             gridListener.onGridItemClick(1, item.getGreDate());
                         }
                     } else {    // first click on the grid items

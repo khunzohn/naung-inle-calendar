@@ -24,9 +24,6 @@ import java.util.GregorianCalendar;
 
 import mm.technomation.mmtext.MMTextView;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MonthFragment extends Fragment {
     private static final String YEAR = "year";
     private static final String MONTH = "month";

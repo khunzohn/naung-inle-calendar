@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -36,10 +37,10 @@ public class HolidaysFragment extends Fragment {
     private static final String MYA_YEAR = "myanmar year";
     String mYearString;
     private DynamicListView holidaylistview;
-    private HolidayKernel holKernel;
     private OnListItemClickListener onListClickListener;
     private int holidayContext = 1; //0 = English, 1 = myanmar
     private int eYear, mYear;
+
     public HolidaysFragment() {
     }
 
@@ -60,7 +61,6 @@ public class HolidaysFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        holKernel = new HolidayKernel(getContext());
     }
 
     /**
@@ -130,26 +130,24 @@ public class HolidaysFragment extends Fragment {
         return view;
     }
 
-    private ViewHolder getViewHolder(View view) {
-        return new ViewHolder(view);
-    }
-
-    static class ViewHolder {
+    private class ViewHolder {
         MMTextView holidayItem;
-        View view;
 
         public ViewHolder(View view) {
-            this.view = view;
             holidayItem = (MMTextView) view.findViewById(R.id.holidayItem);
         }
     }
 
     private class MyAdapter extends BaseAdapter {
+        ViewHolder holder;
         private ArrayList<MyaSDaysBundle> mHolidays;
         private ArrayList<EngSDaysBundle> eHolidays;
         private int holContext;
+        private HolidayKernel holKernel;
+
 
         public MyAdapter(int holContext) {
+            this.holKernel = new HolidayKernel(getContext());
             this.holContext = holContext;
             if (holContext == 0) { //English
                 mHolidays = null;
@@ -191,14 +189,17 @@ public class HolidaysFragment extends Fragment {
 
         @Override
         public View getView(final int i, View view, ViewGroup viewGroup) {
-            if (view == null) {
-                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.holiday_list_item, viewGroup, false);
+            View mView = view;
+
+            if (mView == null) {
+                mView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.holiday_list_item, viewGroup, false);
+                holder = new ViewHolder(mView);
             }
-            ViewHolder holder = getViewHolder(view);
+
             if (holContext == 0) {//English
                 final EngSDaysBundle eBundle = eHolidays.get(i);
                 holder.holidayItem.setMyanmarText(eBundle.getName());
-                view.setOnClickListener(new View.OnClickListener() {
+                mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         onListClickListener.onClickEngHolListItem(eBundle.getYear(), eBundle.getMonth(), eBundle.getDay());
@@ -207,7 +208,7 @@ public class HolidaysFragment extends Fragment {
             } else { // Myanmar
                 final MyaSDaysBundle mBundle = mHolidays.get(i);
                 holder.holidayItem.setMyanmarText(mBundle.getName());
-                view.setOnClickListener(new View.OnClickListener() {
+                mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         onListClickListener.onClickMyaHolListItem(mBundle.getmYear(), mBundle.getmMonth(),
@@ -216,7 +217,23 @@ public class HolidaysFragment extends Fragment {
                 });
             }
 
-            return view;
+            mView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    int event = motionEvent.getAction();
+                    switch (event) {
+                        case MotionEvent.ACTION_DOWN:
+                            view.setBackgroundColor(getContext().getResources().getColor(R.color.grey));
+                            break;
+                        case MotionEvent.ACTION_UP:
+                            view.setBackgroundColor(getContext().getResources().getColor(R.color.white));
+                            break;
+                    }
+                    return false;
+                }
+            });
+
+            return mView;
         }
     }
 
