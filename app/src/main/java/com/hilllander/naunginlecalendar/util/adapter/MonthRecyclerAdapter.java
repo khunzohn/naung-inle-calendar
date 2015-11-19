@@ -83,7 +83,7 @@ public class MonthRecyclerAdapter extends RecyclerView.Adapter<MonthRecyclerAdap
             viewHolder.mDay.setTextColor(context.getResources().getColor(R.color.red));
         }
         if (isEqual(item.getGreDate(), new GregorianCalendar())) { //highlight today
-            viewHolder.eDay.setBackgroundColor(context.getResources().getColor(R.color.dark_blue));
+            viewHolder.eDay.setBackgroundResource(R.drawable.today_background);
             viewHolder.eDay.setTextColor(context.getResources().getColor(R.color.white));
         }
         if (item.getMonthStatus() == 1) { // highlight full moon
