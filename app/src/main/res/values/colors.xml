@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="primary">#ffdbe4b7</color>
-    <color name="accent">#ff53428b</color>
+    <color name="primary">#ff0fa3a0</color>
+    <color name="accent">#ffa22660</color>
     <color name="dark_blue">#ff34699d</color>
-    <color name="pinky">#ff1b8763</color>
+    <color name="pinky">#ffd15258</color>
     <color name="white">#fff</color>
     <color name="alpha_black">#60000002</color>
     <color name="black">#005</color>

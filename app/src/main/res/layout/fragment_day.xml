@@ -79,10 +79,10 @@
 
         <io.codetail.widget.RevealFrameLayout
             android:id="@+id/marketday_image"
+            background="@color/primary"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5"
-            android:background="@color/accent">
+            android:layout_weight="5">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -96,14 +96,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
                 <mm.technomation.mmtext.MMTextView
                     android:id="@+id/myaDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
             </LinearLayout>
 
             <mm.technomation.mmtext.MMTextView
@@ -112,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="@dimen/tv_padding"
-                android:textColor="@color/white" />
+                android:textColor="@color/accent" />
 
             <mm.technomation.mmtext.MMTextView
                 android:id="@+id/dragonHead"
@@ -121,13 +121,13 @@
                 android:layout_gravity="center|bottom"
                 android:layout_marginBottom="@dimen/padding_16_dp"
                 android:padding="@dimen/tv_padding"
-                android:textColor="@color/white" />
+                android:textColor="@color/accent" />
 
             <LinearLayout
                 android:id="@+id/ll_reveal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/pinky"
+                android:background="@color/accent"
                 android:orientation="vertical"
                 android:padding="@dimen/padding_16_dp"
                 android:visibility="invisible">
@@ -162,6 +162,6 @@
         android:layout_marginEnd="@dimen/fab_day_right_margin"
         android:layout_marginRight="@dimen/fab_day_right_margin"
         android:src="@drawable/list_other_market_days"
-        app:backgroundTint="@color/pinky" />
+        app:backgroundTint="@color/accent" />
 
 </FrameLayout>
