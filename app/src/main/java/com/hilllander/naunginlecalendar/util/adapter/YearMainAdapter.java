@@ -26,6 +26,7 @@ public class YearMainAdapter extends RecyclerView.Adapter<YearMainAdapter.ViewHo
     public YearMainAdapter(Context context, ArrayList<YearMainGridItem> mainGridItems) {
         items = mainGridItems;
         this.context = context;
+        //TODO remove this comment after merging
 
     }
 

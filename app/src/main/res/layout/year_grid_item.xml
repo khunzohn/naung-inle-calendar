@@ -12,7 +12,9 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:padding="@dimen/tv_padding" />
-
+    <!--
+        //TODO remove this comment after merging
+    -->
     <View
         android:id="@+id/upper_line"
         android:layout_width="match_parent"

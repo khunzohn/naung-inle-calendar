@@ -7,3 +7,6 @@
     android:textColor="@color/black"
     android:textSize="@dimen/extra_small_text" />
 
+    <!--
+        //TODO remove this comment after merging
+    -->

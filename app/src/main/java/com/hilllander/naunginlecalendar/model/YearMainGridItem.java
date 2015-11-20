@@ -21,6 +21,7 @@ public class YearMainGridItem {
     private int cDay;
     private GregorianCalendar cal;
     private ArrayList<YearInnerGridItem> innerGridItems;
+    //TODO remove this comment after merging
 
     private YearMainGridItem(final int year, final int month, final int firstDay, final int cMonth, final int cDay) {
         this.year = year;

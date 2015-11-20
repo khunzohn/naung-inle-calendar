@@ -19,5 +19,7 @@
     <dimen name="special_day_image_size">16dp</dimen>
     <dimen name="super_small_text">6sp</dimen>
     <dimen name="year_grid_item_padding">5dp</dimen>
-
+    <!--
+        //TODO remove this comment after merging
+    -->
 </resources>
