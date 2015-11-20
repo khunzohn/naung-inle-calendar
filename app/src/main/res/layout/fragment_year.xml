@@ -17,9 +17,7 @@
             android:layout_gravity="center" />
 
     </LinearLayout>
-    <!--
-        //TODO remove this comment after merging
-    -->
+
 
     <View
         android:id="@+id/header_shadow"

@@ -12,7 +12,6 @@ public class YearInnerGridItem {
     private final int year;
     private final int day;
     private int flag;
-    //TODO remove this comment after merging
 
     private YearInnerGridItem(int year, int month, int day, int cMonth, int cDay) {
         this.year = year;

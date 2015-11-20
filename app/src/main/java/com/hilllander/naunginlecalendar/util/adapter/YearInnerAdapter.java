@@ -24,7 +24,6 @@ public class YearInnerAdapter extends RecyclerView.Adapter<YearInnerAdapter.View
     public YearInnerAdapter(Context context, ArrayList<YearInnerGridItem> innerGridItems) {
         this.context = context;
         this.innerGridItems = innerGridItems;
-        //TODO remove this comment after merging
     }
 
 

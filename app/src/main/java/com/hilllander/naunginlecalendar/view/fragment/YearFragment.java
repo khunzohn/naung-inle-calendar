@@ -27,7 +27,6 @@ public class YearFragment extends Fragment {
     private static final String CURRENT_MONTH = "current month";
     private static final String CURRENT_DAY = "curent day";
     private RecyclerView mainRecy;
-    //TODO remove this comment after merging
 
     public YearFragment() {
     }
