@@ -20,9 +20,10 @@ import android.widget.Spinner;
 import com.hilllander.calendar_api.kernel.CalendarKernel;
 import com.hilllander.calendar_api.model.WesternDate;
 import com.hilllander.naunginlecalendar.R;
+import com.hilllander.naunginlecalendar.util.HolidayViewHolder;
 import com.hilllander.naunginlecalendar.util.MonthViewHolder;
+import com.hilllander.naunginlecalendar.util.listener.HolidayEventsListener;
 import com.hilllander.naunginlecalendar.util.listener.MonthEventsListener;
-import com.hilllander.naunginlecalendar.util.listener.OnListItemClickListener;
 import com.hilllander.naunginlecalendar.util.listener.SimpleGestureFilter;
 import com.hilllander.naunginlecalendar.util.listener.SimpleGestureFilter.SimpleGestureListener;
 import com.hilllander.naunginlecalendar.view.fragment.DayFragment;
@@ -35,7 +36,7 @@ import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity implements
         SimpleGestureListener, MonthEventsListener,
-        OnListItemClickListener, com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
+        HolidayEventsListener, com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
     private static final String TAG = MainActivity.class.getSimpleName();
     private final int caltype = 1; //gregorian calendar
     private SimpleGestureFilter detecter;
@@ -50,26 +51,22 @@ public class MainActivity extends AppCompatActivity implements
     private LinearLayout mainLayout;
     private Spinner spinner;
     private int holContext = 0;
-    private MonthViewHolder h1;
-    private MonthViewHolder h2;
-    private boolean mHolderFlag = false;
+    private MonthViewHolder mh1, mh2;
+    private HolidayViewHolder hh1, hh2;
+    private boolean holderFla = false;
 
-    private void toggleMHolderFlag() {
-        if (mHolderFlag)
-            mHolderFlag = false;
-        else
-            mHolderFlag = true;
+    private void toggleHolderFlag() {
+        holderFla = !holderFla;
     }
 
     private MonthViewHolder getMHolder() {
-        if (mHolderFlag) {
-            toggleMHolderFlag();
-            return h1;
+        if (holderFla) {
+            toggleHolderFlag();
+            return mh1;
         } else {
-            toggleMHolderFlag();
-            return h2;
+            toggleHolderFlag();
+            return mh2;
         }
-
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private void inflateHolidaysFragment() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_content, HolidaysFragment.getInstance(currentDate, holContext))
+                .replace(R.id.main_content, HolidaysFragment.getInstance(getHHolder(), currentDate, holContext))
                 .commit();
     }
 
@@ -297,9 +294,19 @@ public class MainActivity extends AppCompatActivity implements
             case SpinnerListener.MONTH:
                 return MonthFragment.getInstance(getMHolder(), currentDate);
             case SpinnerListener.HOLIDAYS:
-                return HolidaysFragment.getInstance(currentDate, holContext);
+                return HolidaysFragment.getInstance(getHHolder(), currentDate, holContext);
             default:
                 return DayFragment.getInstance(currentDate, MainActivity.this);
+        }
+    }
+
+    private HolidayViewHolder getHHolder() {
+        if (holderFla) {
+            toggleHolderFlag();
+            return hh1;
+        } else {
+            toggleHolderFlag();
+            return hh2;
         }
     }
 
@@ -365,8 +372,8 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onViewHolderCreated(MonthViewHolder h1, MonthViewHolder h2) {
-        this.h1 = h1;
-        this.h2 = h2;
+        this.mh1 = h1;
+        this.mh2 = h2;
     }
 
     private void showCur(int direction) {
@@ -395,6 +402,12 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onHolidayListContextChange(int holContext) {
         this.holContext = holContext;
+    }
+
+    @Override
+    public void onHolidayViewHolderCreated(HolidayViewHolder hh1, HolidayViewHolder hh2) {
+        this.hh1 = hh1;
+        this.hh2 = hh2;
     }
 
     @Override

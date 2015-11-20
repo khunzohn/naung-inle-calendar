@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -11,16 +12,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.Spinner;
 
 import com.hilllander.calendar_api.calendar.MyanmarCalendar;
 import com.hilllander.calendar_api.kernel.HolidayKernel;
 import com.hilllander.calendar_api.model.EngSDaysBundle;
 import com.hilllander.calendar_api.model.MyaSDaysBundle;
 import com.hilllander.naunginlecalendar.R;
-import com.hilllander.naunginlecalendar.util.listener.OnListItemClickListener;
+import com.hilllander.naunginlecalendar.util.HolidayViewHolder;
+import com.hilllander.naunginlecalendar.util.listener.HolidayEventsListener;
 import com.nhaarman.listviewanimations.appearance.simple.SwingRightInAnimationAdapter;
-import com.nhaarman.listviewanimations.itemmanipulation.DynamicListView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -36,16 +36,17 @@ public class HolidaysFragment extends Fragment {
     private static final String MYA_YEAR_STRING = "myanmar year string";
     private static final String MYA_YEAR = "myanmar year";
     private static final String HOL_CONTEXT = "holiday context";
+    private static HolidayViewHolder hHolder;
     String mYearString;
-    private DynamicListView holidaylistview;
-    private OnListItemClickListener onListClickListener;
+    private HolidayEventsListener holidayEventsListener;
     private int holidayContext; //0 = English, 1 = myanmar
     private int eYear, mYear;
 
     public HolidaysFragment() {
     }
 
-    public static Fragment getInstance(GregorianCalendar curDate, int holContext) {
+    public static Fragment getInstance(HolidayViewHolder holder, GregorianCalendar curDate, int holContext) {
+        hHolder = holder;
         int eYear = curDate.get(Calendar.YEAR);
         MyanmarCalendar mCal = MyanmarCalendar.getInstance(curDate);
         String mYearString = mCal.getYearInMyanmar();
@@ -61,40 +62,29 @@ public class HolidaysFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    /**
-     * Called when a fragment is first attached to its context.
-     * {@link #onCreate(Bundle)} will be called after this.
-     *
-     * @param context main Activity
-     */
-    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        onListClickListener = (OnListItemClickListener) context;
+        holidayEventsListener = (HolidayEventsListener) context;
     }
 
-    /**
-     * Called when the fragment is no longer attached to its activity.  This
-     * is called after {@link #onDestroy()}.
-     */
     @Override
     public void onDetach() {
         super.onDetach();
-        if (onListClickListener != null)
-            onListClickListener = null;
+        if (holidayEventsListener != null)
+            holidayEventsListener = null;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_holidays, container, false);
-        Spinner holidaySpinner = (Spinner) view.findViewById(R.id.holidaySpinner);
-        holidaylistview = (DynamicListView) view.findViewById(R.id.holidaylistview);
-        final MMTextView tvYear = (MMTextView) view.findViewById(R.id.tvYear);
+        if (hHolder == null) {
+            View v1 = inflater.inflate(R.layout.fragment_holidays, container, false);
+            View v2 = inflater.inflate(R.layout.fragment_holidays, container, false);
+            HolidayViewHolder hh1 = new HolidayViewHolder(v1);
+            HolidayViewHolder hh2 = new HolidayViewHolder(v2);
+            holidayEventsListener.onHolidayViewHolderCreated(hh1, hh2);
+            hHolder = hh2;
+        }
         Bundle args = getArguments();
         eYear = args.getInt(ENG_YEAR);
         mYearString = args.getString(MYA_YEAR_STRING);
@@ -104,24 +94,24 @@ public class HolidaysFragment extends Fragment {
                 ArrayAdapter.createFromResource(getContext(),
                         R.array.holiday_spinner_item, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        holidaySpinner.setAdapter(spinnerAdapter);
-        holidaySpinner.setSelection(holidayContext);
-        holidaySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        hHolder.getHolidaySpinner().setAdapter(spinnerAdapter);
+        hHolder.getHolidaySpinner().setSelection(holidayContext);
+        hHolder.getHolidaySpinner().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 holidayContext = i;
-                onListClickListener.onHolidayListContextChange(holidayContext);
+                holidayEventsListener.onHolidayListContextChange(holidayContext);
                 if (holidayContext == 0) { //English
-                    tvYear.setMyanmarText(getContext().getString(R.string.eng_era) + " " + eYear + " " +
+                    hHolder.getTvYear().setMyanmarText(getContext().getString(R.string.eng_era) + " " + eYear + " " +
                             getContext().getString(R.string.holidays));
                 } else { // Myanmar
-                    tvYear.setMyanmarText(getContext().getString(R.string.mya_era) + " " + mYearString + " " +
+                    hHolder.getTvYear().setMyanmarText(getContext().getString(R.string.mya_era) + " " + mYearString + " " +
                             getContext().getString(R.string.holidays));
                 }
                 MyAdapter adapter = new MyAdapter(holidayContext);
                 SwingRightInAnimationAdapter animationAdapter = new SwingRightInAnimationAdapter(adapter);
-                animationAdapter.setAbsListView(holidaylistview);
-                holidaylistview.setAdapter(animationAdapter);
+                animationAdapter.setAbsListView(hHolder.getHolidaylistview());
+                hHolder.getHolidaylistview().setAdapter(animationAdapter);
                 adapter.notifyDataSetChanged();
             }
 
@@ -131,23 +121,25 @@ public class HolidaysFragment extends Fragment {
             }
         });
 
-        return view;
+        return hHolder.getRootView();
     }
 
     private class ViewHolder {
         MMTextView holidayItem;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             holidayItem = (MMTextView) view.findViewById(R.id.holidayItem);
         }
     }
 
     private class MyAdapter extends BaseAdapter {
+        private static final String TAG = "MyAdapter";
         ViewHolder holder;
         private ArrayList<MyaSDaysBundle> mHolidays;
         private ArrayList<EngSDaysBundle> eHolidays;
         private int holContext;
         private HolidayKernel holKernel;
+        private int counter = 0;
 
 
         public MyAdapter(int holContext) {
@@ -192,12 +184,17 @@ public class HolidaysFragment extends Fragment {
         }
 
         @Override
-        public View getView(final int i, View view, ViewGroup viewGroup) {
-            View mView = view;
+        public View getView(final int i, View convertView, ViewGroup viewGroup) {
+            View mView = convertView;
 
             if (mView == null) {
+                counter++;
+                Log.d(TAG, "view created: " + counter);
                 mView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.holiday_list_item, viewGroup, false);
                 holder = new ViewHolder(mView);
+                mView.setTag(holder);
+            } else {
+                holder = (ViewHolder) mView.getTag();
             }
 
             if (holContext == 0) {//English
@@ -206,7 +203,7 @@ public class HolidaysFragment extends Fragment {
                 mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        onListClickListener.onClickEngHolListItem(eBundle.getYear(), eBundle.getMonth(), eBundle.getDay());
+                        holidayEventsListener.onClickEngHolListItem(eBundle.getYear(), eBundle.getMonth(), eBundle.getDay());
                     }
                 });
             } else { // Myanmar
@@ -215,7 +212,7 @@ public class HolidaysFragment extends Fragment {
                 mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        onListClickListener.onClickMyaHolListItem(mBundle.getmYear(), mBundle.getmMonth(),
+                        holidayEventsListener.onClickMyaHolListItem(mBundle.getmYear(), mBundle.getmMonth(),
                                 mBundle.getmType(), mBundle.getmStatus(), mBundle.getWanWaxDay());
                     }
                 });
