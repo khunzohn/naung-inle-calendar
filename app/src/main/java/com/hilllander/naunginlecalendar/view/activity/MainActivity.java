@@ -53,14 +53,18 @@ public class MainActivity extends AppCompatActivity implements
     private int holContext = 0;
     private MonthViewHolder mh1, mh2;
     private HolidayViewHolder hh1, hh2;
-    private boolean holderFla = false;
+    private boolean viewHolderFlag = false;
 
     private void toggleHolderFlag() {
-        holderFla = !holderFla;
+        viewHolderFlag = !viewHolderFlag;
+    }
+
+    private void resetHolderFlag(boolean val) {
+        viewHolderFlag = val;
     }
 
     private MonthViewHolder getMHolder() {
-        if (holderFla) {
+        if (viewHolderFlag) {
             toggleHolderFlag();
             return mh1;
         } else {
@@ -301,7 +305,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private HolidayViewHolder getHHolder() {
-        if (holderFla) {
+        if (viewHolderFlag) {
             toggleHolderFlag();
             return hh1;
         } else {
@@ -433,18 +437,19 @@ public class MainActivity extends AppCompatActivity implements
             switch (i) {
                 case DAY:
                     currentContext = DAY;
+                    resetHolderFlag(false);
                     inflateDayFragment();
                     break;
                 case MONTH:
+                    resetHolderFlag(false);
                     currentContext = MONTH;
                     inflateMonthFragment(currentDate);
                     break;
                 case HOLIDAYS:
+                    resetHolderFlag(false);
                     currentContext = HOLIDAYS;
                     inflateHolidaysFragment();
                     break;
-                default:
-                    inflateDayFragment();
             }
         }
 
