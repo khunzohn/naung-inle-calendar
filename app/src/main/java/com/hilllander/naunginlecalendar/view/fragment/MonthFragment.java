@@ -1,40 +1,45 @@
 package com.hilllander.naunginlecalendar.view.fragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.hilllander.naunginlecalendar.R;
 import com.hilllander.naunginlecalendar.model.MonthGridItem;
-import com.hilllander.naunginlecalendar.util.RecyclerItemDecorater;
+import com.hilllander.naunginlecalendar.util.MonthViewHolder;
 import com.hilllander.naunginlecalendar.util.adapter.MonthRecyclerAdapter;
+import com.hilllander.naunginlecalendar.util.listener.MonthEventsListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
-import mm.technomation.mmtext.MMTextView;
 
 public class MonthFragment extends Fragment {
     private static final String YEAR = "year";
     private static final String MONTH = "month";
     private static final String DAY = "day";
     private static final String TAG = MonthFragment.class.getSimpleName();
+    private static MonthViewHolder mholder;
     private MonthGridItem firstDayOfM, lastDayOfM;
+    private MonthEventsListener meListener;
 
     public MonthFragment() {
     }
 
-    public static Fragment getInstance(GregorianCalendar currentDate) {
+    public static Fragment getInstance(MonthViewHolder holder, GregorianCalendar currentDate) {
+        mholder = holder;
+        if (mholder == null)
+            Log.d(TAG, "mholder is : null");
+        else
+            Log.d(TAG, "mholder is not null");
         Fragment fragment = new MonthFragment();
         Bundle args = new Bundle();
         args.putInt(YEAR, currentDate.get(Calendar.YEAR));
@@ -44,35 +49,59 @@ public class MonthFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Called when a fragment is first attached to its context.
+     * {@link #onCreate(Bundle)} will be called after this.
+     *
+     * @param context
+     */
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        meListener = (MonthEventsListener) context;
+    }
+
+    /**
+     * Called when the fragment is no longer attached to its activity.  This
+     * is called after {@link #onDestroy()}.
+     */
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        meListener = null;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_month, container, false);
-        TextView engMonth = (TextView) view.findViewById(R.id.engMonth);
-        TextView engYear = (TextView) view.findViewById(R.id.engYear);
-        MMTextView myaYearRange = (MMTextView) view.findViewById(R.id.myaYearRange);
-        MMTextView myaMonthRange = (MMTextView) view.findViewById(R.id.myaMonthRange);
+        if (mholder == null) {
+            View v1 = inflater.inflate(R.layout.fragment_month, container, false);
+            View v2 = inflater.inflate(R.layout.fragment_month, container, false);
+            MonthViewHolder h1 = new MonthViewHolder(getContext(), v1);
+            MonthViewHolder h2 = new MonthViewHolder(getContext(), v2);
+
+            meListener.onViewHolderCreated(h1, h2);
+            mholder = h2;
+        }
         Bundle args = getArguments();
         int year = args.getInt(YEAR);
         int month = args.getInt(MONTH);
         int day = args.getInt(DAY);
-        engMonth.setText(getMonthAsString(month));
-        engYear.setText(String.valueOf(year));
+        mholder.getEngMonth().setText(getMonthAsString(month));
+        mholder.getEngYear().setText(String.valueOf(year));
         ArrayList<MonthGridItem> itemList = createGridItemList(year, month, day);
 
-        myaMonthRange.setMyanmarText(getMRange(firstDayOfM, lastDayOfM));
-        myaYearRange.setMyanmarText(getYRange(firstDayOfM, lastDayOfM));
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_month);
-        int itemOffset = getResources().getDimensionPixelOffset(R.dimen.item_offset);
-        recyclerView.addItemDecoration(new RecyclerItemDecorater(itemOffset));
+        mholder.getMyaMonthRange().setMyanmarText(getMRange(firstDayOfM, lastDayOfM));
+        mholder.getMyaYearRange().setMyanmarText(getYRange(firstDayOfM, lastDayOfM));
+
         MonthRecyclerAdapter adapter = new MonthRecyclerAdapter(getContext(), itemList);
-        recyclerView.setAdapter(adapter);
+        mholder.getRecyclerView().setAdapter(adapter);
 
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 7, LinearLayoutManager.VERTICAL, false);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(layoutManager);
+        mholder.getRecyclerView().setHasFixedSize(true);
+        mholder.getRecyclerView().setLayoutManager(layoutManager);
 
-        return view;
+        return mholder.getRootView();
     }
 
     private String getYRange(MonthGridItem firstDayInGrid, MonthGridItem lastDayInGrid) {

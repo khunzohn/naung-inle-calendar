@@ -20,7 +20,8 @@ import android.widget.Spinner;
 import com.hilllander.calendar_api.kernel.CalendarKernel;
 import com.hilllander.calendar_api.model.WesternDate;
 import com.hilllander.naunginlecalendar.R;
-import com.hilllander.naunginlecalendar.util.listener.OnGridItemClickListener;
+import com.hilllander.naunginlecalendar.util.MonthViewHolder;
+import com.hilllander.naunginlecalendar.util.listener.MonthEventsListener;
 import com.hilllander.naunginlecalendar.util.listener.OnListItemClickListener;
 import com.hilllander.naunginlecalendar.util.listener.SimpleGestureFilter;
 import com.hilllander.naunginlecalendar.util.listener.SimpleGestureFilter.SimpleGestureListener;
@@ -33,7 +34,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity implements
-        SimpleGestureListener, OnGridItemClickListener,
+        SimpleGestureListener, MonthEventsListener,
         OnListItemClickListener, com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
     private static final String TAG = MainActivity.class.getSimpleName();
     private final int caltype = 1; //gregorian calendar
@@ -49,11 +50,28 @@ public class MainActivity extends AppCompatActivity implements
     private LinearLayout mainLayout;
     private Spinner spinner;
     private int holContext = 0;
+    private MonthViewHolder h1;
+    private MonthViewHolder h2;
+    private boolean mHolderFlag = false;
 
+    private void toggleMHolderFlag() {
+        if (mHolderFlag)
+            mHolderFlag = false;
+        else
+            mHolderFlag = true;
+    }
 
+    private MonthViewHolder getMHolder() {
+        if (mHolderFlag) {
+            toggleMHolderFlag();
+            return h1;
+        } else {
+            toggleMHolderFlag();
+            return h2;
+        }
 
+    }
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -72,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements
         GregorianCalendar today = new GregorianCalendar();
         setCurrentDate(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH));
         detecter = new SimpleGestureFilter(this, this);
+
 
     }
 
@@ -96,12 +115,9 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.date_picker) {
@@ -112,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements
             GregorianCalendar cal = new GregorianCalendar();
             int
                     year = cal.get(Calendar.YEAR),
-                    month = cal.get(Calendar.MONTH),
+                    month = cal.get(Calendar.MONTH), // Gre month starts from 0
                     day = cal.get(Calendar.DAY_OF_MONTH);
             setCurrentDate(year, month, day);
             curJd = kernel.W2J(year, month + 1, day, caltype); // MyanmarCalendar's month starts from 1
@@ -136,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private void inflateMonthFragment(GregorianCalendar currentDate) {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_content, MonthFragment.getInstance(currentDate))
+                .replace(R.id.main_content, MonthFragment.getInstance(getMHolder(), currentDate))
                 .commit();
     }
 
@@ -279,7 +295,7 @@ public class MainActivity extends AppCompatActivity implements
             case SpinnerListener.DAY:
                 return DayFragment.getInstance(currentDate, MainActivity.this);
             case SpinnerListener.MONTH:
-                return MonthFragment.getInstance(currentDate);
+                return MonthFragment.getInstance(getMHolder(), currentDate);
             case SpinnerListener.HOLIDAYS:
                 return HolidaysFragment.getInstance(currentDate, holContext);
             default:
@@ -345,6 +361,12 @@ public class MainActivity extends AppCompatActivity implements
                 break;
         }
 
+    }
+
+    @Override
+    public void onViewHolderCreated(MonthViewHolder h1, MonthViewHolder h2) {
+        this.h1 = h1;
+        this.h2 = h2;
     }
 
     private void showCur(int direction) {

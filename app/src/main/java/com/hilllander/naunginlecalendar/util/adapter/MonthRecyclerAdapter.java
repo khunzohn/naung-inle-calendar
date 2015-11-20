@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.hilllander.naunginlecalendar.R;
 import com.hilllander.naunginlecalendar.model.MonthGridItem;
-import com.hilllander.naunginlecalendar.util.listener.OnGridItemClickListener;
+import com.hilllander.naunginlecalendar.util.listener.MonthEventsListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,14 +26,14 @@ public class MonthRecyclerAdapter extends RecyclerView.Adapter<MonthRecyclerAdap
     private static final String TAG = MonthRecyclerAdapter.class.getSimpleName();
     private ArrayList<MonthGridItem> itemList;
     private Context context;
-    private OnGridItemClickListener gridListener;
+    private MonthEventsListener gridListener;
     private View selectedView;
 
 
     public MonthRecyclerAdapter(Context context, ArrayList<MonthGridItem> itemList) {
         this.context = context;
         this.itemList = itemList;
-        gridListener = (OnGridItemClickListener) context;
+        gridListener = (MonthEventsListener) context;
 
     }
 
