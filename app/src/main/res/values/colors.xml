@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="primary">#ff8c0e3c</color>
-    <color name="accent">#ff25928c</color>
-    <color name="dark_blue">#ff34699d</color>
-    <color name="pinky">#ffd15258</color>
+    <color name="primary">#ff1a7b57</color>
+    <color name="accent">#ff2a6297</color>
+    <color name="dark_blue">#ff29669a</color>
+    <color name="pinky">#ff71212d</color>
     <color name="white">#fff</color>
     <color name="alpha_black">#60000002</color>
     <color name="black">#005</color>
-    <color name="red">#ffb41c1c</color>
+    <color name="red">#ffa31b1b</color>
     <color name="background_grid_item_prev_month">#aaa</color>
     <color name="background_grid_item_next_month">#aaa</color>
     <color name="background_grid_item_current_month">#eee</color>
@@ -20,5 +20,8 @@
     <color name="green">#ff217515</color>
     <color name="dark_blue_alpha">#402d4774</color>
     <color name="violet">#ff155b69</color>
-    <color name="milk">#fffbdfb4</color>
+    <color name="milk">#ffd7f0cb</color>
+    <color name="extra_soft_green">#fff7f3ff</color>
+    <color name="dark_green">#df85bea5</color>
+    <color name="alpha_blue">#8b974a7d</color>
 </resources>

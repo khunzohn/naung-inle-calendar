@@ -59,7 +59,7 @@ public class MonthRecyclerAdapter extends RecyclerView.Adapter<MonthRecyclerAdap
                             gridListener.onGridItemClick(3, item.getGreDate());
                         } else {    //click on different item
                             viewHolder.rootView.setBackgroundColor(context.getResources().getColor(R.color.dark_blue_alpha));
-                            selectedView.setBackgroundColor(context.getResources().getColor(R.color.white));
+                            selectedView.setBackgroundColor(context.getResources().getColor(R.color.extra_soft_green));
                             selectedView = viewHolder.rootView;
                             gridListener.onGridItemClick(1, item.getGreDate());
                         }
@@ -93,7 +93,7 @@ public class MonthRecyclerAdapter extends RecyclerView.Adapter<MonthRecyclerAdap
         }
 
         if (item.getDateStatus() == 1) {
-            viewHolder.rootView.setBackgroundColor(context.getResources().getColor(R.color.white));
+            viewHolder.rootView.setBackgroundColor(context.getResources().getColor(R.color.extra_soft_green));
         } else { // highlight pre and next month's days
             viewHolder.rootView.setBackgroundColor(context.getResources().getColor(R.color.light_grey));
         }
