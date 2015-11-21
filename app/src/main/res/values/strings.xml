@@ -57,6 +57,12 @@
     <string name="material_datepicker">&lt;a href=\"https://github.com/wdullaer/MaterialDateTimePicker\">MaterialDateTimePicker&lt;/a> by wdullaer</string>
     <string name="google_iconset">&lt;a href=\"http://www.google.com/design/spec/style/icons.html#icons-system-icons\">Material design icons&lt;/a> by Google</string>
     <string name="version">Version 0.1</string>
+    <string name="we_craft_things">We craft things with love.</string>
+    <string name="hilllander">hilllander</string>
+    <string name="out_team">Our team</string>
+    <string name="developer">Developer........... Khunzohn</string>
+    <string name="photographer">Photographer..... Boamboan</string>
+    <string name="icon_designer">Icon designer...... James Pu</string>
     <string-array name="author">
         <item>Ko Yan Naing Aye</item>
         <item>Ko Htoo Myint Naung</item>
@@ -108,7 +114,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.</item>
-        <item>Copyright 2014 Niek Haarman
+        <item>Copyright © 2014 Niek Haarman
 
 Licensed under the Apache License, Version 2.0 (the \"License\");
 you may not use this file except in compliance with the License.

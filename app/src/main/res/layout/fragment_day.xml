@@ -22,7 +22,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="@dimen/padding_16_dp"
-                android:layout_marginTop="@dimen/padding_16_dp" />
+                android:layout_marginTop="@dimen/padding_16_dp"
+                android:textColor="@color/dark_blue" />
 
             <mm.technomation.mmtext.MMTextView
                 android:id="@+id/astroList"
@@ -33,6 +34,7 @@
                 android:layout_marginLeft="@dimen/padding_16_dp"
                 android:layout_marginTop="@dimen/padding_16_dp"
                 android:padding="@dimen/tv_padding"
+                android:textColor="@color/dark_blue"
                 android:textSize="@dimen/abc_text_size_small_material" />
 
             <TextView

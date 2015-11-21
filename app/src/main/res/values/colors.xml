@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="primary">#ff0fa3a0</color>
-    <color name="accent">#ffa22660</color>
+    <color name="primary">#ff8c0e3c</color>
+    <color name="accent">#ff25928c</color>
     <color name="dark_blue">#ff34699d</color>
     <color name="pinky">#ffd15258</color>
     <color name="white">#fff</color>
@@ -19,4 +19,6 @@
     <color name="blue">#ff1d8cd1</color>
     <color name="green">#ff217515</color>
     <color name="dark_blue_alpha">#402d4774</color>
+    <color name="violet">#ff155b69</color>
+    <color name="milk">#fffbdfb4</color>
 </resources>

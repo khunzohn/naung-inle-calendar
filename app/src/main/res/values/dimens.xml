@@ -9,7 +9,7 @@
     <dimen name="large_text">24sp</dimen>
     <dimen name="normal_text">20sp</dimen>
     <dimen name="tv_padding">2dp</dimen>
-    <dimen name="extra_large_text">56sp</dimen>
+    <dimen name="extra_large_text">32sp</dimen>
     <dimen name="toolbar_elevation_height">4dp</dimen>
     <dimen name="item_offset">0.5dp</dimen>
     <dimen name="extra_small_text">8sp</dimen>
@@ -23,5 +23,6 @@
     <dimen name="padding_4dp">4dp</dimen>
     <dimen name="month_grid_item_margin">0.0dp</dimen>
     <dimen name="small_text">24sp</dimen>
+    <dimen name="art_radius">400dp</dimen>
 
 </resources>

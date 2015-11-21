@@ -1,0 +1,140 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hilllander.naunginlecalendar.view.activity.AboutActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="@color/primary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark" />
+
+    <View
+        android:id="@+id/about_toolbar_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_elevation_height"
+        android:layout_below="@id/toolbar"
+        android:background="@drawable/toolbar_drop_shadow" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/about_toolbar_shadow">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/primary"
+            android:orientation="vertical"
+            android:weightSum="10">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:background="@drawable/upper_art">
+
+                <TextView
+                    android:id="@+id/hilllander"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:paddingLeft="24dp"
+                    android:paddingTop="24dp"
+                    android:text="@string/hilllander"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/extra_large_text" />
+
+                <TextView
+                    android:id="@+id/we_craft_things"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/hilllander"
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginStart="80dp"
+                    android:paddingTop="@dimen/padding_16_dp"
+                    android:text="@string/we_craft_things"
+                    android:textColor="@color/dark_blue" />
+            </RelativeLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:background="@drawable/lower_art">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_margin="24dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:padding="@dimen/tv_padding"
+                        android:text="@string/out_team"
+                        android:textColor="@color/milk" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="4dp"
+                        android:background="@color/milk" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:padding="@dimen/tv_padding"
+                        android:text="@string/developer"
+                        android:textColor="@color/milk" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:padding="@dimen/tv_padding"
+                        android:text="@string/photographer"
+                        android:textColor="@color/milk" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:padding="@dimen/tv_padding"
+                        android:text="@string/icon_designer"
+                        android:textColor="@color/milk" />
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_about_us"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:layout_marginEnd="@dimen/fab_day_right_margin"
+            android:layout_marginRight="@dimen/fab_day_right_margin"
+            android:src="@drawable/facebook_icon"
+            app:backgroundTint="@color/dark_blue" />
+
+    </FrameLayout>
+
+
+</RelativeLayout>
