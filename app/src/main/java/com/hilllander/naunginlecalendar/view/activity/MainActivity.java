@@ -20,15 +20,18 @@ import android.widget.Spinner;
 import com.hilllander.calendar_api.kernel.CalendarKernel;
 import com.hilllander.calendar_api.model.WesternDate;
 import com.hilllander.naunginlecalendar.R;
-import com.hilllander.naunginlecalendar.util.HolidayViewHolder;
-import com.hilllander.naunginlecalendar.util.MonthViewHolder;
 import com.hilllander.naunginlecalendar.util.listener.HolidayEventsListener;
 import com.hilllander.naunginlecalendar.util.listener.MonthEventsListener;
 import com.hilllander.naunginlecalendar.util.listener.SimpleGestureFilter;
 import com.hilllander.naunginlecalendar.util.listener.SimpleGestureFilter.SimpleGestureListener;
+import com.hilllander.naunginlecalendar.util.listener.YearEventsListener;
+import com.hilllander.naunginlecalendar.util.viewholder.HolidayViewHolder;
+import com.hilllander.naunginlecalendar.util.viewholder.MonthViewHolder;
+import com.hilllander.naunginlecalendar.util.viewholder.YearBaseViewHolder;
 import com.hilllander.naunginlecalendar.view.fragment.DayFragment;
 import com.hilllander.naunginlecalendar.view.fragment.HolidaysFragment;
 import com.hilllander.naunginlecalendar.view.fragment.MonthFragment;
+import com.hilllander.naunginlecalendar.view.fragment.YearFragment;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.Calendar;
@@ -36,7 +39,8 @@ import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity implements
         SimpleGestureListener, MonthEventsListener,
-        HolidayEventsListener, com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
+        HolidayEventsListener, YearEventsListener,
+        com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
     private static final String TAG = MainActivity.class.getSimpleName();
     private final int caltype = 1; //gregorian calendar
     private SimpleGestureFilter detecter;
@@ -54,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements
     private MonthViewHolder mh1, mh2;
     private HolidayViewHolder hh1, hh2;
     private boolean viewHolderFlag = false;
+    private YearBaseViewHolder yh2, yh1;
 
     private void toggleHolderFlag() {
         viewHolderFlag = !viewHolderFlag;
@@ -151,11 +156,28 @@ public class MainActivity extends AppCompatActivity implements
                 .commit();
     }
 
+    private void inflateYearFragment(GregorianCalendar currentDate) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_content, YearFragment.getInstance(getYHolder(), currentDate))
+                .commit();
+    }
+
+    private YearBaseViewHolder getYHolder() {
+        if (viewHolderFlag) {
+            toggleHolderFlag();
+            return yh1;
+        } else {
+            toggleHolderFlag();
+            return yh2;
+        }
+    }
+
     private void inflateMonthFragment(GregorianCalendar currentDate) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_content, MonthFragment.getInstance(getMHolder(), currentDate))
                 .commit();
     }
+
 
     private void inflateDayFragment() {
         getSupportFragmentManager().beginTransaction()
@@ -191,10 +213,6 @@ public class MainActivity extends AppCompatActivity implements
                 .commit();
     }
 
-    /**
-     * Take care of popping the fragment back stack or finishing the activity
-     * as appropriate.
-     */
     @Override
     public void onBackPressed() {
 
@@ -237,6 +255,12 @@ public class MainActivity extends AppCompatActivity implements
                         numOfDayInCurMonth(currentMonth, currentYear) : currentDay;
                 setCurrentDate(currentYear, currentMonth, currentDay);
                 break;
+            case SpinnerListener.YEAR:
+                currentYear--;
+                currentDay = currentDay > numOfDayInCurMonth(currentMonth, currentYear) ?
+                        numOfDayInCurMonth(currentMonth, currentYear) : currentDay;
+                setCurrentDate(currentYear, currentMonth, currentDay);
+                break;
             case SpinnerListener.HOLIDAYS:
                 currentYear--;
                 currentDay = currentDay > numOfDayInCurMonth(currentMonth, currentYear) ?
@@ -274,6 +298,13 @@ public class MainActivity extends AppCompatActivity implements
                         numOfDayInCurMonth(currentMonth, currentYear) : currentDay;
                 setCurrentDate(currentYear, currentMonth, currentDay);
                 break;
+            case SpinnerListener.YEAR:
+                currentYear++;
+                currentDay = currentDay > numOfDayInCurMonth(currentMonth, currentYear) ?
+                        numOfDayInCurMonth(currentMonth, currentYear) : currentDay;
+                setCurrentDate(currentYear, currentMonth, currentDay);
+                break;
+
             case SpinnerListener.HOLIDAYS:
                 currentYear++;
                 currentDay = currentDay > numOfDayInCurMonth(currentMonth, currentYear) ?
@@ -297,6 +328,8 @@ public class MainActivity extends AppCompatActivity implements
                 return DayFragment.getInstance(currentDate, MainActivity.this);
             case SpinnerListener.MONTH:
                 return MonthFragment.getInstance(getMHolder(), currentDate);
+            case SpinnerListener.YEAR:
+                return YearFragment.getInstance(getYHolder(), currentDate);
             case SpinnerListener.HOLIDAYS:
                 return HolidaysFragment.getInstance(getHHolder(), currentDate, holContext);
             default:
@@ -352,7 +385,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onGridItemClick(int monthDayFlag, GregorianCalendar date) {
+    public void onMonthGridItemClick(int monthDayFlag, GregorianCalendar date) {
         int year = date.get(Calendar.YEAR);
         int month = date.get(Calendar.MONTH);
         int day = date.get(Calendar.DAY_OF_MONTH);
@@ -375,7 +408,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onViewHolderCreated(MonthViewHolder h1, MonthViewHolder h2) {
+    public void onMonthViewHolderCreated(MonthViewHolder h1, MonthViewHolder h2) {
         this.mh1 = h1;
         this.mh2 = h2;
     }
@@ -427,10 +460,17 @@ public class MainActivity extends AppCompatActivity implements
                 .commit();
     }
 
+    @Override
+    public void onYearViewHolderCreated(YearBaseViewHolder yh1, YearBaseViewHolder yh2) {
+        this.yh1 = yh1;
+        this.yh2 = yh2;
+    }
+
     private class SpinnerListener implements android.widget.AdapterView.OnItemSelectedListener {
         private static final int DAY = 0;
         private static final int MONTH = 1;
-        private static final int HOLIDAYS = 2;
+        private static final int YEAR = 2;
+        private static final int HOLIDAYS = 3;
 
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -445,6 +485,11 @@ public class MainActivity extends AppCompatActivity implements
                     currentContext = MONTH;
                     inflateMonthFragment(currentDate);
                     break;
+                case YEAR:
+                    resetHolderFlag(false);
+                    currentContext = YEAR;
+                    inflateYearFragment(currentDate);
+                    break;
                 case HOLIDAYS:
                     resetHolderFlag(false);
                     currentContext = HOLIDAYS;
@@ -458,4 +503,5 @@ public class MainActivity extends AppCompatActivity implements
 
         }
     }
+
 }

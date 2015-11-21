@@ -14,9 +14,9 @@ import android.view.ViewGroup;
 
 import com.hilllander.naunginlecalendar.R;
 import com.hilllander.naunginlecalendar.model.MonthGridItem;
-import com.hilllander.naunginlecalendar.util.MonthViewHolder;
 import com.hilllander.naunginlecalendar.util.adapter.MonthRecyclerAdapter;
 import com.hilllander.naunginlecalendar.util.listener.MonthEventsListener;
+import com.hilllander.naunginlecalendar.util.viewholder.MonthViewHolder;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -49,22 +49,12 @@ public class MonthFragment extends Fragment {
         return fragment;
     }
 
-    /**
-     * Called when a fragment is first attached to its context.
-     * {@link #onCreate(Bundle)} will be called after this.
-     *
-     * @param context
-     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         meListener = (MonthEventsListener) context;
     }
 
-    /**
-     * Called when the fragment is no longer attached to its activity.  This
-     * is called after {@link #onDestroy()}.
-     */
     @Override
     public void onDetach() {
         super.onDetach();
@@ -80,7 +70,7 @@ public class MonthFragment extends Fragment {
             MonthViewHolder h1 = new MonthViewHolder(getContext(), v1);
             MonthViewHolder h2 = new MonthViewHolder(getContext(), v2);
 
-            meListener.onViewHolderCreated(h1, h2);
+            meListener.onMonthViewHolderCreated(h1, h2);
             mholder = h2;
         }
         Bundle args = getArguments();

@@ -18,8 +18,8 @@ import com.hilllander.calendar_api.kernel.HolidayKernel;
 import com.hilllander.calendar_api.model.EngSDaysBundle;
 import com.hilllander.calendar_api.model.MyaSDaysBundle;
 import com.hilllander.naunginlecalendar.R;
-import com.hilllander.naunginlecalendar.util.HolidayViewHolder;
 import com.hilllander.naunginlecalendar.util.listener.HolidayEventsListener;
+import com.hilllander.naunginlecalendar.util.viewholder.HolidayViewHolder;
 import com.nhaarman.listviewanimations.appearance.simple.SwingRightInAnimationAdapter;
 
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 package com.hilllander.naunginlecalendar.util.listener;
 
 
-import com.hilllander.naunginlecalendar.util.MonthViewHolder;
+import com.hilllander.naunginlecalendar.util.viewholder.MonthViewHolder;
 
 import java.util.GregorianCalendar;
 
@@ -15,7 +15,7 @@ public interface MonthEventsListener {
      * @param monthDayFlag [flag [0 - previous, 1 - current, 2 - next , 3 - same item]]
      * @param date
      */
-    void onGridItemClick(int monthDayFlag, GregorianCalendar date);
+    void onMonthGridItemClick(int monthDayFlag, GregorianCalendar date);
 
-    void onViewHolderCreated(MonthViewHolder h1, MonthViewHolder h2);
+    void onMonthViewHolderCreated(MonthViewHolder h1, MonthViewHolder h2);
 }

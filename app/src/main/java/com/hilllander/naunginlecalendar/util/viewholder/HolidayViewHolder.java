@@ -1,4 +1,4 @@
-package com.hilllander.naunginlecalendar.util;
+package com.hilllander.naunginlecalendar.util.viewholder;
 
 import android.view.View;
 import android.widget.Spinner;

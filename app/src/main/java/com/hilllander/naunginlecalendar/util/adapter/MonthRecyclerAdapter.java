@@ -56,23 +56,23 @@ public class MonthRecyclerAdapter extends RecyclerView.Adapter<MonthRecyclerAdap
                 if (item.getDateStatus() == 1) { // click current month's days
                     if (selectedView != null) {    //not first click
                         if (selectedView.equals(viewHolder.rootView)) {  // click on selected item
-                            gridListener.onGridItemClick(3, item.getGreDate());
+                            gridListener.onMonthGridItemClick(3, item.getGreDate());
                         } else {    //click on different item
                             viewHolder.rootView.setBackgroundColor(context.getResources().getColor(R.color.dark_blue_alpha));
                             selectedView.setBackgroundColor(context.getResources().getColor(R.color.white));
                             selectedView = viewHolder.rootView;
-                            gridListener.onGridItemClick(1, item.getGreDate());
+                            gridListener.onMonthGridItemClick(1, item.getGreDate());
                         }
                     } else {    // first click on the grid items
                         selectedView = viewHolder.rootView;
                         selectedView.setBackgroundColor(context.getResources().getColor(R.color.dark_blue_alpha));
-                        gridListener.onGridItemClick(1, item.getGreDate());
+                        gridListener.onMonthGridItemClick(1, item.getGreDate());
                     }
 
                 } else if (item.getDateStatus() == 0) {   // click on prev month's days
-                    gridListener.onGridItemClick(0, item.getGreDate());
+                    gridListener.onMonthGridItemClick(0, item.getGreDate());
                 } else { // click on next month days
-                    gridListener.onGridItemClick(2, item.getGreDate());
+                    gridListener.onMonthGridItemClick(2, item.getGreDate());
                 }
 
             }
@@ -94,7 +94,7 @@ public class MonthRecyclerAdapter extends RecyclerView.Adapter<MonthRecyclerAdap
         if (item.isCurrentDay()) {
             selectedView = viewHolder.rootView;
             selectedView.setBackgroundColor(context.getResources().getColor(R.color.dark_blue_alpha));
-            gridListener.onGridItemClick(1, item.getGreDate());
+            gridListener.onMonthGridItemClick(1, item.getGreDate());
         }
         if (item.getDateStatus() == 0 || item.getDateStatus() == 2) { // highlight pre and next month's days
             viewHolder.rootView.setBackgroundColor(context.getResources().getColor(R.color.light_grey));

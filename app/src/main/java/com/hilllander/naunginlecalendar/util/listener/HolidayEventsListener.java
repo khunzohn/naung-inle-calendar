@@ -1,6 +1,6 @@
 package com.hilllander.naunginlecalendar.util.listener;
 
-import com.hilllander.naunginlecalendar.util.HolidayViewHolder;
+import com.hilllander.naunginlecalendar.util.viewholder.HolidayViewHolder;
 
 /**
  * Created by khunzohn on 11/16/15.

@@ -1,4 +1,4 @@
-package com.hilllander.naunginlecalendar.util;
+package com.hilllander.naunginlecalendar.util.viewholder;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.hilllander.naunginlecalendar.R;
+import com.hilllander.naunginlecalendar.util.RecyclerItemDecorater;
 
 import mm.technomation.mmtext.MMTextView;
 
