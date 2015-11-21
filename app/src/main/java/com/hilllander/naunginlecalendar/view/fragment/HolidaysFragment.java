@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -217,22 +216,6 @@ public class HolidaysFragment extends Fragment {
                     }
                 });
             }
-
-            mView.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View view, MotionEvent motionEvent) {
-                    int event = motionEvent.getAction();
-                    switch (event) {
-                        case MotionEvent.ACTION_DOWN:
-                            view.setBackgroundColor(getContext().getResources().getColor(R.color.grey));
-                            break;
-                        case MotionEvent.ACTION_UP:
-                            view.setBackgroundColor(getContext().getResources().getColor(R.color.white));
-                            break;
-                    }
-                    return false;
-                }
-            });
 
             return mView;
         }
