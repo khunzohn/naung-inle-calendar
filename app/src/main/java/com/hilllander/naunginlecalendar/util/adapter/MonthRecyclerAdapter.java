@@ -91,14 +91,18 @@ public class MonthRecyclerAdapter extends RecyclerView.Adapter<MonthRecyclerAdap
         } else if (item.getMonthStatus() == 3) { //highlight new moon
             viewHolder.specialDayImage.setImageDrawable(context.getResources().getDrawable(R.drawable.new_moon));
         }
+
+        if (item.getDateStatus() == 1) {
+            viewHolder.rootView.setBackgroundColor(context.getResources().getColor(R.color.white));
+        } else { // highlight pre and next month's days
+            viewHolder.rootView.setBackgroundColor(context.getResources().getColor(R.color.light_grey));
+        }
         if (item.isCurrentDay()) {
             selectedView = viewHolder.rootView;
             selectedView.setBackgroundColor(context.getResources().getColor(R.color.dark_blue_alpha));
             gridListener.onGridItemClick(1, item.getGreDate());
         }
-        if (item.getDateStatus() == 0 || item.getDateStatus() == 2) { // highlight pre and next month's days
-            viewHolder.rootView.setBackgroundColor(context.getResources().getColor(R.color.light_grey));
-        }
+
         if (item.getSpecialDayFlag() == 1 &&    // highlight special day ,omit full and new moon day
                 item.getMonthStatus() != 1 && item.getMonthStatus() != 3) {
             viewHolder.specialDayImage.setImageDrawable(context.getResources().getDrawable(R.drawable.special_day_image));

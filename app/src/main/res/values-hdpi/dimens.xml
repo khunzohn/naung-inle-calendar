@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="month_grid_item_height">62dp</dimen>
+    <dimen name="month_grid_height">382dp</dimen>
+    <!-- (6 X item height) + 7 X margin[1dp] -->
+    <dimen name="item_offset">0.0dp</dimen>
+    <dimen name="month_grid_item_margin">0.5dp</dimen>
+    <dimen name="small_text">12sp</dimen>
+</resources>
