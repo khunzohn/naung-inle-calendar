@@ -25,7 +25,8 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:padding="@dimen/padding_4dp"
-            android:textColor="@color/dark_blue" />
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/small_text" />
     </RelativeLayout>
 
     <View
