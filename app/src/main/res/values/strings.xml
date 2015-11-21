@@ -18,7 +18,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_test">TestActivity</string>
-    <string name="date_picker">dp</string>
+    <string name="date_picker">Go to</string>
     <string name="today">today</string>
     <string name="other_market_days_title">အခြားစျေးများ</string>
     <string name="naung_inle">Naung Inle</string>
