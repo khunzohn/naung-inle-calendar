@@ -42,4 +42,103 @@
     <string name="eng_era">ခရဇ်သက္ကရာဇ်</string>
     <string name="holidays">၏ထူးခြားရက်များ</string>
     <string name="mya_era">မြန်မာသက္ကရာဇ်</string>
+    <string name="title_activity_license">Licenses</string>
+    <string name="title_activity_about">About us</string>
+    <string name="action_license">Licenses</string>
+    <string name="action_about_us">About us</string>
+    <string name="open_source_licenses">The app\'s been made possible to shine to its best by leveraging the following open source projects and software.</string>
+    <string name="license_item_title">Notices for</string>
+    <string name="small_circle">small circle</string>
+
+    <string name="calendar_calculation">&lt;a href=\"http://cool-emerald.blogspot.sg/2013/06/algorithm-program-and-calculation-of.html\">Myanmar Calendar Calculations&lt;/a> by Ko Yan Naing Aye</string>
+    <string name="mmText">&lt;a href=\"https://github.com/htoomyintnaung/mmtext\">mmText&lt;/a> by Ko Htoo Myint Naung</string>
+    <string name="circular_reveal">&lt;a href=\"https://github.com/ozodrukh/CircularReveal\">CircularReveal animation&lt;/a> by ozodrukh</string>
+    <string name="listview_animations">&lt;a href=\"https://github.com/nhaarman/ListViewAnimations\">ListViewAnimations&lt;/a> by nhaarman</string>
+    <string name="material_datepicker">&lt;a href=\"https://github.com/wdullaer/MaterialDateTimePicker\">MaterialDateTimePicker&lt;/a> by wdullaer</string>
+    <string name="google_iconset">&lt;a href=\"http://www.google.com/design/spec/style/icons.html#icons-system-icons\">Material design icons&lt;/a> by Google</string>
+    <string name="version">Version 0.1</string>
+    <string-array name="author">
+        <item>Ko Yan Naing Aye</item>
+        <item>Ko Htoo Myint Naung</item>
+        <item>ozodrukh</item>
+        <item>nhaarman</item>
+        <item>wdullaer</item>
+    </string-array>
+    <string-array name="license_text">
+        <item>Myanmar Calendrical Calculations by Yan Naing Aye is licensed
+        under a Creative Commons Attribution 3.0 Unported License.
+        http://creativecommons.org/licenses/by/3.0/
+	You are free:
+    to Share — to copy, distribute and transmit the work
+    to Remix — to adapt the work
+    to make commercial use of the work
+    Attribution — You must attribute Myanmar Calendrical Calculations
+		to Yan Naing Aye (with link).</item>
+        <item>           DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+                    Version 2, December 2004
+
+ Copyright © 2004 Sam Hocevar sam@hocevar.net
+
+ Everyone is permitted to copy and distribute verbatim or modified
+ copies of this license document, and changing it is allowed as long
+ as the name is changed.
+
+            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+  0. You just DO WHAT THE FUCK YOU WANT TO.</item>
+        <item>The MIT License (MIT)
+
+Copyright © 2014 Abdullaev Ozodrukh
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the \"Software\"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.</item>
+        <item>Copyright 2014 Niek Haarman
+
+Licensed under the Apache License, Version 2.0 (the \"License\");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an \"AS IS\" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</item>
+        <item>Copyright © 2015 Wouter Dullaert
+
+Licensed under the Apache License, Version 2.0 (the \"License\");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an \"AS IS\" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</item>
+        <item>
+            We have made these icons available for you to incorporate them into your products under the [Creative Common Attribution 4.0 International License (CC-BY 4.0)](http://creativecommons.org/licenses/by/4.0/). Feel free to remix and re-share these icons and documentation in your
+products.  We\'d love attribution in your app\'s *about* screen, but it\'s not required. The only thing we ask is that you not re-sell
+the icons themselves.
+        </item>
+    </string-array>
+
 </resources>

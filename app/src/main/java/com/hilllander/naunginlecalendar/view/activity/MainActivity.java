@@ -1,6 +1,7 @@
 package com.hilllander.naunginlecalendar.view.activity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
@@ -119,9 +120,7 @@ public class MainActivity extends AppCompatActivity implements
 
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            return true;
-        } else if (id == R.id.date_picker) {
+        if (id == R.id.date_picker) {
 
             DatePickerDialog datePicker = DatePickerDialog.newInstance(this, currentYear, currentMonth, currentDay);
             datePicker.show(getFragmentManager(), "Datepicker dialog");
@@ -140,6 +139,13 @@ public class MainActivity extends AppCompatActivity implements
                     .setCustomAnimations(directions[0], directions[1])
                     .replace(R.id.main_content, currentFragment)
                     .commit();
+        } else if (id == R.id.action_license) {
+            Intent i = new Intent(MainActivity.this, LicenseActivity.class);
+            startActivity(i);
+
+        } else if (id == R.id.action_about_us) {
+            Intent i = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);
@@ -343,7 +349,7 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
-    protected void hideToolBarShadowForLollipop(Toolbar mToolbar, View shadowView) {
+    private void hideToolBarShadowForLollipop(Toolbar mToolbar, View shadowView) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             // only for lollipop and newer versions
             shadowView.setVisibility(View.GONE);

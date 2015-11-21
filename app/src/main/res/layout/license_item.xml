@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:padding="@dimen/padding_16_dp"
+            android:text="@string/license_item_title"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/normal_text" />
+
+        <LinearLayout
+            android:id="@+id/depen_root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/padding_16_dp"
+                android:background="@drawable/small_cicle"
+                android:contentDescription="@string/small_circle" />
+
+            <TextView
+                android:id="@+id/dependency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/primary" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/depen_root"
+            android:layout_margin="@dimen/padding_4dp"
+            android:background="@color/primary" />
+
+        <TextView
+            android:id="@+id/license"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line"
+            android:layout_margin="@dimen/padding_16_dp"
+            android:autoLink="all"
+            android:background="@color/light_grey"
+            android:linksClickable="true"
+            android:padding="@dimen/padding_16_dp"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
