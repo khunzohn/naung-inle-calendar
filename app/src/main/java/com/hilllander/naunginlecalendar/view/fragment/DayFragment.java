@@ -12,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hilllander.calendar_api.calendar.MyanmarCalendar;
 import com.hilllander.calendar_api.util.DateFormatter;
@@ -22,6 +24,7 @@ import com.hilllander.naunginlecalendar.R;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Random;
 
 import io.codetail.animation.SupportAnimator;
 import io.codetail.animation.ViewAnimationUtils;
@@ -76,6 +79,11 @@ public class DayFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_day, container, false);
         myView = view.findViewById(R.id.ll_reveal);
+        FrameLayout background = (FrameLayout) view.findViewById(R.id.marketday_background);
+        int backId = new Random().nextInt(3);
+        Toast.makeText(getContext(), "backId is : " + backId, Toast.LENGTH_SHORT).show();
+        int backResId = getResId(backId);
+        background.setBackgroundResource(backResId);
 
         Bundle args = getArguments();
         MMTextView myaDate = (MMTextView) view.findViewById(R.id.myaDate);
@@ -126,6 +134,19 @@ public class DayFragment extends Fragment {
         engDay.setText(args.getString(E_DAY));
         engDate.setText(args.getString(E_DATE));
         return view;
+    }
+
+    private int getResId(int backId) {
+        switch (backId) {
+            case 0:
+                return R.drawable.market_day_1;
+            case 1:
+                return R.drawable.market_day_2;
+            case 2:
+                return R.drawable.market_day_3;
+            default:
+                return R.drawable.market_day_1;
+        }
     }
 
     private void hideOtherMarketDays(ListView list) {
