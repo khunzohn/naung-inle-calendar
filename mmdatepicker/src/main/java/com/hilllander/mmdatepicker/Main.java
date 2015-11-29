@@ -1,17 +1,21 @@
-package com.hilllander.myanmardatepicker;
+package com.hilllander.mmdatepicker;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.hilllander.mmdatepicker.fragment.MyanmarDatePickerDialog;
 
 
-public class MainActivity extends ActionBarActivity {
+public class Main extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
     @Override
@@ -34,5 +38,10 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showDialog(View view) {
+        MyanmarDatePickerDialog dialog = MyanmarDatePickerDialog.newInstance("myanmar date picker");
+        dialog.show(getSupportFragmentManager(), "myanmar date picker");
     }
 }
