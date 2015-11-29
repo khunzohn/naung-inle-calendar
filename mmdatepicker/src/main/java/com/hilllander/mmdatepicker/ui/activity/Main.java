@@ -1,4 +1,4 @@
-package com.hilllander.mmdatepicker;
+package com.hilllander.mmdatepicker.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.hilllander.mmdatepicker.fragment.MyanmarDatePickerDialog;
+import com.hilllander.mmdatepicker.R;
+import com.hilllander.mmdatepicker.ui.fragment.MyanmarDatePickerDialog;
+
+import java.util.GregorianCalendar;
 
 
 public class Main extends AppCompatActivity {
@@ -41,7 +44,7 @@ public class Main extends AppCompatActivity {
     }
 
     public void showDialog(View view) {
-        MyanmarDatePickerDialog dialog = MyanmarDatePickerDialog.newInstance("myanmar date picker");
+        MyanmarDatePickerDialog dialog = MyanmarDatePickerDialog.newInstance(new GregorianCalendar());
         dialog.show(getSupportFragmentManager(), "myanmar date picker");
     }
 }

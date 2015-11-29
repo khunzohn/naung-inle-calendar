@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mm.technomation.mmtext.MMButtonView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/year"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/year_item_background"
+    android:padding="@dimen/mtv_padding"
+    android:textColor="@color/accent_dark"
+    android:textSize="@dimen/normal_text"></mm.technomation.mmtext.MMButtonView>

@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/alpha_black"
-    android:fitsSystemWindows="true">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="40dp">
+        android:layout_height="match_parent">
 
         <mm.technomation.mmtext.MMTextView
             android:id="@+id/mtvWeekday"
@@ -21,7 +18,7 @@
             android:textColor="@color/white" />
 
         <LinearLayout
-            android:id="@+id/chooserLayout"
+            android:id="@+id/dayMonthLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/mtvWeekday"
@@ -33,66 +30,67 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:padding="@dimen/mtv_padding"
                 android:text="တပါေင်း"
                 android:textColor="@color/white"
-                android:textSize="@dimen/large_text" />
+                android:textSize="@dimen/normal_text" />
 
             <mm.technomation.mmtext.MMTextView
                 android:id="@+id/mtvDay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:padding="@dimen/mtv_padding"
                 android:text="၁၃"
                 android:textColor="@color/white"
                 android:textSize="@dimen/extra_large_text" />
-
-            <mm.technomation.mmtext.MMTextView
-                android:id="@+id/mtvYear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:padding="@dimen/mtv_padding"
-                android:text="၁၃၇၇"
-                android:textColor="@color/material_grey_600"
-                android:textSize="@dimen/large_text" />
-
         </LinearLayout>
+
+        <mm.technomation.mmtext.MMTextView
+            android:id="@+id/mtvYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dayMonthLayout"
+            android:background="@color/accent"
+            android:gravity="center_horizontal"
+            android:text="၁၃၇၇"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/large_text" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyDatePicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/chooserLayout" />
+            android:layout_below="@id/mtvYear" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_below="@id/recyDatePicker">
+            android:layout_alignParentBottom="true"
+            android:background="@color/white">
 
-            <mm.technomation.mmtext.MMTextView
-                android:id="@+id/mtvCancel"
+            <mm.technomation.mmtext.MMButtonView
+                android:id="@+id/mbtCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_toLeftOf="@+id/mtvOk"
-                android:layout_toStartOf="@+id/mtvOk"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/mbtOk"
+                android:layout_toStartOf="@+id/mbtOk"
+                android:background="@drawable/dp_btn_background"
                 android:padding="@dimen/mtv_padding"
                 android:text="CANCEL"
                 android:textColor="@color/accent_dark" />
 
-            <mm.technomation.mmtext.MMTextView
-                android:id="@+id/mtvOk"
+            <mm.technomation.mmtext.MMButtonView
+                android:id="@+id/mbtOk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/dp_btn_background"
                 android:padding="@dimen/mtv_padding"
                 android:text="OK"
                 android:textColor="@color/accent_dark" />
