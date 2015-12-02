@@ -15,7 +15,6 @@ import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hilllander.calendar_api.calendar.MyanmarCalendar;
 import com.hilllander.calendar_api.util.DateFormatter;
@@ -80,8 +79,7 @@ public class DayFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_day, container, false);
         myView = view.findViewById(R.id.ll_reveal);
         FrameLayout background = (FrameLayout) view.findViewById(R.id.marketday_background);
-        int backId = new Random().nextInt(3);
-        Toast.makeText(getContext(), "backId is : " + backId, Toast.LENGTH_SHORT).show();
+        int backId = new Random().nextInt(6);
         int backResId = getResId(backId);
         background.setBackgroundResource(backResId);
 
@@ -139,13 +137,19 @@ public class DayFragment extends Fragment {
     private int getResId(int backId) {
         switch (backId) {
             case 0:
-                return R.drawable.market_day_1;
+                return R.drawable.m_1;
             case 1:
-                return R.drawable.market_day_2;
+                return R.drawable.m_2;
             case 2:
-                return R.drawable.market_day_3;
+                return R.drawable.m_3;
+            case 3:
+                return R.drawable.m_4;
+            case 4:
+                return R.drawable.m_5;
+            case 5:
+                return R.drawable.m_6;
             default:
-                return R.drawable.market_day_1;
+                return R.drawable.m_5;
         }
     }
 
