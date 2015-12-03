@@ -9,7 +9,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="10">
-        <!--//TODO removed this comment after merging-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -19,8 +18,10 @@
                 android:id="@+id/myaWeekDay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
+                android:layout_marginEnd="@dimen/padding_16_dp"
                 android:layout_marginRight="@dimen/padding_16_dp"
                 android:layout_marginTop="@dimen/padding_16_dp"
                 android:textColor="@color/dark_blue" />
@@ -30,8 +31,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="@dimen/padding_16_dp"
+                android:layout_marginStart="@dimen/padding_16_dp"
                 android:layout_marginTop="@dimen/padding_16_dp"
                 android:padding="@dimen/tv_padding"
                 android:textColor="@color/dark_blue"
@@ -67,14 +70,24 @@
                 android:layout_below="@+id/shadow"
                 android:background="@drawable/mm1">
 
-                <mm.technomation.mmtext.MMTextView
-                    android:id="@+id/mainMarketday"
-                    android:layout_width="wrap_content"
+
+                <FrameLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|start"
-                    android:paddingLeft="@dimen/padding_16_dp"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/normal_text" />
+                    android:layout_gravity="bottom"
+                    android:background="@color/alpha_black">
+
+                    <mm.technomation.mmtext.MMTextView
+                        android:id="@+id/mainMarketday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingBottom="@dimen/tv_padding"
+                        android:paddingLeft="@dimen/padding_16_dp"
+                        android:paddingTop="@dimen/tv_padding"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/normal_text" />
+                </FrameLayout>
             </FrameLayout>
 
 
