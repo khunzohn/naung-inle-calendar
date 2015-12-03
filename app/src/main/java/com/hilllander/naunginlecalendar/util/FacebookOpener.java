@@ -14,7 +14,7 @@ public class FacebookOpener {
             context.getPackageManager().getPackageInfo("com.facebook.katana", 0);
             return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/746688995463780")); // naung inle calendar page id
         } catch (Exception e) {
-            return new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/NicheOfHilllander"));
+            return new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/NicheOfHilllander"));//TODO replace with Naung inle web address
         }
     }
 }
