@@ -30,41 +30,47 @@
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/primary"
+            android:background="@drawable/welcome_background"
             android:orientation="vertical"
             android:weightSum="10">
 
             <RelativeLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:layout_gravity="start"
                 android:layout_weight="5"
-                android:background="@drawable/upper_art">
+                android:background="@drawable/upper_art"
+                android:padding="@dimen/padding_16_dp">
 
-                <TextView
-                    android:id="@+id/hilllander"
+                <mm.technomation.mmtext.MMTextView
+                    android:id="@+id/naungInle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:paddingLeft="24dp"
+                    android:layout_centerHorizontal="true"
                     android:paddingTop="24dp"
-                    android:text="@string/hilllander"
+                    android:text="@string/naung_inle"
                     android:textColor="@color/dark_blue"
                     android:textSize="@dimen/extra_large_text" />
 
-                <TextView
-                    android:id="@+id/we_craft_things"
+                <mm.technomation.mmtext.MMTextView
+                    android:id="@+id/calendar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/hilllander"
-                    android:layout_marginLeft="80dp"
-                    android:layout_marginStart="80dp"
+                    android:layout_below="@+id/naungInle"
+                    android:layout_centerHorizontal="true"
                     android:paddingTop="@dimen/padding_16_dp"
-                    android:text="@string/we_craft_things"
+                    android:text="@string/calendar_about"
                     android:textColor="@color/dark_blue" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/calendar"
+                    android:layout_centerHorizontal="true"
+                    android:paddingTop="@dimen/padding_16_dp"
+                    android:text="@string/version"
+                    android:textColor="@color/primary" />
             </RelativeLayout>
 
             <FrameLayout
@@ -77,7 +83,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|bottom"
-                    android:layout_margin="48dp"
+                    android:layout_marginBottom="48dp"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginStart="100dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -85,7 +93,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:padding="@dimen/tv_padding"
-                        android:text="@string/out_team"
+                        android:text="@string/special_thanks"
                         android:textColor="@color/milk" />
 
                     <View
@@ -99,24 +107,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
                         android:padding="@dimen/tv_padding"
-                        android:text="@string/developer"
+                        android:text="@string/contributors"
                         android:textColor="@color/milk" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:padding="@dimen/tv_padding"
-                        android:text="@string/photographer"
-                        android:textColor="@color/milk" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:padding="@dimen/tv_padding"
-                        android:text="@string/icon_designer"
-                        android:textColor="@color/milk" />
 
                 </LinearLayout>
 

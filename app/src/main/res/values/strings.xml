@@ -21,8 +21,8 @@
     <string name="date_picker">Go to</string>
     <string name="today">today</string>
     <string name="other_market_days_title">အခြားစျေးများ</string>
-    <string name="naung_inle">Naung Inle</string>
-    <string name="calendar">Calendar</string>
+    <string name="naung_inle">နောင်အင်းလေး</string>
+    <string name="calendar">ပြက္ခဒိန်</string>
     <string name="sasana_year">"သာသနာနှစ် "</string>
     <string name="sun">နွေ</string>
     <string name="mon">လာ</string>
@@ -43,9 +43,9 @@
     <string name="holidays">၏ထူးခြားရက်များ</string>
     <string name="mya_era">မြန်မာသက္ကရာဇ်</string>
     <string name="title_activity_license">Licenses</string>
-    <string name="title_activity_about">About us</string>
+    <string name="title_activity_about">About</string>
     <string name="action_license">Licenses</string>
-    <string name="action_about_us">About us</string>
+    <string name="action_about_us">About</string>
     <string name="open_source_licenses">The app\'s been made possible to shine to its best by leveraging the following open source projects and software.</string>
     <string name="license_item_title">Notices for</string>
     <string name="small_circle">small circle</string>
@@ -56,15 +56,13 @@
     <string name="listview_animations">&lt;a href=\"https://github.com/nhaarman/ListViewAnimations\">ListViewAnimations&lt;/a> by nhaarman</string>
     <string name="material_datepicker">&lt;a href=\"https://github.com/wdullaer/MaterialDateTimePicker\">MaterialDateTimePicker&lt;/a> by wdullaer</string>
     <string name="google_iconset">&lt;a href=\"http://www.google.com/design/spec/style/icons.html#icons-system-icons\">Material design icons&lt;/a> by Google</string>
-    <string name="version">Version 0.1</string>
-    <string name="we_craft_things">We craft things with love.</string>
-    <string name="hilllander">hilllander</string>
-    <string name="out_team">Our team</string>
-    <string name="developer">Developer............ Khunzohn</string>
-    <string name="photographer">Photographer..... Boamboan</string>
-    <string name="icon_designer">Icon designer...... James Pu</string>
-    <string name="copyright">Copyright © 2015 hilllander</string>
-    <string name="developer_by_hilllander">Developed by hilllander</string>
+    <string name="version">Version 0.1(Ibis)</string>
+    <string name="calendar_about">ပြက္ခဒိန်</string>
+    <string name="naung_inle_about">hilllander</string>
+    <string name="special_thanks">Special thanks to :</string>
+    <string name="contributors"><b><i>Boam Boan</i></b> for awesome fotos\n<b><i>James Pu</i></b> for cool app icon\n<b><i>Saw Phyu</i></b> for general support and\nlast but not least,<b><i>Ko Kyaw Thein</i></b> for general support and play store account to host the app.</string>
+    <string name="copyright">Copyright © 2015 khunzohn</string>
+    <string name="developer_by_khunzohn">Developed by khunzohn</string>
     <string-array name="author">
         <item>Ko Yan Naing Aye</item>
         <item>Ko Htoo Myint Naung</item>

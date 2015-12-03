@@ -25,4 +25,7 @@
     <color name="dark_green">#df85bea5</color>
     <color name="alpha_blue">#8b974a7d</color>
     <color name="main_market_day">#123</color>
+    <color name="alpha_white">#b1ffffff</color>
+    <color name="alpha_violet">#c4155b69</color>
+    <color name="alpha_milk">#b2d7f0cb</color>
 </resources>

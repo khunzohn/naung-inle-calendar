@@ -8,8 +8,9 @@
     tools:context=".WelcomeActivity">
 
     <FrameLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_gravity="end"
         android:layout_weight="5"
         android:background="@drawable/welcome_art_upper">
 
@@ -18,9 +19,10 @@
         android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="24dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/padding_16_dp">
 
-            <TextView
+            <mm.technomation.mmtext.MMTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -29,7 +31,7 @@
                 android:textColor="@color/milk"
                 android:textSize="@dimen/large_text" />
 
-            <TextView
+            <mm.technomation.mmtext.MMTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -53,7 +55,7 @@
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginBottom="16dp"
             android:padding="@dimen/tv_padding"
-            android:text="@string/developer_by_hilllander"
+            android:text="@string/developer_by_khunzohn"
             android:textColor="@color/primary" />
     </FrameLayout>
 
