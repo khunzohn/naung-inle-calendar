@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/shadow"
-                android:background="@drawable/market_0">
+                android:background="@drawable/mm1">
 
                 <mm.technomation.mmtext.MMTextView
                     android:id="@+id/mainMarketday"

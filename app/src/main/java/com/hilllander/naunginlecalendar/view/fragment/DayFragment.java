@@ -79,7 +79,7 @@ public class DayFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_day, container, false);
         myView = view.findViewById(R.id.ll_reveal);
         FrameLayout background = (FrameLayout) view.findViewById(R.id.marketday_background);
-        int backId = new Random().nextInt(6);
+        int backId = new Random().nextInt(8);
         int backResId = getResId(backId);
         background.setBackgroundResource(backResId);
 
@@ -137,19 +137,23 @@ public class DayFragment extends Fragment {
     private int getResId(int backId) {
         switch (backId) {
             case 0:
-                return R.drawable.m_1;
+                return R.drawable.mm1;
             case 1:
-                return R.drawable.m_2;
+                return R.drawable.mm2;
             case 2:
-                return R.drawable.m_3;
+                return R.drawable.mm3;
             case 3:
-                return R.drawable.m_4;
+                return R.drawable.mm4;
             case 4:
-                return R.drawable.m_5;
+                return R.drawable.mm5;
             case 5:
-                return R.drawable.m_6;
+                return R.drawable.mm6;
+            case 6:
+                return R.drawable.mm7;
+            case 7:
+                return R.drawable.mm8;
             default:
-                return R.drawable.m_5;
+                return R.drawable.mm5;
         }
     }
 
