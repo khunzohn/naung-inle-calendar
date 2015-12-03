@@ -2,7 +2,6 @@ package com.hilllander.naunginlecalendar.util.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +45,6 @@ public class MonthRecyclerAdapter extends RecyclerView.Adapter<MonthRecyclerAdap
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, int i) {
         final MonthGridItem item = itemList.get(i);
-        Log.d(TAG + " onBind", item.getEngDay());
         viewHolder.eDay.setText(item.getEngDay());
         viewHolder.mMonth.setMyanmarText(item.getMyaMonth());
         viewHolder.mDay.setMyanmarText(item.getMyaDay());

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -188,7 +187,6 @@ public class HolidaysFragment extends Fragment {
 
             if (mView == null) {
                 counter++;
-                Log.d(TAG, "view created: " + counter);
                 mView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.holiday_list_item, viewGroup, false);
                 holder = new ViewHolder(mView);
                 mView.setTag(holder);

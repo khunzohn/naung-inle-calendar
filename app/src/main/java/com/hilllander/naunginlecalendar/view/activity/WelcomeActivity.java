@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.hilllander.naunginlecalendar.R;
 
 public class WelcomeActivity extends AppCompatActivity {
-    private static final long delay = 2500; // 1 sec
+    private static final long delay = 1500; // 1 sec
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

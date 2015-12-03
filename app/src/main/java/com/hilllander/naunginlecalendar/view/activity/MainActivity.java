@@ -8,7 +8,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -132,7 +131,6 @@ public class MainActivity extends AppCompatActivity implements
                     day = cal.get(Calendar.DAY_OF_MONTH);
             setCurrentDate(year, month, day);
             curJd = kernel.W2J(year, month + 1, day, caltype); // MyanmarCalendar's month starts from 1
-            Log.d(TAG, "curJd : today " + curJd);
             int[] directions = animDirections(SimpleGestureFilter.SWIPE_UP);
             Fragment currentFragment = getCurrentFragment();
             getSupportFragmentManager().beginTransaction()
@@ -229,7 +227,6 @@ public class MainActivity extends AppCompatActivity implements
         switch (currentContext) {
             case SpinnerListener.DAY:
                 curJd -= 1;
-                Log.d(TAG, "curJd : decre " + curJd);
                 WesternDate wDate = kernel.J2W(curJd, caltype);
                 setCurrentDate(wDate.getYear(), wDate.getMonth() - 1, wDate.getDay()); // WesternDate's month starts from 1
                 break;
@@ -266,7 +263,6 @@ public class MainActivity extends AppCompatActivity implements
         switch (currentContext) {
             case SpinnerListener.DAY:
                 curJd += 1;
-                Log.d(TAG, "curJd : incre" + curJd);
                 WesternDate wDate = kernel.J2W(curJd, caltype);
                 setCurrentDate(wDate.getYear(), wDate.getMonth() - 1, wDate.getDay()); // WesternDate's month starts from 1
                 break;
@@ -424,7 +420,6 @@ public class MainActivity extends AppCompatActivity implements
     public void onDateSet(DatePickerDialog datePickerDialog, int year, int month, int day) {
         setCurrentDate(year, month, day);
         curJd = kernel.W2J(year, month + 1, day, caltype); // MyanmarCalendar's month starts from 1
-        Log.d(TAG, "curJd : dp " + curJd);
         int[] directions = animDirections(SimpleGestureFilter.SWIPE_UP);
         Fragment currentFragment = getCurrentFragment();
         getSupportFragmentManager().beginTransaction()
