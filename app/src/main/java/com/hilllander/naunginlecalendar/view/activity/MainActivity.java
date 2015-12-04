@@ -1,9 +1,7 @@
 package com.hilllander.naunginlecalendar.view.activity;
 
 
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
@@ -32,6 +30,7 @@ import com.hilllander.naunginlecalendar.util.listener.SimpleGestureFilter.Simple
 import com.hilllander.naunginlecalendar.view.fragment.DayFragment;
 import com.hilllander.naunginlecalendar.view.fragment.HolidaysFragment;
 import com.hilllander.naunginlecalendar.view.fragment.MonthFragment;
+import com.hilllander.naunginlecalendar.view.fragment.WhatNewDialogFragment;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.Calendar;
@@ -76,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -149,6 +147,9 @@ public class MainActivity extends AppCompatActivity implements
         } else if (id == R.id.action_about_us) {
             Intent i = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(i);
+        } else if (id == R.id.whatIsNew) {
+            WhatNewDialogFragment dialog = new WhatNewDialogFragment();
+            dialog.show(getSupportFragmentManager(), "what\'s new dialog");
         }
 
         return super.onOptionsItemSelected(item);

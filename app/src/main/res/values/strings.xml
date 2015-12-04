@@ -63,6 +63,13 @@
     <string name="contributors"><b><i>Boam Boan</i></b> for awesome fotos\n<b><i>James Pu</i></b> for cool app icon\n<b><i>Saw Phyu</i></b> for general support and\nlast but not least,<b><i>Ko Kyaw Thein</i></b> for general support and play store account to host the app.</string>
     <string name="copyright">Copyright © 2015 khunzohn</string>
     <string name="developer_by_khunzohn">Developed by khunzohn</string>
+    <string name="what_new">what\'s new</string>
+    <string name="summary_0_1_1">In version 0.1.1 (Ibis) release, lollipop incompatibility issue is fixed.
+    Some market day Photos are removed for the sake of app\'s size. Status bar
+        is re-designed to meet the material design guide lines.\n\n
+    Any bug report or feature requests are thankfully welcome. </string>
+    <string name="full_changes">Full changes</string>
+    <string name="ver_0_1_1">0.1.1 (Ibis)</string>
     <string-array name="author">
         <item>Ko Yan Naing Aye</item>
         <item>Ko Htoo Myint Naung</item>
@@ -145,6 +152,23 @@ limitations under the License.</item>
 products.  We\'d love attribution in your app\'s *about* screen, but it\'s not required. The only thing we ask is that you not re-sell
 the icons themselves.
         </item>
+    </string-array>
+    <string-array name="version">
+        <item>0.1.1 (Ibis)</item>
+        <item>0.1_beta (Ibis)</item>
+    </string-array>
+    <string-array name="feature_list_0_1_1">
+        <item>Fixed lollipop incompatibility issue.</item>
+        <item>Removed some market days photos to reduce app\'s size.</item>
+        <item>Redesigned status bar according to Material design guide lines.</item>
+    </string-array>
+    <string-array name="feature_list_0_1">
+        <item>Myanmar date</item>
+        <item>Western date</item>
+        <item>Local holidays</item>
+        <item>Global holidays</item>
+        <item>Local market days</item>
+        <item>Market day\'s photos ( 8 altogether)</item>
     </string-array>
 
 </resources>
