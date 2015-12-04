@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        View tbShadow = findViewById(R.id.toolbar_shadow);
+        View tbShadow = findViewById(R.id.home_toolbar_shadow);
         hideToolBarShadowForLollipop(toolbar, tbShadow);
         mainLayout = (LinearLayout) findViewById(R.id.main_layout);
         setSupportActionBar(toolbar);
@@ -91,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements
         GregorianCalendar today = new GregorianCalendar();
         setCurrentDate(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH));
         detecter = new SimpleGestureFilter(this, this);
-
 
     }
 
