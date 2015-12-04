@@ -9,9 +9,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.hilllander.naunginlecalendar.R;
 import com.hilllander.naunginlecalendar.model.LicenseObject;
+import com.hilllander.naunginlecalendar.util.Util;
 import com.hilllander.naunginlecalendar.util.adapter.LicenseRecyclerAdapter;
 
 import java.util.ArrayList;
@@ -25,20 +27,15 @@ public class LicenseActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         View toolbarShow = findViewById(R.id.license_toolbar_shadow);
-        hideToolBarShadowForLollipop(toolbar, toolbarShow);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        RelativeLayout mainLayout = (RelativeLayout) findViewById(R.id.main_layout);
+        Util.hideToolBarShadowForLollipop(this, toolbar, toolbarShow);
+        Util.setSystemUiVisibilityForLollipop(this);
+        Util.setStatusBarPaddingForLollipop(this, mainLayout);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.license_recycler);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(new LicenseRecyclerAdapter(this, createLicenses()));
-    }
-
-    private void hideToolBarShadowForLollipop(Toolbar mToolbar, View shadowView) {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            // only for lollipop and newer versions
-            shadowView.setVisibility(View.GONE);
-            mToolbar.setElevation(getResources().getDimension(R.dimen.toolbar_elevation_height));
-        }
     }
 
     private ArrayList<LicenseObject> createLicenses() {

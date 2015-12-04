@@ -8,9 +8,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.hilllander.naunginlecalendar.R;
 import com.hilllander.naunginlecalendar.util.FacebookOpener;
+import com.hilllander.naunginlecalendar.util.Util;
 
 public class AboutActivity extends AppCompatActivity {
 
@@ -21,8 +23,12 @@ public class AboutActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         View toolbarShaw = findViewById(R.id.about_toolbar_shadow);
-        hideToolBarShadowForLollipop(toolbar, toolbarShaw);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        RelativeLayout mainLayout = (RelativeLayout) findViewById(R.id.main_layout);
+        Util.hideToolBarShadowForLollipop(this, toolbar, toolbarShaw);
+        Util.setSystemUiVisibilityForLollipop(this);
+        Util.setStatusBarPaddingForLollipop(this, mainLayout);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_about_us);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,13 +52,5 @@ public class AboutActivity extends AppCompatActivity {
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void hideToolBarShadowForLollipop(Toolbar mToolbar, View shadowView) {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            // only for lollipop and newer versions
-            shadowView.setVisibility(View.GONE);
-            mToolbar.setElevation(getResources().getDimension(R.dimen.toolbar_elevation_height));
-        }
     }
 }

@@ -5,9 +5,9 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
     <string-array name="spinner_item">
-        <item>day</item>
-        <item>month</item>
-        <item>holidays</item>
+        <item>Day</item>
+        <item>Month</item>
+        <item>Holidays</item>
     </string-array>
 
     <string-array name="holiday_spinner_item">

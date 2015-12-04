@@ -1,7 +1,9 @@
 package com.hilllander.naunginlecalendar.view.activity;
 
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -81,7 +84,9 @@ public class MainActivity extends AppCompatActivity implements
         View tbShadow = findViewById(R.id.home_toolbar_shadow);
         Util.hideToolBarShadowForLollipop(this, toolbar, tbShadow);
         mainLayout = (LinearLayout) findViewById(R.id.main_layout);
+        Util.setStatusBarPaddingForLollipop(this, mainLayout);
         setSupportActionBar(toolbar);
+        Util.setSystemUiVisibilityForLollipop(this);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter
