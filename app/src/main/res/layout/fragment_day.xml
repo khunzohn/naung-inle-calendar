@@ -67,8 +67,7 @@
                 android:id="@+id/marketday_background"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/shadow"
-                android:background="@drawable/mm1">
+                android:layout_below="@+id/shadow">
 
 
                 <FrameLayout
