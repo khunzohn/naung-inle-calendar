@@ -56,7 +56,7 @@
     <string name="listview_animations">&lt;a href=\"https://github.com/nhaarman/ListViewAnimations\">ListViewAnimations&lt;/a> by nhaarman</string>
     <string name="material_datepicker">&lt;a href=\"https://github.com/wdullaer/MaterialDateTimePicker\">MaterialDateTimePicker&lt;/a> by wdullaer</string>
     <string name="google_iconset">&lt;a href=\"http://www.google.com/design/spec/style/icons.html#icons-system-icons\">Material design icons&lt;/a> by Google</string>
-    <string name="version">Version 0.1_beta(Ibis)</string>
+    <string name="version">Version 0.1.1(Ibis)</string>
     <string name="calendar_about">ပြက္ခဒိန်</string>
     <string name="naung_inle_about">hilllander</string>
     <string name="special_thanks">Special thanks to :</string>
