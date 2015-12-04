@@ -19,11 +19,11 @@ import android.widget.TextView;
 import com.hilllander.calendar_api.calendar.MyanmarCalendar;
 import com.hilllander.calendar_api.util.DateFormatter;
 import com.hilllander.naunginlecalendar.R;
+import com.hilllander.naunginlecalendar.util.Util;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Random;
 
 import io.codetail.animation.SupportAnimator;
 import io.codetail.animation.ViewAnimationUtils;
@@ -79,9 +79,7 @@ public class DayFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_day, container, false);
         myView = view.findViewById(R.id.ll_reveal);
         FrameLayout background = (FrameLayout) view.findViewById(R.id.marketday_background);
-        int backId = new Random().nextInt(4);
-        int backResId = getResId(backId);
-        background.setBackgroundResource(backResId);
+        background.setBackgroundResource(Util.getMainMarketDayBackgroundResId());
 
         Bundle args = getArguments();
         MMTextView myaDate = (MMTextView) view.findViewById(R.id.myaDate);
@@ -132,21 +130,6 @@ public class DayFragment extends Fragment {
         engDay.setText(args.getString(E_DAY));
         engDate.setText(args.getString(E_DATE));
         return view;
-    }
-
-    private int getResId(int backId) {
-        switch (backId) {
-            case 0:
-                return R.drawable.mm1;
-            case 1:
-                return R.drawable.mm2;
-            case 2:
-                return R.drawable.mm3;
-            case 3:
-                return R.drawable.mm4;
-            default:
-                return R.drawable.mm1;
-        }
     }
 
     private void hideOtherMarketDays(ListView list) {

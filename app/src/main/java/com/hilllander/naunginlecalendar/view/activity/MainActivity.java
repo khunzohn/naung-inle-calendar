@@ -22,6 +22,7 @@ import com.hilllander.calendar_api.model.WesternDate;
 import com.hilllander.naunginlecalendar.R;
 import com.hilllander.naunginlecalendar.util.HolidayViewHolder;
 import com.hilllander.naunginlecalendar.util.MonthViewHolder;
+import com.hilllander.naunginlecalendar.util.Util;
 import com.hilllander.naunginlecalendar.util.listener.HolidayEventsListener;
 import com.hilllander.naunginlecalendar.util.listener.MonthEventsListener;
 import com.hilllander.naunginlecalendar.util.listener.SimpleGestureFilter;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         View tbShadow = findViewById(R.id.home_toolbar_shadow);
-        hideToolBarShadowForLollipop(toolbar, tbShadow);
+        Util.hideToolBarShadowForLollipop(this, toolbar, tbShadow);
         mainLayout = (LinearLayout) findViewById(R.id.main_layout);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -344,13 +345,6 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
-    private void hideToolBarShadowForLollipop(Toolbar mToolbar, View shadowView) {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            // only for lollipop and newer versions
-            shadowView.setVisibility(View.GONE);
-            mToolbar.setElevation(getResources().getDimension(R.dimen.toolbar_elevation_height));
-        }
-    }
 
     @Override
     public void onGridItemClick(int monthDayFlag, GregorianCalendar date) {
