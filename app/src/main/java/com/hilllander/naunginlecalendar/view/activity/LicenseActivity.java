@@ -30,8 +30,8 @@ public class LicenseActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         RelativeLayout mainLayout = (RelativeLayout) findViewById(R.id.main_layout);
         Util.hideToolBarShadowForLollipop(this, toolbar, toolbarShow);
-        Util.setSystemUiVisibilityForLollipop(this);
-        Util.setStatusBarPaddingForLollipop(this, mainLayout);
+        Util.setSystemUiVisibilityForKitkat(this);
+        Util.setStatusBarPaddingForKitkat(this, mainLayout);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.license_recycler);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);

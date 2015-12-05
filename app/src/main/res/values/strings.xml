@@ -70,6 +70,7 @@
     Any bug report or feature requests are thankfully welcome. </string>
     <string name="full_changes">Full changes</string>
     <string name="ver_0_1_1">0.1.1 (Ibis)</string>
+    <string name="rate_me">Rate this app</string>
     <string-array name="author">
         <item>Ko Yan Naing Aye</item>
         <item>Ko Htoo Myint Naung</item>

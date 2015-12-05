@@ -82,9 +82,9 @@ public class MainActivity extends AppCompatActivity implements
         View tbShadow = findViewById(R.id.home_toolbar_shadow);
         Util.hideToolBarShadowForLollipop(this, toolbar, tbShadow);
         mainLayout = (LinearLayout) findViewById(R.id.main_layout);
-        Util.setStatusBarPaddingForLollipop(this, mainLayout);
+        Util.setStatusBarPaddingForKitkat(this, mainLayout);
         setSupportActionBar(toolbar);
-        Util.setSystemUiVisibilityForLollipop(this);
+        Util.setSystemUiVisibilityForKitkat(this);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter
@@ -150,6 +150,8 @@ public class MainActivity extends AppCompatActivity implements
         } else if (id == R.id.whatIsNew) {
             WhatNewDialogFragment dialog = new WhatNewDialogFragment();
             dialog.show(getSupportFragmentManager(), "what\'s new dialog");
+        } else if (id == R.id.rate_me) {
+            Util.rateMe(this);
         }
 
         return super.onOptionsItemSelected(item);

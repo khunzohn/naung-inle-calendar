@@ -26,8 +26,8 @@ public class AboutActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         RelativeLayout mainLayout = (RelativeLayout) findViewById(R.id.main_layout);
         Util.hideToolBarShadowForLollipop(this, toolbar, toolbarShaw);
-        Util.setSystemUiVisibilityForLollipop(this);
-        Util.setStatusBarPaddingForLollipop(this, mainLayout);
+        Util.setSystemUiVisibilityForKitkat(this);
+        Util.setStatusBarPaddingForKitkat(this, mainLayout);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_about_us);
         fab.setOnClickListener(new View.OnClickListener() {

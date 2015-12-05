@@ -1,7 +1,11 @@
 package com.hilllander.naunginlecalendar.util;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
@@ -14,6 +18,8 @@ import java.util.Random;
  * Created by khunzohn on 12/4/15.
  */
 public class Util {
+
+    private static final String APP_ID = "com.hilllander.naunginlecalendar";
 
     public static int getMainMarketDayBackgroundResId() {
         int backId = new Random().nextInt(4);
@@ -50,19 +56,40 @@ public class Util {
         return result;
     }
 
-    public static void setStatusBarPaddingForLollipop(Context context, View mainLayout) {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+    public static void setStatusBarPaddingForKitkat(Context context, View mainLayout) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             // only for lollipop and newer versions
             mainLayout.setPadding(0, getStatusBarHeight(context), 0, 0);
         }
     }
 
-    public static void setSystemUiVisibilityForLollipop(Activity context) {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+    public static void setSystemUiVisibilityForKitkat(Activity context) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             // only for lollipop and newer versions
             context.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
                     View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
+        }
+    }
+
+    public static void rateMe(Context context) {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse("market://details?id=" + APP_ID));
+        if (!startRateMeIntent(context, i)) {
+            i.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + APP_ID));
+            if (!startRateMeIntent(context, i)) {
+                Toast.makeText(context,
+                        "Can't start android market.Please install play store app", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private static boolean startRateMeIntent(Context context, Intent i) {
+        try {
+            context.startActivity(i);
+            return true;
+        } catch (ActivityNotFoundException e) {
+            return false;
         }
     }
 }
