@@ -4,16 +4,9 @@ package com.hilllander.naunginlecalendar.view.fragment;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.hilllander.naunginlecalendar.R;
-import com.hilllander.naunginlecalendar.model.FeatureBundle;
-import com.hilllander.naunginlecalendar.util.adapter.WhatNewAdapter;
-
-import java.util.ArrayList;
 
 import mm.technomation.mmtext.MMButtonView;
 
@@ -28,13 +21,17 @@ public class WhatNewDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final Dialog dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.fragment_what_new_dialog);
-        RecyclerView recyclerView = (RecyclerView) dialog.findViewById(R.id.whatIsNewRecycler);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-        WhatNewAdapter adapter = new WhatNewAdapter(getFeatureBundles());
-        recyclerView.setAdapter(adapter);
-        dialog.setTitle("What\'s new in " + getString(R.string.version) + "?");
+        dialog.setTitle("What\'s new?");
         MMButtonView ok = (MMButtonView) dialog.findViewById(R.id.ok);
+        MMButtonView feedback = (MMButtonView) dialog.findViewById(R.id.feedback);
+
+        feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FeedbackDialogFragment feedback = new FeedbackDialogFragment();
+                feedback.show(getChildFragmentManager(), "feedback");
+            }
+        });
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,7 +40,7 @@ public class WhatNewDialogFragment extends DialogFragment {
         });
         return dialog;
     }
-
+/*
     private ArrayList<FeatureBundle> getFeatureBundles() {
         ArrayList<FeatureBundle> bundles = new ArrayList<>();
         String[] versions = getResources().getStringArray(R.array.version);
@@ -55,6 +52,6 @@ public class WhatNewDialogFragment extends DialogFragment {
             bundles.add(new FeatureBundle(versions[i], featureLists[i]));
         }
         return bundles;
-    }
+    }*/
 
 }

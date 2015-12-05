@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/tv_padding"
-                android:text="@string/what_new"
+                android:text="@string/what_new_title"
                 android:textStyle="bold" />
 
             <mm.technomation.mmtext.MMTextView
@@ -28,18 +28,15 @@
                 android:padding="@dimen/tv_padding"
                 android:text="@string/summary_0_1_1" />
 
-            <TextView
-                android:layout_width="match_parent"
+            <mm.technomation.mmtext.MMButtonView
+                android:id="@+id/feedback"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/tv_padding"
-                android:text="@string/full_changes"
-                android:textStyle="bold" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/whatIsNewRecycler"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/pinky" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
+                android:padding="@dimen/padding_4dp"
+                android:text="@string/feedback"
+                android:textColor="@color/primary" />
         </LinearLayout>
     </ScrollView>
 

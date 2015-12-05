@@ -66,11 +66,17 @@
     <string name="what_new">what\'s new</string>
     <string name="summary_0_1_1">In version 0.1.1 (Ibis) release, lollipop incompatibility issue is fixed.
     Some market day Photos are removed for the sake of app\'s size. Status bar
-        is re-designed to meet the material design guide lines.\n\n
+        is re-designed to meet the material design guide lines.
+        Rate this app menu item.Feedback sending option.What\'s new menu item.\n\n
     Any bug report or feature requests are thankfully welcome. </string>
     <string name="full_changes">Full changes</string>
     <string name="ver_0_1_1">0.1.1 (Ibis)</string>
     <string name="rate_me">Rate this app</string>
+    <string name="what_new_title">What\'s new in this hot bug fix (Ibis)?</string>
+    <string name="send">ပို့မယ်</string>
+    <string name="cancel">တော်ပါပြီ</string>
+    <string name="feedback">အကြံပေးမယ်</string>
+    <string name="feedback_tip">သံုးရတာအဆင်ပြေမပြေ ထပ်မံဖြည့်စွက်လိုသည်များ အချက်အလက်မှားယွင်းမူများ စသဖြင့်ကောင်းသည်ဆိုးသည်ဝေဖန်အကြံပြုနိုင်ပါသည်</string>
     <string-array name="author">
         <item>Ko Yan Naing Aye</item>
         <item>Ko Htoo Myint Naung</item>

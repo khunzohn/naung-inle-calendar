@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <mm.technomation.mmtext.MMTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_4dp"
+        android:text="@string/feedback_tip"
+        android:textColor="@color/accent" />
+
+    <EditText
+        android:id="@+id/subject"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_margin="@dimen/padding_4dp"
+        android:hint="subject"
+        android:textColor="@color/primary"
+        android:textColorHint="@color/dark_green" />
+
+    <EditText
+        android:id="@+id/bodyText"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_margin="@dimen/padding_4dp"
+        android:hint="your advice here..."
+        android:textColor="@color/primary"
+        android:textColorHint="@color/dark_green" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:background="@color/white">
+
+        <mm.technomation.mmtext.MMButtonView
+            android:id="@+id/send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/padding_16_dp"
+            android:layout_marginRight="@dimen/padding_16_dp"
+            android:padding="@dimen/padding_4dp"
+            android:text="@string/send"
+            android:textColor="@color/pinky" />
+
+        <mm.technomation.mmtext.MMButtonView
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/padding_16_dp"
+            android:layout_marginRight="@dimen/padding_16_dp"
+            android:layout_toLeftOf="@id/send"
+            android:layout_toStartOf="@id/send"
+            android:padding="@dimen/padding_4dp"
+            android:text="@string/cancel"
+            android:textColor="@color/pinky" />
+
+    </RelativeLayout>
+
+</LinearLayout>
